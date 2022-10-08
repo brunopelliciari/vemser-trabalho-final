@@ -1,28 +1,26 @@
+import java.time.Duration;
 import java.time.LocalDate;
 
 public class Locacao {
 
     private LocalDate dataLocacao;
     private LocalDate dataDevolucao;
-    private double quilometragem;
     private double valorLocacao;
-    private boolean devolvido;
-//    private Cliente cliente;
-//    private Veiculo veiculo;
+    private Cliente cliente;
+    private Veiculo veiculo;
     private CartaoCredito cartaoCredito;
 
     public Locacao() {
     }
 
-    public Locacao(LocalDate dataLocacao, LocalDate dataDevolucao/*, Cliente cliente, Veiculo veiculo*/) throws DatasInvalidasException{
+    public Locacao(LocalDate dataLocacao, LocalDate dataDevolucao, Cliente cliente, Veiculo veiculo) throws DatasInvalidasException{
         if(dataDevolucao.isBefore(dataLocacao)) {
             throw new DatasInvalidasException("Erro! ");
         }
         this.dataLocacao = dataLocacao;
         this.dataDevolucao = dataDevolucao;
-        this.devolvido = false;
-//        this.cliente = cliente;
-//        this.veiculo = veiculo;
+        this.cliente = cliente;
+        this.veiculo = veiculo;
     }
 
     public LocalDate getDataLocacao() {
@@ -41,14 +39,6 @@ public class Locacao {
         this.dataDevolucao = dataDevolucao;
     }
 
-    public double getQuilometragem() {
-        return quilometragem;
-    }
-
-    public void setQuilometragem(double quilometragem) {
-        this.quilometragem = quilometragem;
-    }
-
     public double getValorLocacao() {
         return valorLocacao;
     }
@@ -57,29 +47,21 @@ public class Locacao {
         this.valorLocacao = valorLocacao;
     }
 
-    public boolean getDevolvido() {
-        return devolvido;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setDevolvido(boolean devolvido) {
-        this.devolvido = devolvido;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-//    public Cliente getCliente() {
-//        return cliente;
-//    }
+    public Veiculo getVeiculo() {
+        return veiculo;
+    }
 
-//    public void setCliente(Cliente cliente) {
-//        this.cliente = cliente;
-//    }
-//
-//    public Veiculo getVeiculo() {
-//        return veiculo;
-//    }
-//
-//    public void setVeiculo(Veiculo veiculo) {
-//        this.veiculo = veiculo;
-//    }
+    public void setVeiculo(Veiculo veiculo) {
+        this.veiculo = veiculo;
+    }
 
     public CartaoCredito getCartaoCredito() {
         return cartaoCredito;
@@ -89,21 +71,22 @@ public class Locacao {
         this.cartaoCredito = cartaoCredito;
     }
 
+    public double calcularValorLocacao (){
+        Duration d2 = Duration.between(this.getDataLocacao(), this.getDataDevolucao());
+        return d2.toDays() * this.veiculo.getValorLocacao();
+    }
+
     public void consultarLocacao(){
         System.out.println("\nDados da locação"
                 + "\nData de locação: "
                 + this.getDataLocacao()
                 + "\nData da devolução: "
                 + this.getDataDevolucao()
-                + "\nQuilometragem do veículo: : "
-                + this.getQuilometragem()
                 + "\nValor da locação: "
                 + this.getValorLocacao()
-                + "\nDevolvido: "
-                + this.getDevolvido()
-                + "\nCliente: ");
-//                + this.getCliente
-//                + "\nVeículo: "
-//                + this.getVeiculo);
+                + "\nCliente: "
+                + this.getCliente().getNome()
+                + "\nVeículo: "
+                + this.getVeiculo());
     }
 }

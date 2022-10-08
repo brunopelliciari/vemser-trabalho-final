@@ -10,13 +10,14 @@ public class CartaoCredito {
     public CartaoCredito(){
     }
 
-    public CartaoCredito(String numero, String bandeira, LocalDate validade) throws DatasInvalidasException{
+    public CartaoCredito(String numero, String bandeira, LocalDate validade, double limite) throws DatasInvalidasException{
         if(validade.isBefore(LocalDate.now())) {
             throw new DatasInvalidasException("Erro! ");
         }
         this.numero = numero;
         this.bandeira = bandeira;
         this.validade = validade;
+        this.limite = limite;
     }
 
     public void consultarCartao(){

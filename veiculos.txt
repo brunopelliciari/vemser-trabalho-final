@@ -1,0 +1,4 @@
+Honda, Fit, Branco, 2018, 2500.0, 200.0, DISPONIVEL, ARG8765
+Honda, Civic, Preto, 2020, 1500.0, 400.0, DISPONIVEL, BRA1234
+Toyota, Corolla, Cinza, 2020, 1700.0, 400.0, DISPONIVEL, CHI9876
+Volkswagen, Gol, Branco, 2019, 3500.0, 100.0, DISPONIVEL, COR7832
