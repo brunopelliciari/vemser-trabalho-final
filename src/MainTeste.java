@@ -280,6 +280,7 @@ public class MainTeste {
                             switch (quintoMenu) {
                                 case 1:
                                     Locacao locacao = new Locacao();
+                                    CartaoCredito cartao = new CartaoCredito();
                                     System.out.print("Digite a data da locação do veículo(dd/MM/yyyy): ");
                                     locacao.setDataLocacao(LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
                                     System.out.print("Digite a data da devolucao do veículo(dd/MM/yyyy): ");
@@ -292,18 +293,18 @@ public class MainTeste {
                                     veiculoManipulacao.consultarCadastro();
                                     locacao.setVeiculo(veiculoManipulacao.retornarVeiculoPorIndice(scanner.nextInt()));
                                     scanner.nextLine();
-                                    System.out.print("Informe os dados do cartão de crédito que deseja utilizar para o pagamento: ");
+                                    System.out.print("Informe os dados do cartão de crédito que deseja utilizar para o pagamento: \n");
                                     System.out.println("Informe o numero do cartão: ");
-                                    String[] temp = new String[2];
-                                    temp[0] = scanner.nextLine();
+                                    cartao.setNumero(scanner.nextLine());
                                     System.out.println("Informe a bandeira do cartão: 1- Visa 2- Mastercard ");
-                                    temp[1] = scanner.nextLine().toUpperCase().strip();
+                                    cartao.setBandeira(scanner.nextInt());
+                                    scanner.nextLine();
                                     System.out.println("Informe a validade do cartão: ");
-                                    LocalDate ld = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                                    cartao.setValidade(LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
                                     System.out.println("Informe o limite do cartão: ");
-                                    locacao.setCartaoCredito(new CartaoCredito(temp[0],
-                                            BandeiraCartao.valueOf(temp[1].trim().replaceAll("BandeiraCartao.","")),
-                                            ld, scanner.nextDouble()));
+                                    cartao.setLimite(scanner.nextDouble());
+                                    scanner.nextLine();
+                                    locacao.setCartaoCredito(cartao);
                                     locacaoManipulacao.realizarCadastro(locacao);
                                     MetodosAuxiliares.salvarLocacao(locacaoManipulacao);
                                     break;
@@ -317,6 +318,7 @@ public class MainTeste {
                                     scanner.nextLine();
 
                                     Locacao novaLocacao = new Locacao();
+                                    CartaoCredito novoCartao = new CartaoCredito();
                                     System.out.print("Digite a data da locação do veículo(dd/MM/yyyy): ");
                                     novaLocacao.setDataLocacao(LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
                                     System.out.print("Digite a data da devolucao do veículo(dd/MM/yyyy): ");
@@ -331,18 +333,18 @@ public class MainTeste {
                                     scanner.nextLine();
                                     System.out.print("Informe os dados do cartão de crédito que deseja utilizar para o pagamento: \n");
                                     System.out.println("Informe o numero do cartão: ");
-                                    temp = new String[2];
-                                    temp[0] = scanner.nextLine();
-                                    System.out.println("Informe a bandeira do cartão: ");
-                                    temp[1] = scanner.nextLine();
+                                    novoCartao.setNumero(scanner.nextLine());
+                                    System.out.println("Informe a bandeira do cartão: 1- Visa 2- Mastercard ");
+                                    novoCartao.setBandeira(scanner.nextInt());
+                                    scanner.nextLine();
                                     System.out.println("Informe a validade do cartão: ");
-                                    ld = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                                    novoCartao.setValidade(LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
                                     System.out.println("Informe o limite do cartão: ");
-                                    novaLocacao.setCartaoCredito(new CartaoCredito(temp[0],
-                                            BandeiraCartao.valueOf(temp[1].trim().replaceAll("BandeiraCartao.",""))
-                                            , ld, scanner.nextDouble()));
+                                    novoCartao.setLimite(scanner.nextDouble());
+                                    scanner.nextLine();
+                                    novaLocacao.setCartaoCredito(novoCartao);
                                     locacaoManipulacao.editarCadastro(index, novaLocacao);
-                                   MetodosAuxiliares.salvarLocacao(locacaoManipulacao);
+                                    MetodosAuxiliares.salvarLocacao(locacaoManipulacao);
                                     break;
                                 case 4:
                                     System.out.println("Qual registro de locação você deseja excluir?\n");
@@ -419,9 +421,6 @@ public class MainTeste {
             catch(InputMismatchException e){
                 System.err.println("Tipo de dado digitado está incorreto " + e.getMessage());
                 scanner.nextLine();
-            }
-            catch (DatasInvalidasException e) {
-                System.err.println(e.getMessage() + "A data de devolução não pode ser inferior a data de locacção. Tente novamente!");
             }
         }
         scanner.close();

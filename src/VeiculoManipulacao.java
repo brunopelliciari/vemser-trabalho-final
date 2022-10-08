@@ -35,7 +35,7 @@ public class VeiculoManipulacao implements Cadastro<Veiculo> {
         }
     }
 
-    public List<Veiculo> retornarLista(){
+    public List<Veiculo> retornarLista() {
         return listaDeVeiculos;
     }
 
@@ -45,10 +45,10 @@ public class VeiculoManipulacao implements Cadastro<Veiculo> {
 
     public Veiculo retornarVeiculoPorPlaca(String placa){
         try {
-            List<Veiculo> x = this.listaDeVeiculos.stream()
+            List<Veiculo> placaProcurada = this.listaDeVeiculos.stream()
                     .filter(carro -> carro.getPlaca().equals(placa))
                     .toList();
-            return x.get(0);
+            return placaProcurada.get(0);
         }
         catch(ArrayIndexOutOfBoundsException e){
             System.out.println("Placa não encontrada. Erro na leitura de inicialização do banco de dados.");

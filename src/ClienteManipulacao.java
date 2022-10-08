@@ -38,12 +38,17 @@ public class ClienteManipulacao implements Cadastro <Cliente> {
         return this.listaDeCliente.get(indice);
     }
 
-    public Cliente retornarClientesPorCPF(String n){
-       List<Cliente> x = this.listaDeCliente.stream()
-                .filter(cpf -> cpf.getCpf().equals(n))
-               .toList();
-       Cliente na = x.get(0);
-       return na;
+    public Cliente retornarClientesPorCPF(String cpf){
+        try {
+            List<Cliente> cpfProcurado = this.listaDeCliente.stream()
+                    .filter(cliente -> cliente.getCpf().equals(cpf))
+                    .toList();
+            return cpfProcurado.get(0);
+        }
+        catch(ArrayIndexOutOfBoundsException e){
+            System.out.println("Cpf não encontrado. Erro na leitura de inicialização do banco de dados.");
+            return null;
+        }
     }
 
 }
