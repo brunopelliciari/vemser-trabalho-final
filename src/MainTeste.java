@@ -272,7 +272,7 @@ public class MainTeste {
                                     locacaoManipulacao.realizarCadastro(locacao);
                                     break;
                                 case 2:
-                                    funcionarioManipulacao.consultarCadastro();
+                                    locacaoManipulacao.consultarCadastro();
                                     break;
                                 case 3:
                                     System.out.println("Qual funcionário você deseja editar?");

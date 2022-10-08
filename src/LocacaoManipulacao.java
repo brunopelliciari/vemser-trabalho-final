@@ -19,11 +19,11 @@ public class LocacaoManipulacao implements Cadastro<Locacao> {
     @Override
     public void editarCadastro(Integer indice, Locacao locacao) {
         Locacao locacaoDesejada = listaLocacao.get(indice);
-        locacao.setDataLocacao(locacao.getDataLocacao());
-        locacao.setDataDevolucao(locacao.getDataDevolucao());
-        locacao.setValorLocacao(locacao.getValorLocacao());
-        locacao.setCliente(locacao.getCliente());
-        locacao.setVeiculo(locacao.getVeiculo());
+        locacaoDesejada.setDataLocacao(locacao.getDataLocacao());
+        locacaoDesejada.setDataDevolucao(locacao.getDataDevolucao());
+        locacaoDesejada.setValorLocacao(locacao.getValorLocacao());
+        locacaoDesejada.setCliente(locacao.getCliente());
+        locacaoDesejada.setVeiculo(locacao.getVeiculo());
     }
 
     @Override

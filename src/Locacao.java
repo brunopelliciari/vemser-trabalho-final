@@ -76,17 +76,27 @@ public class Locacao {
         return d2.toDays() * this.veiculo.getValorLocacao();
     }
 
-    public void consultarLocacao(){
-        System.out.println("\nDados da locação"
-                + "\nData de locação: "
-                + this.getDataLocacao()
-                + "\nData da devolução: "
-                + this.getDataDevolucao()
-                + "\nValor da locação: "
-                + this.getValorLocacao()
-                + "\nCliente: "
-                + this.getCliente().getNome()
-                + "\nVeículo: "
-                + this.getVeiculo());
+//    public void x(){
+//        System.out.println("\nDados da locação"
+//                + "\nData de locação: "
+//                + this.getDataLocacao()
+//                + "\nData da devolução: "
+//                + this.getDataDevolucao()
+//                + "\nValor da locação: "
+//                + this.getValorLocacao()
+//                + "\nCliente: "
+//                + this.getCliente().getNome()
+//                + "\nVeículo: "
+//                + this.getVeiculo());
+//    }
+
+    @Override
+    public String toString() {
+        return "dataLocacao=" + dataLocacao +
+                ", dataDevolucao=" + dataDevolucao +
+                ", valorLocacao=" + valorLocacao +
+                ", cliente=" + cliente +
+                ", veiculo=" + veiculo +
+                ", cartaoCredito=" + cartaoCredito;
     }
 }
