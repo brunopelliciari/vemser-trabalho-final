@@ -42,4 +42,17 @@ public class VeiculoManipulacao implements Cadastro<Veiculo> {
     public Veiculo retornarVeiculoPorIndice(Integer indice){
         return this.listaDeVeiculos.get(indice);
     }
+
+    public Veiculo retornarVeiculoPorPlaca(String placa){
+        try {
+            List<Veiculo> x = this.listaDeVeiculos.stream()
+                    .filter(carro -> carro.getPlaca().equals(placa))
+                    .toList();
+            return x.get(0);
+        }
+        catch(ArrayIndexOutOfBoundsException e){
+            System.out.println("Placa não encontrada. Erro na leitura de inicialização do banco de dados.");
+            return null;
+        }
+    }
 }

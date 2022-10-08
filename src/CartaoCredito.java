@@ -3,14 +3,14 @@ import java.time.LocalDate;
 public class CartaoCredito {
 
     private String numero;
-    private String bandeira;
+    private BandeiraCartao bandeira;
     private LocalDate validade;
     private double limite;
 
     public CartaoCredito(){
     }
 
-    public CartaoCredito(String numero, String bandeira, LocalDate validade, double limite) throws DatasInvalidasException{
+    public CartaoCredito(String numero, BandeiraCartao bandeira, LocalDate validade, double limite) throws DatasInvalidasException{
         if(validade.isBefore(LocalDate.now())) {
             throw new DatasInvalidasException("Erro! ");
         }
@@ -40,14 +40,18 @@ public class CartaoCredito {
         this.numero = numero;
     }
 
-    public String getBandeira() {
-        return bandeira;
+    public int getBandeira() {
+        return bandeira.getS();
     }
 
-    public void setBandeira(String bandeira) {
-        this.bandeira = bandeira;
+    public void setBandeira(int i){
+        if(i==1){
+            this.bandeira = BandeiraCartao.VISA;
+        }
+        else if(i==2){
+            this.bandeira = BandeiraCartao.MASTERCARD;
+        }
     }
-
     public LocalDate getValidade() {
         return validade;
     }
@@ -62,5 +66,13 @@ public class CartaoCredito {
 
     public void setLimite(double limite) {
         this.limite = limite;
+    }
+
+    @Override
+    public String toString() {
+        return "numero=" + numero +
+                ", bandeira=" + bandeira +
+                ", validade=" + validade +
+                ", limite=" + limite;
     }
 }

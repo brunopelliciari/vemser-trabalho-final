@@ -13,7 +13,7 @@ public class Locacao {
     public Locacao() {
     }
 
-    public Locacao(LocalDate dataLocacao, LocalDate dataDevolucao, Cliente cliente, Veiculo veiculo) throws DatasInvalidasException{
+    public Locacao(LocalDate dataLocacao, LocalDate dataDevolucao, Cliente cliente, Veiculo veiculo, CartaoCredito cartaoCredito) throws DatasInvalidasException{
         if(dataDevolucao.isBefore(dataLocacao)) {
             throw new DatasInvalidasException("Erro! ");
         }
@@ -21,6 +21,7 @@ public class Locacao {
         this.dataDevolucao = dataDevolucao;
         this.cliente = cliente;
         this.veiculo = veiculo;
+        this.cartaoCredito = cartaoCredito;
     }
 
     public LocalDate getDataLocacao() {
@@ -76,27 +77,18 @@ public class Locacao {
         return d2.toDays() * this.veiculo.getValorLocacao();
     }
 
-//    public void x(){
-//        System.out.println("\nDados da locação"
-//                + "\nData de locação: "
-//                + this.getDataLocacao()
-//                + "\nData da devolução: "
-//                + this.getDataDevolucao()
-//                + "\nValor da locação: "
-//                + this.getValorLocacao()
-//                + "\nCliente: "
-//                + this.getCliente().getNome()
-//                + "\nVeículo: "
-//                + this.getVeiculo());
-//    }
-
     @Override
     public String toString() {
-        return "dataLocacao=" + dataLocacao +
-                ", dataDevolucao=" + dataDevolucao +
-                ", valorLocacao=" + valorLocacao +
-                ", cliente=" + cliente +
-                ", veiculo=" + veiculo +
-                ", cartaoCredito=" + cartaoCredito;
+        return "dataLocacao= " + dataLocacao +
+                ", dataDevolucao= " + dataDevolucao +
+                ", cliente= " + cliente +
+                ", veiculo= " + veiculo +
+                ", cartaoCredito= " + cartaoCredito;
+    }
+
+    public String toStringParaLista() {
+        return "" + getDataLocacao() + ", " + getDataDevolucao()  + ", " + getCliente().getNome() + ", " + getCliente().getCpf()
+        + ", " + getVeiculo().getModelo() + ", " + getVeiculo().getPlaca() + ", " + getCartaoCredito();
+
     }
 }

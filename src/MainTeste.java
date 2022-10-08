@@ -16,27 +16,56 @@ public class MainTeste {
             BufferedReader brVeiculos = new BufferedReader(new FileReader("veiculos.txt"));
             BufferedReader brFuncionarios = new BufferedReader(new FileReader("funcionarios.txt"));
             BufferedReader brClientes = new BufferedReader(new FileReader("clientes.txt"));
+            BufferedReader brLocacao = new BufferedReader(new FileReader("locacoes.txt"));
             String line = brVeiculos.readLine();
             String line2 = brFuncionarios.readLine();
             String line3 = brClientes.readLine();
+            String line4 = brLocacao.readLine();
 
             while (line != null) {
                 String[] valores = line.split(",");
-                veiculoManipulacao.realizarCadastro(MetodosAuxiliares.retornarVeiculoAPartirDeListaDeStrings(valores));
-                line = brVeiculos.readLine();
+                if(valores.length>=8) {
+                    veiculoManipulacao.realizarCadastro(MetodosAuxiliares.retornarVeiculoAPartirDeListaDeStrings(valores));
+                    line = brVeiculos.readLine();
+                }
+                else{
+                    break;
+                }
             }
 
             while (line2 != null) {
                 String[] valores = line2.split(",");
-                funcionarioManipulacao.realizarCadastro(MetodosAuxiliares.retornarFuncionarioAPartirDeListaDeStrings(valores));
-                line2 = brFuncionarios.readLine();
+                if(valores.length>=3) {
+                    funcionarioManipulacao.realizarCadastro(MetodosAuxiliares.retornarFuncionarioAPartirDeListaDeStrings(valores));
+                    line2 = brFuncionarios.readLine();
+                }
+                else{
+                    break;
+                }
             }
 
             while (line3 != null) {
                 String[] valores = line3.split(",");
+                if(valores.length>=10){
                 clienteManipulacao.realizarCadastro(MetodosAuxiliares.retornarClienteAPartirDeListaDeStrings(valores));
                 line3 = brClientes.readLine();
+                }
+                else{
+                    break;
+                }
             }
+
+            while (line4 != null) {
+                String[] valores = line4.split(",");
+                if(valores.length>=8) {
+                    locacaoManipulacao.realizarCadastro(MetodosAuxiliares.retornarLocacaoAPartirDeListaDeStrings(valores, clienteManipulacao, veiculoManipulacao));
+                    line4 = brClientes.readLine();
+                }
+                else{
+                    break;
+                }
+            }
+
         }
         catch (FileNotFoundException e ){
             System.out.println("Arquivo não encontrado no caminho designado " + e.getMessage());
@@ -44,6 +73,10 @@ public class MainTeste {
         catch (IOException e ){
             System.out.println(e.getMessage());
         }
+        catch (DatasInvalidasException e) {
+            e.printStackTrace();
+        }
+
         int primeiroMenu = 0;
         int segundoMenu = 0;
         int terceiroMenu = 0;
@@ -90,7 +123,7 @@ public class MainTeste {
                                     veiculoManipulacao.consultarCadastro();
                                     break;
                                 case 3:
-                                    System.out.println("Qual veiculo você deseja editar?");
+                                    System.out.println("Qual veiculo você deseja editar? \n");
                                     veiculoManipulacao.consultarCadastro();
                                     int index = scanner.nextInt();
                                     scanner.nextLine();
@@ -120,14 +153,14 @@ public class MainTeste {
                                     MetodosAuxiliares.salvarVeiculos(veiculoManipulacao);
                                     break;
                                 case 4:
-                                    System.out.println("Qual veiculo você deseja excluir?");
+                                    System.out.println("Qual veiculo você deseja excluir?\n");
                                     veiculoManipulacao.consultarCadastro();
                                     int id = scanner.nextInt();
                                     veiculoManipulacao.removerCadastro(id);
                                     MetodosAuxiliares.salvarVeiculos(veiculoManipulacao);
                                     break;
                                 case 5:
-                                    System.out.println("Qual o id do veículo que deseja alterar a disponibilidade?");
+                                    System.out.println("Qual o id do veículo que deseja alterar a disponibilidade?\n");
                                     veiculoManipulacao.consultarCadastro();
                                     id = scanner.nextInt();
                                     veiculoManipulacao.retornarVeiculoPorIndice(id).alterarDisponibilidade();
@@ -186,7 +219,7 @@ public class MainTeste {
                                     clienteManipulacao.consultarCadastro();
                                     break;
                                 case 3:
-                                    System.out.println("Qual cliente você deseja editar?");
+                                    System.out.println("Qual cliente você deseja editar?\n");
                                     clienteManipulacao.consultarCadastro();
                                     int index = scanner.nextInt();
                                     scanner.nextLine();
@@ -224,7 +257,7 @@ public class MainTeste {
                                     MetodosAuxiliares.salvarClientes(clienteManipulacao);
                                     break;
                                 case 4:
-                                    System.out.println("Qual cliente você deseja excluir?");
+                                    System.out.println("Qual cliente você deseja excluir?\n");
                                     clienteManipulacao.consultarCadastro();
                                     int id = scanner.nextInt();
                                     scanner.nextLine();
@@ -255,7 +288,7 @@ public class MainTeste {
                                     clienteManipulacao.consultarCadastro();
                                     locacao.setCliente(clienteManipulacao.retornarClientePorIndice(scanner.nextInt()));
                                     scanner.nextLine();
-                                    System.out.print("Digite o id de um cliente cadastrado: ");
+                                    System.out.print("Digite o id de um veículo cadastrado: ");
                                     veiculoManipulacao.consultarCadastro();
                                     locacao.setVeiculo(veiculoManipulacao.retornarVeiculoPorIndice(scanner.nextInt()));
                                     scanner.nextLine();
@@ -263,41 +296,61 @@ public class MainTeste {
                                     System.out.println("Informe o numero do cartão: ");
                                     String[] temp = new String[2];
                                     temp[0] = scanner.nextLine();
-                                    System.out.println("Informe a bandeira do cartão: ");
-                                    temp[1] = scanner.nextLine();
+                                    System.out.println("Informe a bandeira do cartão: 1- Visa 2- Mastercard ");
+                                    temp[1] = scanner.nextLine().toUpperCase().strip();
                                     System.out.println("Informe a validade do cartão: ");
                                     LocalDate ld = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
                                     System.out.println("Informe o limite do cartão: ");
-                                    locacao.setCartaoCredito(new CartaoCredito(temp[0], temp[1], ld, scanner.nextDouble()));
+                                    locacao.setCartaoCredito(new CartaoCredito(temp[0],
+                                            BandeiraCartao.valueOf(temp[1].trim().replaceAll("BandeiraCartao.","")),
+                                            ld, scanner.nextDouble()));
                                     locacaoManipulacao.realizarCadastro(locacao);
+                                    MetodosAuxiliares.salvarLocacao(locacaoManipulacao);
                                     break;
                                 case 2:
                                     locacaoManipulacao.consultarCadastro();
                                     break;
                                 case 3:
-                                    System.out.println("Qual funcionário você deseja editar?");
-                                    funcionarioManipulacao.consultarCadastro();
+                                    System.out.println("Qual registro de locação você deseja editar?\n");
+                                    locacaoManipulacao.consultarCadastro();
                                     int index = scanner.nextInt();
                                     scanner.nextLine();
 
-                                    Funcionario novoFuncionario = new Funcionario();
-                                    System.out.println("Digite o nova nome do funcionário");
-                                    novoFuncionario.setNome(scanner.nextLine());
-                                    System.out.println("Digite o novo cpf do funcionário");
-                                    novoFuncionario.setCpf(scanner.nextLine());
-                                    System.out.println("Digite o novo número de matrícula do funcionário");
-                                    novoFuncionario.setMatricula(scanner.nextInt());
+                                    Locacao novaLocacao = new Locacao();
+                                    System.out.print("Digite a data da locação do veículo(dd/MM/yyyy): ");
+                                    novaLocacao.setDataLocacao(LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                                    System.out.print("Digite a data da devolucao do veículo(dd/MM/yyyy): ");
+                                    novaLocacao.setDataDevolucao(LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                                    System.out.print("Digite o id de um cliente cadastrado: ");
+                                    clienteManipulacao.consultarCadastro();
+                                    novaLocacao.setCliente(clienteManipulacao.retornarClientePorIndice(scanner.nextInt()));
                                     scanner.nextLine();
-                                    funcionarioManipulacao.editarCadastro(index, novoFuncionario);
-                                    MetodosAuxiliares.salvarFuncionarios(funcionarioManipulacao);
+                                    System.out.print("Digite o id de um cliente cadastrado: ");
+                                    veiculoManipulacao.consultarCadastro();
+                                    novaLocacao.setVeiculo(veiculoManipulacao.retornarVeiculoPorIndice(scanner.nextInt()));
+                                    scanner.nextLine();
+                                    System.out.print("Informe os dados do cartão de crédito que deseja utilizar para o pagamento: \n");
+                                    System.out.println("Informe o numero do cartão: ");
+                                    temp = new String[2];
+                                    temp[0] = scanner.nextLine();
+                                    System.out.println("Informe a bandeira do cartão: ");
+                                    temp[1] = scanner.nextLine();
+                                    System.out.println("Informe a validade do cartão: ");
+                                    ld = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                                    System.out.println("Informe o limite do cartão: ");
+                                    novaLocacao.setCartaoCredito(new CartaoCredito(temp[0],
+                                            BandeiraCartao.valueOf(temp[1].trim().replaceAll("BandeiraCartao.",""))
+                                            , ld, scanner.nextDouble()));
+                                    locacaoManipulacao.editarCadastro(index, novaLocacao);
+                                   MetodosAuxiliares.salvarLocacao(locacaoManipulacao);
                                     break;
                                 case 4:
-                                    System.out.println("Qual funcionário você deseja excluir?");
-                                    funcionarioManipulacao.consultarCadastro();
+                                    System.out.println("Qual registro de locação você deseja excluir?\n");
+                                    locacaoManipulacao.consultarCadastro();
                                     int id = scanner.nextInt();
                                     scanner.nextLine();
-                                    funcionarioManipulacao.removerCadastro(id);
-                                    MetodosAuxiliares.salvarFuncionarios(funcionarioManipulacao);
+                                    locacaoManipulacao.removerCadastro(id);
+                                    MetodosAuxiliares.salvarLocacao(locacaoManipulacao);
                                     break;
                                 case 9:
                                     break;

@@ -31,12 +31,10 @@ public class Cliente extends Pessoa{
 
     @Override
     public String toString() {
-        return "Cliente{" +
-                " nome=" + getNome() +
+        return " nome=" + getNome() +
                 ", cpf=" + getCpf() +
-                ", contato=" + contato +
-                ", endereco=" + endereco +
-                '}';
+                ", contato=" +" " + contato +
+                ", endereco=" +" " + endereco;
     }
 
     public String toStringParaLista() {

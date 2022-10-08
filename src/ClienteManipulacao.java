@@ -38,4 +38,12 @@ public class ClienteManipulacao implements Cadastro <Cliente> {
         return this.listaDeCliente.get(indice);
     }
 
+    public Cliente retornarClientesPorCPF(String n){
+       List<Cliente> x = this.listaDeCliente.stream()
+                .filter(cpf -> cpf.getCpf().equals(n))
+               .toList();
+       Cliente na = x.get(0);
+       return na;
+    }
+
 }

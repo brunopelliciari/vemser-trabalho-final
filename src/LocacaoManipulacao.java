@@ -7,7 +7,9 @@ public class LocacaoManipulacao implements Cadastro<Locacao> {
 
     @Override
     public void realizarCadastro(Locacao locacao) {
+
         this.listaLocacao.add(locacao);
+        locacao.getVeiculo().alterarDisponibilidade();
     }
 
     @Override
