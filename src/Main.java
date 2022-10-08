@@ -302,8 +302,10 @@ public class Main {
                                     System.out.println("Informe a bandeira do cartão: 1- Visa 2- Mastercard ");
                                     cartao.setBandeira(scanner.nextInt());
                                     scanner.nextLine();
-                                    System.out.println("Informe a validade do cartão: ");
-                                    cartao.setValidade(LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                                    System.out.println("Informe a validade do cartão(MM/yyyy): ");
+//                                    String d = "01/";
+//                                    cartao.setValidade(LocalDate.parse(d += scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                                    cartao.setValidade(scanner.nextLine().strip());
                                     System.out.println("Informe o limite do cartão: ");
                                     cartao.setLimite(scanner.nextDouble());
                                     scanner.nextLine();
@@ -341,7 +343,8 @@ public class Main {
                                     novoCartao.setBandeira(scanner.nextInt());
                                     scanner.nextLine();
                                     System.out.println("Informe a validade do cartão: ");
-                                    novoCartao.setValidade(LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+//                                    novoCartao.setValidade(LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                                    novoCartao.setValidade(scanner.nextLine().strip());
                                     System.out.println("Informe o limite do cartão: ");
                                     novoCartao.setLimite(scanner.nextDouble());
                                     scanner.nextLine();

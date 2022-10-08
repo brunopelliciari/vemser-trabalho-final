@@ -4,15 +4,30 @@ public class CartaoCredito {
 
     private String numero;
     private BandeiraCartao bandeira;
-    private LocalDate validade;
+    private String validade;
     private double limite;
 
     public CartaoCredito(){
     }
 
-    public CartaoCredito(String numero, BandeiraCartao bandeira, LocalDate validade, double limite) throws DatasInvalidasException{
-        if(validade.isBefore(LocalDate.now())) {
-            throw new DatasInvalidasException("Erro! ");
+    public CartaoCredito(String numero, BandeiraCartao bandeira, String validade, double limite) throws DatasInvalidasException{
+        char [] c = validade.toCharArray();
+        if(c[0] != '1' || (c[0] == '1' && c[1] == '/')){
+            if(Integer.parseInt(validade.substring(2, c.length)) < LocalDate.now().getYear()){
+                throw new DatasInvalidasException("Erro! ");
+            }
+            else if(Integer.parseInt(validade.substring(2, c.length)) == LocalDate.now().getYear() &&
+                    Integer.parseInt(validade.substring(0, 1)) < LocalDate.now().getMonthValue()){
+                    throw new DatasInvalidasException("Erro! ");
+            }
+        }
+        else if(c[0] == '1' && c[1] != '/') {
+            if (Integer.parseInt(validade.substring(3, c.length)) < LocalDate.now().getYear()) {
+                throw new DatasInvalidasException("Erro! ");
+            } else if (Integer.parseInt(validade.substring(3, c.length)) == LocalDate.now().getYear() &&
+                    Integer.parseInt(validade.substring(0, 2)) < LocalDate.now().getMonthValue()) {
+                throw new DatasInvalidasException("Erro! ");
+            }
         }
         this.numero = numero;
         this.bandeira = bandeira;
@@ -52,11 +67,11 @@ public class CartaoCredito {
             this.bandeira = BandeiraCartao.MASTERCARD;
         }
     }
-    public LocalDate getValidade() {
+    public String getValidade() {
         return validade;
     }
 
-    public void setValidade(LocalDate validade) {
+    public void setValidade(String validade) {
         this.validade = validade;
     }
 
@@ -72,7 +87,7 @@ public class CartaoCredito {
     public String toString() {
         return "numero=" + numero +
                 ", bandeira=" + bandeira +
-                ", validade=" + validade +
+                ", validade="+ validade  +
                 ", limite=" + limite;
     }
 }

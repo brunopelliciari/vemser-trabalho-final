@@ -50,8 +50,7 @@ public class MetodosAuxiliares {
         BandeiraCartao b = BandeiraCartao.valueOf(valores[7].trim().replaceAll("bandeira=",""));
         Double limite = Double.parseDouble(valores[9].replaceAll("limite=",""));
         CartaoCredito cartao = new CartaoCredito(valores[6].replaceAll("numero=",""), b,
-                LocalDate.parse(valores[8].trim().replaceAll("validade=","").replaceAll("-","/"), DateTimeFormatter.ofPattern("yyyy/MM/dd")),
-                limite);
+                valores[8].trim().replaceAll("validade=",""), limite);
         return new Locacao(dataLocacao, dataDevolucao, cliente.retornarClientesPorCPF(valores[3].trim()),
                 veiculo.retornarVeiculoPorPlaca(valores[5].trim()), cartao);
     }

@@ -1,8 +1,10 @@
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Locacao implements ImpressaoConversora {
 
+    public static final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private LocalDate dataLocacao;
     private LocalDate dataDevolucao;
     private double valorLocacao;
@@ -79,8 +81,8 @@ public class Locacao implements ImpressaoConversora {
 
     @Override
     public String toString() {
-        return "dataLocacao= " + dataLocacao +
-                ", dataDevolucao= " + dataDevolucao +
+        return "dataLocacao= " + dataLocacao.format(fmt) +
+                ", dataDevolucao= " + dataDevolucao.format(fmt) +
                 ", cliente= " + cliente +
                 ", veiculo= " + veiculo +
                 ", cartaoCredito= " + cartaoCredito;
@@ -88,7 +90,7 @@ public class Locacao implements ImpressaoConversora {
 
     public String impressaoConversora() {
         return "" + getDataLocacao() + ", " + getDataDevolucao()  + ", " + getCliente().getNome() + ", " + getCliente().getCpf()
-        + ", " + getVeiculo().getModelo() + ", " + getVeiculo().getPlaca() + ", " + getCartaoCredito();
+                + ", " + getVeiculo().getModelo() + ", " + getVeiculo().getPlaca() + ", " + getCartaoCredito();
 
     }
 }
