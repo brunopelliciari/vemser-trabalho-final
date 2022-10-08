@@ -28,12 +28,6 @@ public class Contato {
         this.email = email;
     }
 
-    public void consultarContato() {
-        System.out.println("-----Contato-----");
-        System.out.println("Telefone: " + telefone);
-        System.out.println("Email:" + email);
-    }
-
     @Override
     public String toString() {
         return "telefone= " + telefone  +

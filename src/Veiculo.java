@@ -1,4 +1,4 @@
-public class Veiculo {
+public class Veiculo implements ImpressaoConversora {
 
     private String marca;
     private String modelo;
@@ -117,7 +117,7 @@ public class Veiculo {
                 '}';
     }
 
-    public String toStringParaLista() {
+    public String impressaoConversora() {
         return "" + getMarca() + ", " + getModelo() + ", " + getCor() + ", " + getAno()
                 + ", " + getQuilometragem() + ", " + getValorLocacao() + ", " + disponibilidade + ", " + getPlaca();
 

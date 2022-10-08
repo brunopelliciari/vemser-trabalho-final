@@ -1,4 +1,4 @@
-public class Cliente extends Pessoa{
+public class Cliente extends Pessoa implements ImpressaoConversora{
 
     private Contato contato;
     private Endereco endereco;
@@ -37,7 +37,7 @@ public class Cliente extends Pessoa{
                 ", endereco=" +" " + endereco;
     }
 
-    public String toStringParaLista() {
+    public String impressaoConversora() {
         return "" + getNome() + ", " + getCpf() + ", " + getContato() + ", " + getEndereco();
 
     }

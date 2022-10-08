@@ -1,4 +1,4 @@
-public class Funcionario extends Pessoa{
+public class Funcionario extends Pessoa implements ImpressaoConversora{
 
     private int matricula;
 
@@ -27,7 +27,7 @@ public class Funcionario extends Pessoa{
                 '}';
     }
 
-    public String toStringParaLista() {
+    public String impressaoConversora() {
         return "" + getNome() + ", " + getCpf() + ", " + getMatricula();
 
     }

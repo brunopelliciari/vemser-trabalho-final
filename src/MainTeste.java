@@ -59,7 +59,7 @@ public class MainTeste {
                 String[] valores = line4.split(",");
                 if(valores.length>=8) {
                     locacaoManipulacao.realizarCadastro(MetodosAuxiliares.retornarLocacaoAPartirDeListaDeStrings(valores, clienteManipulacao, veiculoManipulacao));
-                    line4 = brClientes.readLine();
+                    line4 = brLocacao.readLine();
                 }
                 else{
                     break;
@@ -271,6 +271,7 @@ public class MainTeste {
                                     break;
                             }
                         }
+                        break;
                     case 3:
                         quintoMenu = 0;
                         while (quintoMenu != 9) {
@@ -361,6 +362,7 @@ public class MainTeste {
                                     break;
                             }
                         }
+                        break;
                     case 4:
                         terceiroMenu = 0;
                         while (terceiroMenu != 9) {

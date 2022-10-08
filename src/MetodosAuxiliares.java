@@ -39,16 +39,16 @@ public class MetodosAuxiliares {
     public static void menuLocacao(){
         System.out.println("Digite 1 para registrar uma locação");
         System.out.println("Digite 2 para listar locação realizadas");
-        System.out.println("Digite 3 para editar uma locação realizada");
-        System.out.println("Digite 4 para excluir uma locação");
+        System.out.println("Digite 3 para editar um registro de locação");
+        System.out.println("Digite 4 para excluir um registro de locação");
         System.out.println("Digite 9 para voltar ao menu anterior");
     }
 
     public static Locacao retornarLocacaoAPartirDeListaDeStrings(String[] valores, ClienteManipulacao cliente, VeiculoManipulacao veiculo) throws DatasInvalidasException {
-        LocalDate dataLocacao = (LocalDate.parse(valores[0].trim().replaceAll("-","/").replace("[",""), DateTimeFormatter.ofPattern("yyyy/MM/dd")));
+        LocalDate dataLocacao = (LocalDate.parse(valores[0].trim().replaceAll("-","/"), DateTimeFormatter.ofPattern("yyyy/MM/dd")));
         LocalDate dataDevolucao = (LocalDate.parse(valores[1].trim().replaceAll("-","/"), DateTimeFormatter.ofPattern("yyyy/MM/dd")));
         BandeiraCartao b = BandeiraCartao.valueOf(valores[7].trim().replaceAll("bandeira=",""));
-        Double limite = Double.parseDouble(valores[9].replaceAll("limite=","").replace("]",""));
+        Double limite = Double.parseDouble(valores[9].replaceAll("limite=",""));
         CartaoCredito cartao = new CartaoCredito(valores[6].replaceAll("numero=",""), b,
                 LocalDate.parse(valores[8].trim().replaceAll("validade=","").replaceAll("-","/"), DateTimeFormatter.ofPattern("yyyy/MM/dd")),
                 limite);
@@ -78,12 +78,23 @@ public class MetodosAuxiliares {
             Disponibilidade disp = Disponibilidade.valueOf(valores[6].trim().replaceAll("Disponibilidade.", ""));
             return new Veiculo(valores[0].trim().replace("[",""), valores[1].trim(), valores[2].trim(), ano, km, preco, disp, valores[7].trim().replace("]",""));
     }
+//
+//    public static <T extends Cadastro> void salvar (T obj, String x){
+//        try{
+//            PrintWriter writer = new PrintWriter(x+".txt");
+//            obj.retornarLista().stream()
+//                    .forEach(x -> writer.println(x.impressaoConversora()));
+//            writer.close();
+//        } catch (FileNotFoundException e){
+//            System.out.println("Arquivo não encontrado no caminho designado" + e.getMessage());
+//        }
+//    }
 
     public static void salvarFuncionarios(FuncionarioManipulacao v){
         try{
             PrintWriter writer = new PrintWriter("funcionarios.txt");
             v.retornarLista().stream()
-                    .forEach(funcionario -> writer.println(funcionario.toStringParaLista()));
+                    .forEach(funcionario -> writer.println(funcionario.impressaoConversora()));
             writer.close();
         } catch (FileNotFoundException e){
             System.out.println("Arquivo não encontrado no caminho designado" + e.getMessage());
@@ -94,7 +105,7 @@ public class MetodosAuxiliares {
         try{
             PrintWriter writer = new PrintWriter("clientes.txt");
             c.retornarLista().stream()
-                            .forEach(cliente -> writer.println(cliente.toStringParaLista()));
+                            .forEach(cliente -> writer.println(cliente.impressaoConversora()));
             writer.close();
         } catch (FileNotFoundException e){
             System.out.println("Arquivo não encontrado no caminho designado" + e.getMessage());
@@ -105,7 +116,7 @@ public class MetodosAuxiliares {
         try{
             PrintWriter writer = new PrintWriter("locacoes.txt");
             l.retornarLista().stream()
-                    .forEach(locacao -> writer.println(locacao.toStringParaLista()));
+                    .forEach(locacao -> writer.println(locacao.impressaoConversora()));
             writer.close();
         } catch (FileNotFoundException e){
             System.out.println("Arquivo não encontrado no caminho designado" + e.getMessage());
@@ -116,7 +127,7 @@ public class MetodosAuxiliares {
         try{
             PrintWriter writer = new PrintWriter("veiculos.txt");
             v.retornarLista().stream()
-                    .forEach(veiculo -> writer.println(veiculo.toStringParaLista()));
+                    .forEach(veiculo -> writer.println(veiculo.impressaoConversora()));
             writer.close();
         } catch (FileNotFoundException e){
             System.out.println("Arquivo não encontrado no caminho designado" + e.getMessage());

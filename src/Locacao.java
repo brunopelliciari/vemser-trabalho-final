@@ -1,7 +1,7 @@
 import java.time.Duration;
 import java.time.LocalDate;
 
-public class Locacao {
+public class Locacao implements ImpressaoConversora {
 
     private LocalDate dataLocacao;
     private LocalDate dataDevolucao;
@@ -86,7 +86,7 @@ public class Locacao {
                 ", cartaoCredito= " + cartaoCredito;
     }
 
-    public String toStringParaLista() {
+    public String impressaoConversora() {
         return "" + getDataLocacao() + ", " + getDataDevolucao()  + ", " + getCliente().getNome() + ", " + getCliente().getCpf()
         + ", " + getVeiculo().getModelo() + ", " + getVeiculo().getPlaca() + ", " + getCartaoCredito();
 

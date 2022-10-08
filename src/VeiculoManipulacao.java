@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class VeiculoManipulacao implements Cadastro<Veiculo> {
 
@@ -55,4 +56,11 @@ public class VeiculoManipulacao implements Cadastro<Veiculo> {
             return null;
         }
     }
-}
+    public void consultarCadastroDisponivel(){
+        AtomicInteger i = new AtomicInteger();
+        this.listaDeVeiculos.stream()
+                .filter(d -> d.getDisponibilidade() == 2)
+                .forEach(p -> System.out.println("id="+ (i.getAndIncrement()) + p.toString()));
+        }
+    }
+
