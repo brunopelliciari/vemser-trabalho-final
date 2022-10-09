@@ -416,7 +416,7 @@ public class Main {
                                     novoCartao.setLimite(scanner.nextDouble());
                                     scanner.nextLine();
                                     novaLocacao.setCartaoCredito(novoCartao);
-                                    locacaoManipulacao.realizarCadastro(novaLocacao);
+                                    locacaoManipulacao.editarCadastro(index, novaLocacao);
                                     MetodosAuxiliares.salvarLocacao(locacaoManipulacao);
                                     break;
                                 case 4:
