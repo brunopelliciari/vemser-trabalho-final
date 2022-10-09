@@ -24,12 +24,10 @@ public class ClienteManipulacaoTeste {
     }
 
     @Test
-    public void deveRemocverCLienteComSucesso(){
+    public void deveRemoverCLienteComSucesso(){
         //SETUP
         ClienteManipulacao c = new ClienteManipulacao();
         c.realizarCadastro(new Cliente("entidades.Cliente teste", "Cpf teste", contato, endereco));
-
-
 
         //ACT
         c.removerCadastro(0);
@@ -37,5 +35,19 @@ public class ClienteManipulacaoTeste {
         //ASSERT
         Assertions.assertEquals(c.retornarLista().size(), 0);
 
+    }
+
+    @Test
+    public void deveEditarClienteComSucesso(){
+        //SETUP
+        ClienteManipulacao c = new ClienteManipulacao();
+        c.realizarCadastro(new Cliente("entidades.Cliente teste", "Cpf teste", contato, endereco));
+
+        //ACT
+        Cliente cliente = new Cliente("entidades.Cliente teste", "new cpf", contato, endereco);
+        c.editarCadastro(0, cliente);
+
+        //ASSERT
+        Assertions.assertArrayEquals(c.retornarClientePorIndice(0).getCpf().toCharArray(), cliente.getCpf().toCharArray());
     }
 }
