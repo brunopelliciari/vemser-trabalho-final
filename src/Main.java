@@ -295,7 +295,7 @@ public class Main {
                                             locacao.setDataDevolucao(dd);
                                         }catch(DatasInvalidasException e) {
                                             System.out.println();
-                                            System.err.println(e.getMessage() + "Não é possível informar uma data de devolução inferior a data de locação. Tente Novamente!");
+                                            System.err.println(e.getMessage());
                                         }
                                     }while(!teste);
                                     teste = false;
@@ -349,34 +349,64 @@ public class Main {
                                     int index = scanner.nextInt();
                                     scanner.nextLine();
 
+                                    teste = false;
                                     Locacao novaLocacao = new Locacao();
                                     CartaoCredito novoCartao = new CartaoCredito();
-                                    System.out.print("Digite a data da locação do veículo(dd/MM/yyyy): ");
-                                    novaLocacao.setDataLocacao(LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-                                    System.out.print("Digite a data da devolucao do veículo(dd/MM/yyyy): ");
-                                    novaLocacao.setDataDevolucao(LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-                                    System.out.print("Digite o id de um cliente cadastrado: ");
+                                    do {
+                                        try {
+                                            System.out.print("Digite a data da locação do veículo(dd/MM/yyyy): ");
+                                            LocalDate dl = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                                            System.out.print("Digite a data da devolucao do veículo(dd/MM/yyyy): ");
+                                            LocalDate dd = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                                            MetodosAuxiliares.validarDatasLocacao(dl, dd);
+                                            teste = true;
+                                            novaLocacao.setDataLocacao(dl);
+                                            novaLocacao.setDataDevolucao(dd);
+                                        }catch(DatasInvalidasException e) {
+                                            System.out.println();
+                                            System.err.println(e.getMessage());
+                                        }
+                                    }while(!teste);
+                                    teste = false;
+
+                                    System.out.print("Digite o id de um cliente cadastrado: \n");
                                     clienteManipulacao.consultarCadastro();
                                     novaLocacao.setCliente(clienteManipulacao.retornarClientePorIndice(scanner.nextInt()));
                                     scanner.nextLine();
-                                    System.out.print("Digite o id de um cliente cadastrado: ");
-                                    veiculoManipulacao.consultarCadastro();
-                                    novaLocacao.setVeiculo(veiculoManipulacao.retornarVeiculoPorIndice(scanner.nextInt()));
+                                    System.out.print("Digite o id de um veículo cadastrado: \n");
+                                    veiculoManipulacao.consultarCadastroDisponivel();
+                                    vi = scanner.nextInt();
                                     scanner.nextLine();
-                                    System.out.print("Informe os dados do cartão de crédito que deseja utilizar para o pagamento: \n");
-                                    System.out.println("Informe o numero do cartão: ");
-                                    novoCartao.setNumero(scanner.nextLine());
-                                    System.out.println("Informe a bandeira do cartão: 1- Visa 2- Mastercard ");
-                                    novoCartao.setBandeira(scanner.nextInt());
-                                    scanner.nextLine();
-                                    System.out.println("Informe a validade do cartão: ");
-//                                    novoCartao.setValidade(LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-//                                    novoCartao.setValidade(scanner.nextLine().strip());
+                                    novaLocacao.setVeiculo(veiculoManipulacao.retornarVeiculoPorIndice(vi));
+                                    veiculoManipulacao.retornarVeiculoPorIndice(vi).alterarDisponibilidade();
+                                    do {
+                                        try {
+                                            System.out.print("Informe os dados do cartão de crédito que deseja utilizar para o pagamento: \n");
+                                            System.out.println("Informe o numero do cartão: ");
+                                            String numeroCartao = scanner.nextLine();
+
+                                            System.out.println("Informe a bandeira do cartão: 1- Visa 2- Mastercard ");
+                                            int bandeiraCartao = scanner.nextInt();
+
+                                            scanner.nextLine();
+                                            System.out.println("Informe a validade do cartão(MM/yyyy): ");
+                                            String validadeCartao = scanner.nextLine();
+                                            MetodosAuxiliares.validarDataValidadeCartao(validadeCartao);
+                                            teste = true;
+                                            novoCartao.setNumero(numeroCartao);
+                                            novoCartao.setBandeira(bandeiraCartao);
+                                            novoCartao.setValidade(validadeCartao);
+
+                                        }catch(DatasInvalidasException e) {
+                                            System.out.println(e.getMessage());
+                                        }
+                                    }while(!teste);
+
                                     System.out.println("Informe o limite do cartão: ");
                                     novoCartao.setLimite(scanner.nextDouble());
                                     scanner.nextLine();
                                     novaLocacao.setCartaoCredito(novoCartao);
-                                    locacaoManipulacao.editarCadastro(index, novaLocacao);
+                                    locacaoManipulacao.realizarCadastro(novaLocacao);
                                     MetodosAuxiliares.salvarLocacao(locacaoManipulacao);
                                     break;
                                 case 4:

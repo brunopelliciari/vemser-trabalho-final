@@ -145,7 +145,7 @@ public class MetodosAuxiliares {
         }else if(Integer.parseInt(validade.substring(3)) < LocalDate.now().getYear()){
             throw new DatasInvalidasException("Cartão inválido, Data de vencimento do cartão inferior ao ano atual. Tente outro cartão!");
         }else if(Integer.parseInt(validade.substring(3)) == LocalDate.now().getYear()) {
-            if(Integer.parseInt(validade.substring(0,2)) < LocalDate.now().getMonthValue()) {
+            if(Integer.parseInt(validade.substring(0,2)) <= LocalDate.now().getMonthValue()) {
                 throw new DatasInvalidasException("Cartão inválido, Data de vencimento do cartão inferior ao ano atual. Tente outro cartão!");
             }
         }
