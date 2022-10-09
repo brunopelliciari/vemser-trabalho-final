@@ -20,11 +20,9 @@ public class Funcionario extends Pessoa implements ImpressaoConversora{
 
     @Override
     public String toString() {
-        return "Funcionario{" +
-                " nome=" + getNome() +
+        return "nome=" + getNome() +
                 ", cpf=" + getCpf() +
-                ", matricula=" + matricula +
-                '}';
+                ", matricula=" + matricula;
     }
 
     public String impressaoConversora() {

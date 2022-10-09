@@ -62,6 +62,5 @@ public class VeiculoManipulacao implements Cadastro<Veiculo> {
         this.listaDeVeiculos.stream()
                 .filter(d -> d.getDisponibilidade() == 2)
                 .forEach(p -> System.out.println("id="+ (i.getAndIncrement()) + p.toString()));
-        }
     }
-
+}

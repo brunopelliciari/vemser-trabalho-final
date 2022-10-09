@@ -26,6 +26,7 @@ public class LocacaoManipulacao implements Cadastro<Locacao> {
         locacaoDesejada.setValorLocacao(locacao.getValorLocacao());
         locacaoDesejada.setCliente(locacao.getCliente());
         locacaoDesejada.setVeiculo(locacao.getVeiculo());
+        locacaoDesejada.setFuncionario(locacao.getFuncionario());
     }
 
     @Override

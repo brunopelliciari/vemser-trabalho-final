@@ -105,16 +105,14 @@ public class Veiculo implements ImpressaoConversora {
 
     @Override
     public String toString() {
-        return "Veiculo{" +
-                "marca='" + marca + '\'' +
-                ", modelo='" + modelo + '\'' +
-                ", cor='" + cor + '\'' +
+        return "[marca=" + marca +
+                ", modelo=" + modelo +
+                ", cor='" + cor +
                 ", ano=" + ano +
                 ", quilometragem=" + quilometragem +
                 ", valorLocacao=" + valorLocacao +
                 ", disponibilidade=" + disponibilidade +
-                ", placa='" + placa + '\'' +
-                '}';
+                ", placa=" + placa + "]";
     }
 
     public String impressaoConversora() {

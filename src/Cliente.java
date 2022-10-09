@@ -33,8 +33,8 @@ public class Cliente extends Pessoa implements ImpressaoConversora{
     public String toString() {
         return " nome=" + getNome() +
                 ", cpf=" + getCpf() +
-                ", contato=" +" " + contato +
-                ", endereco=" +" " + endereco;
+                ", contato=" + contato +
+                ", endereco=" + endereco;
     }
 
     public String impressaoConversora() {

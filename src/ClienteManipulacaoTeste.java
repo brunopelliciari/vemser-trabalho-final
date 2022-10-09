@@ -5,7 +5,7 @@ public class ClienteManipulacaoTeste {
     Contato contato = new Contato("38929090", "teste@email.com");
     Endereco endereco = new Endereco("Rua teste", "213", "Bairro Teste", "Cidade teste"
             , "Estado teste", "Cep teste"
-    ,"Complemento teste");
+            ,"Complemento teste");
 
     @Test
     public void deveAdicionarClientesComSucesso(){
@@ -15,5 +15,21 @@ public class ClienteManipulacaoTeste {
         c.realizarCadastro(new Cliente("Cliente teste", "Cpf teste", contato, endereco));
         //ASSERT
         Assertions.assertEquals(c.retornarLista().size(), 1);
+    }
+
+    @Test
+    public void deveRemocverCLienteComSucesso(){
+        //SETUP
+        ClienteManipulacao c = new ClienteManipulacao();
+        c.realizarCadastro(new Cliente("Cliente teste", "Cpf teste", contato, endereco));
+
+
+
+        //ACT
+        c.removerCadastro(0);
+
+        //ASSERT
+        Assertions.assertEquals(c.retornarLista().size(), 0);
+
     }
 }

@@ -59,7 +59,8 @@ public class Main {
             while (line != null) {
                 String[] valores = line.split(",");
                 if(valores.length>=8) {
-                    locacaoManipulacao.realizarCadastro(MetodosAuxiliares.retornarLocacaoAPartirDeListaDeStrings(valores, clienteManipulacao, veiculoManipulacao));
+                    locacaoManipulacao.realizarCadastro(MetodosAuxiliares.retornarLocacaoAPartirDeListaDeStrings
+                            (valores, clienteManipulacao, veiculoManipulacao, funcionarioManipulacao));
                     line = br.readLine();
                 }
                 else{
@@ -79,17 +80,17 @@ public class Main {
         }
 
         int primeiroMenu = 0;
-        int segundoMenu = 0;
-        int terceiroMenu = 0;
-        int quartoMenu = 0;
-        int quintoMenu = 0;
+        int segundoMenu;
+        int terceiroMenu;
+        int quartoMenu;
+        int quintoMenu;
         while (primeiroMenu != 9) {
             try {
                 MetodosAuxiliares.menuInicial();
                 primeiroMenu = scanner.nextInt();
                 scanner.nextLine();
                 switch (primeiroMenu) {
-                    case 1:
+                    case 1 -> {
                         segundoMenu = 0;
                         while (segundoMenu != 9) {
                             MetodosAuxiliares.menuVeiculos();
@@ -175,14 +176,14 @@ public class Main {
                                     break;
                             }
                         }
-                        break;
-                    case 2:
-                        quartoMenu = 0;
-                        while (quartoMenu != 9) {
+                    }
+                    case 2 -> {
+                        terceiroMenu = 0;
+                        while (terceiroMenu != 9) {
                             MetodosAuxiliares.menuClientes();
-                            quartoMenu = scanner.nextInt();
+                            terceiroMenu = scanner.nextInt();
                             scanner.nextLine();
-                            switch (quartoMenu) {
+                            switch (terceiroMenu) {
                                 case 1:
                                     Cliente cliente = new Cliente();
                                     System.out.println("Digite o nome do cliente");
@@ -271,14 +272,14 @@ public class Main {
                                     break;
                             }
                         }
-                        break;
-                    case 3:
-                        quintoMenu = 0;
-                        while (quintoMenu != 9) {
+                    }
+                    case 3 -> {
+                        quartoMenu = 0;
+                        while (quartoMenu != 9) {
                             MetodosAuxiliares.menuLocacao();
-                            quintoMenu = scanner.nextInt();
+                            quartoMenu = scanner.nextInt();
                             scanner.nextLine();
-                            switch (quintoMenu) {
+                            switch (quartoMenu) {
                                 case 1:
                                     boolean teste = false;
                                     Locacao locacao = new Locacao();
@@ -423,14 +424,14 @@ public class Main {
                                     break;
                             }
                         }
-                        break;
-                    case 4:
-                        terceiroMenu = 0;
-                        while (terceiroMenu != 9) {
+                    }
+                    case 4 -> {
+                        quintoMenu = 0;
+                        while (quintoMenu != 9) {
                             MetodosAuxiliares.menuFuncionarios();
-                            terceiroMenu = scanner.nextInt();
+                            quintoMenu = scanner.nextInt();
                             scanner.nextLine();
-                            switch (terceiroMenu) {
+                            switch (quintoMenu) {
                                 case 1:
                                     Funcionario funcionario = new Funcionario();
                                     System.out.println("Digite o nome do funcionário");
@@ -478,7 +479,7 @@ public class Main {
                                     break;
                             }
                         }
-                        break;
+                    }
                 }
             }
             catch(InputMismatchException e){

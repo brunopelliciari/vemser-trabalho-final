@@ -44,15 +44,15 @@ public class MetodosAuxiliares {
         System.out.println("Digite 9 para voltar ao menu anterior");
     }
 
-    public static Locacao retornarLocacaoAPartirDeListaDeStrings(String[] valores, ClienteManipulacao cliente, VeiculoManipulacao veiculo) throws DatasInvalidasException {
+    public static Locacao retornarLocacaoAPartirDeListaDeStrings(String[] valores, ClienteManipulacao cliente, VeiculoManipulacao veiculo, FuncionarioManipulacao funcionario) throws DatasInvalidasException {
         LocalDate dataLocacao = (LocalDate.parse(valores[0].trim().replaceAll("-","/"), DateTimeFormatter.ofPattern("yyyy/MM/dd")));
         LocalDate dataDevolucao = (LocalDate.parse(valores[1].trim().replaceAll("-","/"), DateTimeFormatter.ofPattern("yyyy/MM/dd")));
         BandeiraCartao b = BandeiraCartao.valueOf(valores[7].trim().replaceAll("bandeira=",""));
-        Double limite = Double.parseDouble(valores[9].replaceAll("limite=",""));
+        Double limite = Double.parseDouble(valores[9].replaceAll("limite=","").replace("]",""));
         CartaoCredito cartao = new CartaoCredito(valores[6].replaceAll("numero=",""), b,
                 valores[8].trim().replaceAll("validade=",""), limite);
         return new Locacao(dataLocacao, dataDevolucao, cliente.retornarClientesPorCPF(valores[3].trim()),
-                veiculo.retornarVeiculoPorPlaca(valores[5].trim()), cartao);
+                veiculo.retornarVeiculoPorPlaca(valores[5].trim()), cartao, funcionario.retornarFuncionariosPorCPF(valores[11].trim()));
     }
 
     public static Cliente retornarClienteAPartirDeListaDeStrings(String [] valores){
@@ -77,17 +77,6 @@ public class MetodosAuxiliares {
             Disponibilidade disp = Disponibilidade.valueOf(valores[6].trim().replaceAll("Disponibilidade.", ""));
             return new Veiculo(valores[0].trim().replace("[",""), valores[1].trim(), valores[2].trim(), ano, km, preco, disp, valores[7].trim().replace("]",""));
     }
-//
-//    public static <T extends Cadastro> void salvar (T obj, String x){
-//        try{
-//            PrintWriter writer = new PrintWriter(x+".txt");
-//            obj.retornarLista().stream()
-//                    .forEach(x -> writer.println(x.impressaoConversora()));
-//            writer.close();
-//        } catch (FileNotFoundException e){
-//            System.out.println("Arquivo não encontrado no caminho designado" + e.getMessage());
-//        }
-//    }
 
     public static void salvarFuncionarios(FuncionarioManipulacao v){
         try{
