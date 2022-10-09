@@ -3,12 +3,10 @@ package teste;
 import entidades.*;
 import enums.Disponibilidade;
 import excecao.DatasInvalidasException;
-import manipulacao.LocacaoManipulacao;
 import manipulacao.VeiculoManipulacao;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
 
 
 public class VeiculoManipulacaoTeste {
@@ -49,7 +47,6 @@ public class VeiculoManipulacaoTeste {
         //ACT
         veiculo.editarCadastro(0, v);
         //ASSERT
-        Assertions.assertTrue(veiculo.retornarVeiculoPorIndice(0).getPlaca().equals(
-                v.getPlaca()));
+        Assertions.assertEquals(veiculo.retornarVeiculoPorIndice(0).getPlaca(), v.getPlaca());
     }
 }
