@@ -12,6 +12,7 @@ public class Main {
         FuncionarioManipulacao funcionarioManipulacao = new FuncionarioManipulacao();
         VeiculoManipulacao veiculoManipulacao = new VeiculoManipulacao();
         LocacaoManipulacao locacaoManipulacao = new LocacaoManipulacao();
+
         try {
             BufferedReader br = new BufferedReader(new FileReader("veiculos.txt"));
             String line = br.readLine();
@@ -193,12 +194,11 @@ public class Main {
                                     aux[0] = scanner.nextLine();
                                     System.out.println("Digite o email de contato do cliente");
                                     aux[1] = scanner.nextLine();
-                                    scanner.nextLine();
                                     cliente.setContato(new Contato(aux[0], aux[1]));
                                     aux = new String[7];
                                     System.out.println("Digite a rua do cliente");
                                     aux[0] = scanner.nextLine();
-                                    System.out.println("Digite o numero da endereço do cliente");
+                                    System.out.println("Digite o número do endereço do cliente");
                                     aux[1] = scanner.nextLine();
                                     System.out.println("Digite o bairro do cliente");
                                     aux[2] = scanner.nextLine();
@@ -280,12 +280,26 @@ public class Main {
                             scanner.nextLine();
                             switch (quintoMenu) {
                                 case 1:
+                                    boolean teste = false;
                                     Locacao locacao = new Locacao();
                                     CartaoCredito cartao = new CartaoCredito();
-                                    System.out.print("Digite a data da locação do veículo(dd/MM/yyyy): ");
-                                    locacao.setDataLocacao(LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-                                    System.out.print("Digite a data da devolucao do veículo(dd/MM/yyyy): ");
-                                    locacao.setDataDevolucao(LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                                    do {
+                                        try {
+                                            System.out.print("Digite a data da locação do veículo(dd/MM/yyyy): ");
+                                            LocalDate dl = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                                            System.out.print("Digite a data da devolucao do veículo(dd/MM/yyyy): ");
+                                            LocalDate dd = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                                            MetodosAuxiliares.validarDatasLocacao(dl, dd);
+                                            teste = true;
+                                            locacao.setDataLocacao(dl);
+                                            locacao.setDataDevolucao(dd);
+                                        }catch(DatasInvalidasException e) {
+                                            System.out.println();
+                                            System.err.println(e.getMessage() + "Não é possível informar uma data de devolução inferior a data de locação. Tente Novamente!");
+                                        }
+                                    }while(!teste);
+                                    teste = false;
+
                                     System.out.print("Digite o id de um cliente cadastrado: \n");
                                     clienteManipulacao.consultarCadastro();
                                     locacao.setCliente(clienteManipulacao.retornarClientePorIndice(scanner.nextInt()));
@@ -296,16 +310,29 @@ public class Main {
                                     scanner.nextLine();
                                     locacao.setVeiculo(veiculoManipulacao.retornarVeiculoPorIndice(vi));
                                     veiculoManipulacao.retornarVeiculoPorIndice(vi).alterarDisponibilidade();
-                                    System.out.print("Informe os dados do cartão de crédito que deseja utilizar para o pagamento: \n");
-                                    System.out.println("Informe o numero do cartão: ");
-                                    cartao.setNumero(scanner.nextLine());
-                                    System.out.println("Informe a bandeira do cartão: 1- Visa 2- Mastercard ");
-                                    cartao.setBandeira(scanner.nextInt());
-                                    scanner.nextLine();
-                                    System.out.println("Informe a validade do cartão(MM/yyyy): ");
-//                                    String d = "01/";
-//                                    cartao.setValidade(LocalDate.parse(d += scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-                                    cartao.setValidade(scanner.nextLine().strip());
+                                    do {
+                                        try {
+                                            System.out.print("Informe os dados do cartão de crédito que deseja utilizar para o pagamento: \n");
+                                            System.out.println("Informe o numero do cartão: ");
+                                            String numeroCartao = scanner.nextLine();
+
+                                            System.out.println("Informe a bandeira do cartão: 1- Visa 2- Mastercard ");
+                                            int bandeiraCartao = scanner.nextInt();
+
+                                            scanner.nextLine();
+                                            System.out.println("Informe a validade do cartão(MM/yyyy): ");
+                                            String validadeCartao = scanner.nextLine();
+                                            MetodosAuxiliares.validarDataValidadeCartao(validadeCartao);
+                                            teste = true;
+                                            cartao.setNumero(numeroCartao);
+                                            cartao.setBandeira(bandeiraCartao);
+                                            cartao.setValidade(validadeCartao);
+
+                                        }catch(DatasInvalidasException e) {
+                                            System.out.println(e.getMessage());
+                                        }
+                                    }while(!teste);
+
                                     System.out.println("Informe o limite do cartão: ");
                                     cartao.setLimite(scanner.nextDouble());
                                     scanner.nextLine();
@@ -344,7 +371,7 @@ public class Main {
                                     scanner.nextLine();
                                     System.out.println("Informe a validade do cartão: ");
 //                                    novoCartao.setValidade(LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-                                    novoCartao.setValidade(scanner.nextLine().strip());
+//                                    novoCartao.setValidade(scanner.nextLine().strip());
                                     System.out.println("Informe o limite do cartão: ");
                                     novoCartao.setLimite(scanner.nextDouble());
                                     scanner.nextLine();

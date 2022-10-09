@@ -32,8 +32,9 @@ public class VeiculoManipulacao implements Cadastro<Veiculo> {
 
     public void consultarCadastro(){
         for(int i = 0; i< listaDeVeiculos.size(); i++){
-            System.out.println("id=" + i + "|" + listaDeVeiculos.get(i));
+            System.out.println("id=" + i + "| " + listaDeVeiculos.get(i));
         }
+        System.out.println();
     }
 
     public List<Veiculo> retornarLista() {

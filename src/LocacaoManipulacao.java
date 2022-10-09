@@ -31,8 +31,9 @@ public class LocacaoManipulacao implements Cadastro<Locacao> {
     @Override
     public void consultarCadastro() {
         for(int i = 0; i < listaLocacao.size(); i++){
-            System.out.println("id=" + i + "Valor total=" + listaLocacao.get(i).calcularValorLocacao() + "|" + listaLocacao.get(i));
+            System.out.println("id=" + i + "| Valor total=" + listaLocacao.get(i).calcularValorLocacao() + listaLocacao.get(i) + ", ");
         }
+        System.out.println();
     }
 
     public List<Locacao> retornarLista(){

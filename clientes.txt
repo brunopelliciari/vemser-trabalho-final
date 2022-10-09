@@ -1,3 +1,4 @@
-Joao, 123456789-40, telefone=  11-987478932, email=  joao@email.com, rua=' ' Rua do Peixe, numero= = =450, bairro=  Canivete, cidade=  Sao Paulo, estado=  SP, cep= = =17502-879, complemento=  
-Chico, 23476893-10, telefone= 17-37748932, email= chico@email.com, rua=' 'Rua do Lambari, numero= =903, bairro= Bairro do Anzol, cidade= Restinga, estado= SP, cep= =12802-124, complemento= 
-Marcos, 948893129-90, telefone=22-998049898, email=marcos@email.com, rua='Rua do Marcos, numero=123, bairro=Marquense, cidade=Goiania, estado=GO, cep=19909-902, complemento=
+Joao, 123456789-40, telefone=    11-987478932, email=    joao@email.com, rua=  ' ' Rua do Peixe, numero= = = =450, bairro=   Canivete, cidade=   Sao Paulo, estado=   SP, cep= = = =17502-879, complemento=   
+Chico, 23476893-10, telefone=   17-37748932, email=   chico@email.com, rua=  ' 'Rua do Lambari, numero= = =903, bairro=  Bairro do Anzol, cidade=  Restinga, estado=  SP, cep= = =12802-124, complemento=  
+Marcos, 948893129-90, telefone=  22-998049898, email=  marcos@email.com, rua=  'Rua do Marcos, numero= =123, bairro= Marquense, cidade= Goiania, estado= GO, cep= =19909-902, complemento= 
+Luiz Martins, 047.794.261-17, telefone= (51) 98144-6446, email= luizmartins@gmail.com, rua= Rua do lago, numero=78, bairro=Raul Pila, cidade=Gravataí, estado=Rio Grande do Sul, cep=94066-350, complemento=casa

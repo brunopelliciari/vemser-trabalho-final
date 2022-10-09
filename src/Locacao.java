@@ -15,10 +15,7 @@ public class Locacao implements ImpressaoConversora {
     public Locacao() {
     }
 
-    public Locacao(LocalDate dataLocacao, LocalDate dataDevolucao, Cliente cliente, Veiculo veiculo, CartaoCredito cartaoCredito) throws DatasInvalidasException{
-        if(dataDevolucao.isBefore(dataLocacao)) {
-            throw new DatasInvalidasException("Erro! ");
-        }
+    public Locacao(LocalDate dataLocacao, LocalDate dataDevolucao, Cliente cliente, Veiculo veiculo, CartaoCredito cartaoCredito){
         this.dataLocacao = dataLocacao;
         this.dataDevolucao = dataDevolucao;
         this.cliente = cliente;
@@ -75,7 +72,7 @@ public class Locacao implements ImpressaoConversora {
     }
 
     public double calcularValorLocacao (){
-        Duration d2 = Duration.between(this.getDataLocacao(), this.getDataDevolucao());
+        Duration d2 = Duration.between(this.getDataLocacao().atStartOfDay(), this.getDataDevolucao().atStartOfDay());
         return d2.toDays() * this.veiculo.getValorLocacao();
     }
 

@@ -29,6 +29,7 @@ public class ClienteManipulacao implements Cadastro <Cliente> {
         for(int i = 0; i< listaDeCliente.size(); i++){
             System.out.println("id=" + i + "|" + listaDeCliente.get(i));
         }
+        System.out.println();
     }
     public List<Cliente> retornarLista(){
         return listaDeCliente;

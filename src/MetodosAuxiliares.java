@@ -133,4 +133,21 @@ public class MetodosAuxiliares {
         }
     }
 
+    public static void validarDatasLocacao(LocalDate dl, LocalDate dd) throws DatasInvalidasException{
+        if(dd.isBefore(dl)) {
+            throw new DatasInvalidasException("Erro! ");
+        }
+    }
+
+    public static void validarDataValidadeCartao(String validade) throws DatasInvalidasException{
+        if(Integer.parseInt(validade.substring(0,2)) > 12){
+            throw new DatasInvalidasException("Mês inválido. Tente novamente!");
+        }else if(Integer.parseInt(validade.substring(3)) < LocalDate.now().getYear()){
+            throw new DatasInvalidasException("Cartão inválido, Data de vencimento do cartão inferior ao ano atual. Tente outro cartão!");
+        }else if(Integer.parseInt(validade.substring(3)) == LocalDate.now().getYear()) {
+            if(Integer.parseInt(validade.substring(0,2)) < LocalDate.now().getMonthValue()) {
+                throw new DatasInvalidasException("Cartão inválido, Data de vencimento do cartão inferior ao ano atual. Tente outro cartão!");
+            }
+        }
+    }
 }

@@ -10,25 +10,25 @@ public class CartaoCredito {
     public CartaoCredito(){
     }
 
-    public CartaoCredito(String numero, BandeiraCartao bandeira, String validade, double limite) throws DatasInvalidasException{
-        char [] c = validade.toCharArray();
-        if(c[0] != '1' || (c[0] == '1' && c[1] == '/')){
-            if(Integer.parseInt(validade.substring(2, c.length)) < LocalDate.now().getYear()){
-                throw new DatasInvalidasException("Erro! ");
-            }
-            else if(Integer.parseInt(validade.substring(2, c.length)) == LocalDate.now().getYear() &&
-                    Integer.parseInt(validade.substring(0, 1)) < LocalDate.now().getMonthValue()){
-                    throw new DatasInvalidasException("Erro! ");
-            }
-        }
-        else if(c[0] == '1' && c[1] != '/') {
-            if (Integer.parseInt(validade.substring(3, c.length)) < LocalDate.now().getYear()) {
-                throw new DatasInvalidasException("Erro! ");
-            } else if (Integer.parseInt(validade.substring(3, c.length)) == LocalDate.now().getYear() &&
-                    Integer.parseInt(validade.substring(0, 2)) < LocalDate.now().getMonthValue()) {
-                throw new DatasInvalidasException("Erro! ");
-            }
-        }
+    public CartaoCredito(String numero, BandeiraCartao bandeira, String validade, double limite){
+//        char [] c = validade.toCharArray();
+//        if(c[0] != '1' || (c[0] == '1' && c[1] == '/')){
+//            if(Integer.parseInt(validade.substring(2, c.length)) < LocalDate.now().getYear()){
+//                throw new DatasInvalidasException("Erro! ");
+//            }
+//            else if(Integer.parseInt(validade.substring(2, c.length)) == LocalDate.now().getYear() &&
+//                    Integer.parseInt(validade.substring(0, 1)) < LocalDate.now().getMonthValue()){
+//                    throw new DatasInvalidasException("Erro! ");
+//            }
+//        }
+//        else if(c[0] == '1' && c[1] != '/') {
+//            if (Integer.parseInt(validade.substring(3, c.length)) < LocalDate.now().getYear()) {
+//                throw new DatasInvalidasException("Erro! ");
+//            } else if (Integer.parseInt(validade.substring(3, c.length)) == LocalDate.now().getYear() &&
+//                    Integer.parseInt(validade.substring(0, 2)) < LocalDate.now().getMonthValue()) {
+//                throw new DatasInvalidasException("Erro! ");
+//            }
+//        }
         this.numero = numero;
         this.bandeira = bandeira;
         this.validade = validade;

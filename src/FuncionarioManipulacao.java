@@ -26,8 +26,9 @@ public class FuncionarioManipulacao implements Cadastro <Funcionario>{
 
     public void consultarCadastro(){
         for(int i = 0; i< listaDeFuncionario.size(); i++){
-            System.out.println("id=" + i + "|" + listaDeFuncionario.get(i));
+            System.out.println("id=" + i + "| " + listaDeFuncionario.get(i));
         }
+        System.out.println();
     }
     public List<Funcionario> retornarLista(){
         return listaDeFuncionario;
