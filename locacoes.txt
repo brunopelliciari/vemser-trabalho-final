@@ -1,5 +1,1 @@
-2023-02-19, 2023-03-19, Luiz Martins, 047.794.261-17, Uno, KRO8392, numero=     5555, bandeira=VISA, validade=05/2025, limite=55555.0, Cályson Ampos, 1237685932-18
-2023-05-20, 2024-05-25, Chico, 23476893-10, Corolla, CHI9876, numero=    9989889, bandeira=VISA, validade=08/2025, limite=999999.0, Lafael Razzari, 987654321-98
-2023-01-25, 2023-01-28, Chico, 23476893-10, Gol, COR7832, numero=   666666, bandeira=MASTERCARD, validade=03/2040, limite=999999.0, Cályson Ampos, 1237685932-18
-2022-10-09, 2022-10-12, Luiz Martins, 047.794.261-17, Gol, COR7832, numero= 22, bandeira=MASTERCARD, validade=11/2022, limite=2700.0, Lafael Razzari, 987654321-98
-2022-10-09, 2022-10-12, Luiz Martins, 047.794.261-17, Corsa Premium, PDI2938, numero=111 222 333 444 555 666, bandeira=MASTERCARD, validade=11/2024, limite=2500.0, Cályson Ampos, 1237685932-18
+2025-03-25, 2025-03-29, Marcos, 948893129-90, Corsa Premium, PDI2938, numero=878787, bandeira=MASTERCARD, validade=05/2025, limite=98989.0, Cályson Ampos, 1237685932-18

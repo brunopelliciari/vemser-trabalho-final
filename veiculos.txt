@@ -1,7 +1,7 @@
 Honda, Fit, Branco, 2018, 2500.0, 200.0, DISPONIVEL, ARG8765
-Honda, Civic, Preto, 2020, 1500.0, 400.0, ALUGADO, BRA1234
+Honda, Civic, Preto, 2020, 1500.0, 400.0, DISPONIVEL, BRA1234
 Toyota, Corolla, Cinza, 2020, 1700.0, 400.0, DISPONIVEL, CHI9876
-Volkswagen, Gol, Branco, 2019, 3500.0, 100.0, ALUGADO, COR7832
+Volkswagen, Gol, Branco, 2019, 3500.0, 100.0, DISPONIVEL, COR7832
 Fiat, Uno, Verde, 2022, 400.0, 150.0, DISPONIVEL, KRO8392
 Chevrolet, s10, Azul, 2016, 9000.0, 500.0, DISPONIVEL, CHE9999
 Chevrolet, Corsa Premium, preto, 2009, 89000.0, 120.0, DISPONIVEL, PDI2938

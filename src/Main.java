@@ -309,7 +309,6 @@ public class Main {
                                     int vi = scanner.nextInt();
                                     scanner.nextLine();
                                     locacao.setVeiculo(veiculoManipulacao.retornarVeiculoPorIndice(vi));
-                                    veiculoManipulacao.retornarVeiculoPorIndice(vi).alterarDisponibilidade();
                                     do {
                                         try {
                                             System.out.print("Informe os dados do cartão de crédito que deseja utilizar para o pagamento: \n");
@@ -337,7 +336,6 @@ public class Main {
                                     cartao.setLimite(scanner.nextDouble());
                                     scanner.nextLine();
                                     locacao.setCartaoCredito(cartao);
-                                    //primeiro local
                                     System.out.print("Digite o id de um funcionário cadastrado: \n");
                                     funcionarioManipulacao.consultarCadastro();
                                     locacao.setFuncionario(funcionarioManipulacao.retornarFuncionarioPorIndice(scanner.nextInt()));
@@ -384,7 +382,6 @@ public class Main {
                                     scanner.nextLine();
                                     novaLocacao.setVeiculo(veiculoManipulacao.retornarVeiculoPorIndice(vi));
                                     veiculoManipulacao.retornarVeiculoPorIndice(vi).alterarDisponibilidade();
-                                    //segundo local
                                     System.out.print("Digite o id de um funcionário cadastrado: \n");
                                     funcionarioManipulacao.consultarCadastro();
                                     novaLocacao.setFuncionario(funcionarioManipulacao.retornarFuncionarioPorIndice(scanner.nextInt()));
@@ -424,6 +421,7 @@ public class Main {
                                     locacaoManipulacao.consultarCadastro();
                                     int id = scanner.nextInt();
                                     scanner.nextLine();
+                                    locacaoManipulacao.retornarLocacaoPorIndice(id).getVeiculo().alterarDisponibilidade();
                                     locacaoManipulacao.removerCadastro(id);
                                     MetodosAuxiliares.salvarLocacao(locacaoManipulacao);
                                     break;
