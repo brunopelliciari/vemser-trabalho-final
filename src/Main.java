@@ -285,16 +285,15 @@ public class Main {
                                     CartaoCredito cartao = new CartaoCredito();
                                     do {
                                         try {
-                                            System.out.print("Digite a data da locação do veículo(dd/MM/yyyy): ");
+                                            System.out.print("\nDigite a data da locação do veículo(dd/MM/yyyy): ");
                                             LocalDate dl = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                                            System.out.print("Digite a data da devolucao do veículo(dd/MM/yyyy): ");
+                                            System.out.print("\nDigite a data da devolucao do veículo(dd/MM/yyyy): ");
                                             LocalDate dd = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
                                             MetodosAuxiliares.validarDatasLocacao(dl, dd);
                                             teste = true;
                                             locacao.setDataLocacao(dl);
                                             locacao.setDataDevolucao(dd);
                                         }catch(DatasInvalidasException e) {
-                                            System.out.println();
                                             System.err.println(e.getMessage());
                                         }
                                     }while(!teste);
@@ -329,7 +328,7 @@ public class Main {
                                             cartao.setValidade(validadeCartao);
 
                                         }catch(DatasInvalidasException e) {
-                                            System.out.println(e.getMessage());
+                                            System.err.println(e.getMessage());
                                         }
                                     }while(!teste);
 
@@ -354,9 +353,9 @@ public class Main {
                                     CartaoCredito novoCartao = new CartaoCredito();
                                     do {
                                         try {
-                                            System.out.print("Digite a data da locação do veículo(dd/MM/yyyy): ");
+                                            System.out.print("\nDigite a data da locação do veículo(dd/MM/yyyy): ");
                                             LocalDate dl = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                                            System.out.print("Digite a data da devolucao do veículo(dd/MM/yyyy): ");
+                                            System.out.print("\nDigite a data da devolucao do veículo(dd/MM/yyyy): ");
                                             LocalDate dd = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
                                             MetodosAuxiliares.validarDatasLocacao(dl, dd);
                                             teste = true;
@@ -398,7 +397,7 @@ public class Main {
                                             novoCartao.setValidade(validadeCartao);
 
                                         }catch(DatasInvalidasException e) {
-                                            System.out.println(e.getMessage());
+                                            System.err.println(e.getMessage());
                                         }
                                     }while(!teste);
 

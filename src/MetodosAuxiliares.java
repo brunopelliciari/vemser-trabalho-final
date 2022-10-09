@@ -104,7 +104,7 @@ public class MetodosAuxiliares {
         try{
             PrintWriter writer = new PrintWriter("clientes.txt");
             c.retornarLista().stream()
-                            .forEach(cliente -> writer.println(cliente.impressaoConversora()));
+                    .forEach(cliente -> writer.println(cliente.impressaoConversora()));
             writer.close();
         } catch (FileNotFoundException e){
             System.out.println("Arquivo não encontrado no caminho designado" + e.getMessage());
@@ -134,8 +134,10 @@ public class MetodosAuxiliares {
     }
 
     public static void validarDatasLocacao(LocalDate dl, LocalDate dd) throws DatasInvalidasException{
-        if(dd.isBefore(dl)) {
-            throw new DatasInvalidasException("Erro! ");
+        if(dl.isBefore(LocalDate.now())) {
+            throw new DatasInvalidasException("A data da locação não pode ser inferior a data atual. Tente novamente!");
+        }else if(dd.isBefore(dl)) {
+            throw new DatasInvalidasException("A data da devolução não pode ser inferior a data de locação. Tente novamente!");
         }
     }
 
