@@ -58,9 +58,16 @@ public class VeiculoManipulacao implements Cadastro<Veiculo> {
         }
     }
     public void consultarCadastroDisponivel(){
-        AtomicInteger i = new AtomicInteger();
-        this.listaDeVeiculos.stream()
-                .filter(d -> d.getDisponibilidade() == 2)
-                .forEach(p -> System.out.println("id="+ (i.getAndIncrement()) + p.toString()));
+//        AtomicInteger i = new AtomicInteger();
+//        this.listaDeVeiculos.stream()
+//                .filter(d -> d.getDisponibilidade() == 2)
+//                .forEach(p -> System.out.println("id="+ (i.getAndIncrement()) + p.toString()));
+
+        for(int i = 0; i< listaDeVeiculos.size(); i++){
+            if(listaDeVeiculos.get(i).getDisponibilidade() == 2) {
+                System.out.println("id=" + i + "| " + listaDeVeiculos.get(i));
+            }
+        }
+        System.out.println();
     }
-}
+    }
