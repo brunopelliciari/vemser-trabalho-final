@@ -230,6 +230,9 @@ public class Main {
                                     System.out.println("Qual cliente você deseja editar?\n");
                                     clienteManipulacao.consultarCadastro();
                                     int index = scanner.nextInt();
+                                    if(index==999){
+                                        break;
+                                    }
                                     scanner.nextLine();
 
                                     Cliente novoCliente = new Cliente();
@@ -474,6 +477,9 @@ public class Main {
                                     System.out.println("Qual funcionário você deseja editar?");
                                     funcionarioManipulacao.consultarCadastro();
                                     int index = scanner.nextInt();
+                                    if(index==999){
+                                        break;
+                                    }
                                     scanner.nextLine();
 
                                     Funcionario novoFuncionario = new Funcionario();
@@ -491,6 +497,9 @@ public class Main {
                                     System.out.println("Qual funcionário você deseja excluir?");
                                     funcionarioManipulacao.consultarCadastro();
                                     int id = scanner.nextInt();
+                                    if(id==999){
+                                        break;
+                                    }
                                     scanner.nextLine();
                                     funcionarioManipulacao.removerCadastro(id);
                                     MetodosAuxiliares.salvarFuncionarios(funcionarioManipulacao);
