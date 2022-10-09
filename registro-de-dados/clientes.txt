@@ -1,4 +1,3 @@
-Peter Parker, 093.493.294.01, telefone= null, email= null, [rua=null, numero=null, bairro=null, cidade=null, estado=null, cep=null, complemento=null]
-Marcos, 948893129-90, telefone=          22-998049898, email=          marcos@email.com, [rua= [ [ [   'Rua do Marcos, numero=    = =123, bairro=     Marquense, cidade=     Goiania, estado=     GO, cep= = = = = =19909-902, complemento=     ]]]]
-Luiz Martins, 047.794.261-17, telefone=         (51) 98144-6446, email=         luizmartins@gmail.com, [rua= [ [ [  Rua do lago, numero=    =78, bairro=    Raul Pila, cidade=    Gravataí, estado=    Rio Grande do Sul, cep= = = = =94066-350, complemento=    casa]]]]
-João Silva, 094.162.154-87, telefone=       (47) 98744-6545, email=       joao@gmail.com, [rua= [ [ [Rua do Salgueiro, numero=   105, bairro=   São Geraldo, cidade=   Viamão, estado=   Rio Grande do Sul, cep= = = =94255-650, complemento=   casa]]]]
+Peter Parker, 984.839.382-93, telefone= (51) 99786-3827, email= homemaranha@gmail.com, rua=Teiaria, numero=938, bairro=Bela Vista, cidade=Pontal, estado=São Paulo, cep=48938-948, complemento=Ap 12
+Dudu do Palmeiras, 194.872.182-90, telefone= (11) 82736-3977, email= dudu@gmail.com, rua=Augusta, numero=178, bairro=Consolação, cidade=São Paulo, estado=São Paulo, cep=18728-144, complemento=Ap 68
+Marquito, 214.182.192-82, telefone= (17) 99231-1231, email= marquito@gmail.com, rua=Flores, numero=638, bairro=Baixada do Rio, cidade=Rio de Janeiro, estado=Rio de Janeiro, cep=19573-465, complemento=

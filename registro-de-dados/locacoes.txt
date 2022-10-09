@@ -1,2 +1,1 @@
-2023-06-20, 2023-06-21, Marcos, 948893129-90, Civic, BRA1234, numero= 222, bandeira=MASTERCARD, validade=12/2025, limite=1920000.0, Lafael Razzari, 987654321-98
-2024-07-10, 2024-07-13, João Silva, 094.162.154-87, Uno, KRO8392, numero=222 555 666, bandeira=MASTERCARD, validade=04/2026, limite=7.895E7, Gaicon Merardi, 123456789-10
+2023-05-19, 2023-05-20, Marquito, 214.182.192-82, Corsa Premium, PDI2938, numero=9855 9585 958, bandeira=MASTERCARD, validade=05/2030, limite=999999.0, Clyson Ampos, 1237685932-18

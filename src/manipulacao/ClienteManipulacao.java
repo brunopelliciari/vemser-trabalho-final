@@ -31,8 +31,8 @@ public class ClienteManipulacao implements Cadastro<Cliente> {
         Cliente clienteProcurado = listaDeCliente.get(indice);
         clienteProcurado.setCpf(cliente.getCpf());
         clienteProcurado.setNome(cliente.getNome());
-        clienteProcurado.setContato(new Contato());
-        clienteProcurado.setEndereco(new Endereco());
+        clienteProcurado.setContato(cliente.getContato());
+        clienteProcurado.setEndereco(cliente.getEndereco());
     }
 
     public void consultarCadastro(){

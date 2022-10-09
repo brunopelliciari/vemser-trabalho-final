@@ -264,9 +264,12 @@ public class Main {
                                     MetodosAuxiliares.salvarClientes(clienteManipulacao);
                                     break;
                                 case 4:
-                                    System.out.println("Qual cliente você deseja excluir?\n");
+                                    System.out.println("Qual cliente você deseja excluir?Digite 999 para voltar\n");
                                     clienteManipulacao.consultarCadastro();
                                     int id = scanner.nextInt();
+                                    if(id==999){
+                                        break;
+                                    }
                                     scanner.nextLine();
                                     clienteManipulacao.removerCadastro(id);
                                     MetodosAuxiliares.salvarClientes(clienteManipulacao);
@@ -353,9 +356,12 @@ public class Main {
                                     locacaoManipulacao.consultarCadastro();
                                     break;
                                 case 3:
-                                    System.out.println("Qual registro de locação você deseja editar?\n");
+                                    System.out.println("Qual registro de locação você deseja editar?Digite 999 para sair.\n");
                                     locacaoManipulacao.consultarCadastro();
                                     int index = scanner.nextInt();
+                                    if(index==999){
+                                        break;
+                                    }
                                     scanner.nextLine();
 
                                     teste = false;
@@ -423,9 +429,12 @@ public class Main {
                                     MetodosAuxiliares.salvarLocacao(locacaoManipulacao);
                                     break;
                                 case 4:
-                                    System.out.println("Qual registro de locação você deseja excluir?\n");
+                                    System.out.println("Qual registro de locação você deseja excluir? Digite 999 para voltar.\n");
                                     locacaoManipulacao.consultarCadastro();
                                     int id = scanner.nextInt();
+                                    if(id==999){
+                                        break;
+                                    }
                                     scanner.nextLine();
                                     locacaoManipulacao.retornarLocacaoPorIndice(id).getVeiculo().alterarDisponibilidade();
                                     locacaoManipulacao.removerCadastro(id);

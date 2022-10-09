@@ -71,7 +71,7 @@ public class MetodosAuxiliares {
         Endereco endereco = new Endereco(valores[4].replaceAll("rua=","")
         ,valores[5].replaceAll("numero=",""),valores[6].replaceAll("bairro=","")
                 ,valores[7].replaceAll("cidade=",""),valores[8].replaceAll("estado=","")
-        ,valores[9].replaceAll("cep",""),valores[10].replaceAll("complemento=",""));
+        ,valores[9].replaceAll("cep=",""),valores[10].replaceAll("complemento=",""));
         return new Cliente(valores[0].trim(), valores[1].trim(), contato, endereco);
     }
 
@@ -119,6 +119,9 @@ public class MetodosAuxiliares {
             writer.close();
         } catch (FileNotFoundException e){
             System.out.println("Arquivo não encontrado no caminho designado" + e.getMessage());
+        }
+        catch (NullPointerException e){
+            System.out.println("Cliente ou veículo contido no registro de locação não está mais no sistema. Exclua diretamente do banco de dados." + e.getMessage());
         }
     }
 
