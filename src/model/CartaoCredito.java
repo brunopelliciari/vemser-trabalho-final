@@ -1,6 +1,5 @@
 package model;
 
-import model.BandeiraCartao;
 
 public class CartaoCredito {
 

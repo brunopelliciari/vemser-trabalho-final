@@ -1,6 +1,6 @@
 package model;
 
-public class Cliente extends Pessoa implements ImpressaoConversora {
+public class Cliente extends Pessoa {
 
     private int id_cliente;
     private Contato contato;
@@ -38,10 +38,5 @@ public class Cliente extends Pessoa implements ImpressaoConversora {
                 ", cpf=" + getCpf() +
                 ", contato=" + contato +
                 ", endereco=" + endereco;
-    }
-
-    public String impressaoConversora() {
-        return "" + getNome() + ", " + getCpf() + ", " + getContato() + ", " + getEndereco();
-
     }
 }

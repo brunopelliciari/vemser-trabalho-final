@@ -1,6 +1,6 @@
 package model;
 
-public class Funcionario extends Pessoa implements ImpressaoConversora {
+public class Funcionario extends Pessoa {
 
     private int id_funcionario;
     private int matricula;
@@ -26,10 +26,5 @@ public class Funcionario extends Pessoa implements ImpressaoConversora {
         return "nome=" + getNome() +
                 ", cpf=" + getCpf() +
                 ", matricula=" + matricula;
-    }
-
-    public String impressaoConversora() {
-        return "" + getNome() + ", " + getCpf() + ", " + getMatricula();
-
     }
 }

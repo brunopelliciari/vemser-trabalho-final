@@ -6,7 +6,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Locacao implements ImpressaoConversora {
+public class Locacao {
 
     private int id_locacao;
     public static final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");

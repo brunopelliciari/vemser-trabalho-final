@@ -1,6 +1,6 @@
 package model;
 
-public class Veiculo implements ImpressaoConversora {
+public class Veiculo {
 
     private int id_veiculo;
     private String marca;
