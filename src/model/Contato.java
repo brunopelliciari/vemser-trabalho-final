@@ -2,6 +2,7 @@ package model;
 
 public class Contato {
 
+    private int id_contato;
     private String telefone;
     private String email;
 

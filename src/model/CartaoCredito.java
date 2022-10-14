@@ -4,6 +4,7 @@ import model.BandeiraCartao;
 
 public class CartaoCredito {
 
+    private int id_cartao_credito;
     private String numero;
     private BandeiraCartao bandeira;
     private String validade;

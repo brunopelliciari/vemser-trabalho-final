@@ -1,10 +1,8 @@
 package model;
 
-import model.Disponibilidade;
-import model.ImpressaoConversora;
-
 public class Veiculo implements ImpressaoConversora {
 
+    private int id_veiculo;
     private String marca;
     private String modelo;
     private String cor;

@@ -2,6 +2,7 @@ package model;
 
 public class Funcionario extends Pessoa implements ImpressaoConversora {
 
+    private int id_funcionario;
     private int matricula;
 
     public Funcionario(String nome, String cpf, int matricula){

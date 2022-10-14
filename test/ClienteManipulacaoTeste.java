@@ -3,7 +3,6 @@
 import model.Cliente;
 import model.Contato;
 import model.Endereco;
-import service.ClienteManipulacao;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

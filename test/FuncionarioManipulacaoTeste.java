@@ -1,7 +1,6 @@
 package teste;
 
 import model.Funcionario;
-import service.FuncionarioManipulacao;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

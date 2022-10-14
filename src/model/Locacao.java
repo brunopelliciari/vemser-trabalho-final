@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Locacao implements ImpressaoConversora {
 
+    private int id_locacao;
     public static final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private LocalDate dataLocacao;
     private LocalDate dataDevolucao;

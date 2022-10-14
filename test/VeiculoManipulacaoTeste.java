@@ -3,7 +3,6 @@ package teste;
 import model.Disponibilidade;
 import exceptions.DatasInvalidasException;
 import model.Veiculo;
-import service.VeiculoManipulacao;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

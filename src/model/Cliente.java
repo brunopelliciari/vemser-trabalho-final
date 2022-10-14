@@ -2,6 +2,7 @@ package model;
 
 public class Cliente extends Pessoa implements ImpressaoConversora {
 
+    private int id_cliente;
     private Contato contato;
     private Endereco endereco;
 
