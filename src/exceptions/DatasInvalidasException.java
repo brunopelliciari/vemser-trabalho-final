@@ -1,4 +1,4 @@
-package excecao;
+package exceptions;
 
 public class DatasInvalidasException extends Exception{
 

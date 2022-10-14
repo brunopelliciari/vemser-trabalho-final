@@ -1,9 +1,7 @@
-package manipulacao;
+package service;
 
-import entidades.Cliente;
-import entidades.Contato;
-import entidades.Endereco;
-import interfaces.Cadastro;
+import model.Cliente;
+import model.Cadastro;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,13 +1,10 @@
-package metodosauxiliares;
+package model;
 
-import entidades.*;
-import enums.BandeiraCartao;
-import enums.Disponibilidade;
-import excecao.DatasInvalidasException;
-import manipulacao.ClienteManipulacao;
-import manipulacao.FuncionarioManipulacao;
-import manipulacao.LocacaoManipulacao;
-import manipulacao.VeiculoManipulacao;
+import exceptions.DatasInvalidasException;
+import service.ClienteManipulacao;
+import service.FuncionarioManipulacao;
+import service.LocacaoManipulacao;
+import service.VeiculoManipulacao;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;

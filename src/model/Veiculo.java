@@ -1,7 +1,7 @@
-package entidades;
+package model;
 
-import enums.Disponibilidade;
-import interfaces.ImpressaoConversora;
+import model.Disponibilidade;
+import model.ImpressaoConversora;
 
 public class Veiculo implements ImpressaoConversora {
 

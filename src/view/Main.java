@@ -1,9 +1,11 @@
-package aplicacao;
+package view;
 
-import entidades.*;
-import excecao.DatasInvalidasException;
-import manipulacao.*;
-import metodosauxiliares.MetodosAuxiliares;
+import exceptions.DatasInvalidasException;
+import model.*;
+import service.ClienteManipulacao;
+import service.FuncionarioManipulacao;
+import service.LocacaoManipulacao;
+import service.VeiculoManipulacao;
 
 import java.io.*;
 import java.time.LocalDate;

@@ -1,7 +1,7 @@
-package manipulacao;
+package service;
 
-import entidades.Veiculo;
-import interfaces.Cadastro;
+import model.Veiculo;
+import model.Cadastro;
 
 import java.util.ArrayList;
 import java.util.List;

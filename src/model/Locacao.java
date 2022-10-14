@@ -1,7 +1,6 @@
-package entidades;
+package model;
 
-import excecao.DatasInvalidasException;
-import interfaces.ImpressaoConversora;
+import exceptions.DatasInvalidasException;
 
 import java.time.Duration;
 import java.time.LocalDate;

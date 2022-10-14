@@ -1,7 +1,7 @@
-package manipulacao;
+package service;
 
-import entidades.Locacao;
-import interfaces.Cadastro;
+import model.Locacao;
+import model.Cadastro;
 
 import java.util.ArrayList;
 import java.util.List;

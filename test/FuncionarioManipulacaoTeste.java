@@ -1,9 +1,7 @@
 package teste;
 
-import entidades.Cliente;
-import entidades.Funcionario;
-import manipulacao.ClienteManipulacao;
-import manipulacao.FuncionarioManipulacao;
+import model.Funcionario;
+import service.FuncionarioManipulacao;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

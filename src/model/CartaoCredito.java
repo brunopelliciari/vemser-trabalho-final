@@ -1,6 +1,6 @@
-package entidades;
+package model;
 
-import enums.BandeiraCartao;
+import model.BandeiraCartao;
 
 public class CartaoCredito {
 

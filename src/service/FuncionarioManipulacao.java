@@ -1,7 +1,7 @@
-package manipulacao;
+package service;
 
-import entidades.Funcionario;
-import interfaces.Cadastro;
+import model.Funcionario;
+import model.Cadastro;
 
 import java.util.ArrayList;
 import java.util.List;

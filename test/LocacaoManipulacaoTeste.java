@@ -1,10 +1,8 @@
 package teste;
 
-import entidades.*;
-import enums.Disponibilidade;
-import excecao.DatasInvalidasException;
-import manipulacao.FuncionarioManipulacao;
-import manipulacao.LocacaoManipulacao;
+import model.*;
+import exceptions.DatasInvalidasException;
+import service.LocacaoManipulacao;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.time.LocalDate;

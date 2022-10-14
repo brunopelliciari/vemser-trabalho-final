@@ -1,9 +1,9 @@
-package teste;
 
-import entidades.Cliente;
-import entidades.Contato;
-import entidades.Endereco;
-import manipulacao.ClienteManipulacao;
+
+import model.Cliente;
+import model.Contato;
+import model.Endereco;
+import service.ClienteManipulacao;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +18,7 @@ public class ClienteManipulacaoTeste {
         //SETUP
         ClienteManipulacao c = new ClienteManipulacao();
         //ACT
-        c.realizarCadastro(new Cliente("entidades.Cliente teste", "Cpf teste", contato, endereco));
+        c.realizarCadastro(new Cliente("model.Cliente teste", "Cpf teste", contato, endereco));
         //ASSERT
         Assertions.assertEquals(c.retornarLista().size(), 1);
     }
@@ -27,7 +27,7 @@ public class ClienteManipulacaoTeste {
     public void deveRemoverCLienteComSucesso(){
         //SETUP
         ClienteManipulacao c = new ClienteManipulacao();
-        c.realizarCadastro(new Cliente("entidades.Cliente teste", "Cpf teste", contato, endereco));
+        c.realizarCadastro(new Cliente("model.Cliente teste", "Cpf teste", contato, endereco));
 
         //ACT
         c.removerCadastro(0);
@@ -41,10 +41,10 @@ public class ClienteManipulacaoTeste {
     public void deveEditarClienteComSucesso(){
         //SETUP
         ClienteManipulacao c = new ClienteManipulacao();
-        c.realizarCadastro(new Cliente("entidades.Cliente teste", "Cpf teste", contato, endereco));
+        c.realizarCadastro(new Cliente("model.Cliente teste", "Cpf teste", contato, endereco));
 
         //ACT
-        Cliente cliente = new Cliente("entidades.Cliente teste", "new cpf", contato, endereco);
+        Cliente cliente = new Cliente("model.Cliente teste", "new cpf", contato, endereco);
         c.editarCadastro(0, cliente);
 
         //ASSERT

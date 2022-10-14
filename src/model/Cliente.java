@@ -1,6 +1,4 @@
-package entidades;
-
-import interfaces.ImpressaoConversora;
+package model;
 
 public class Cliente extends Pessoa implements ImpressaoConversora {
 
