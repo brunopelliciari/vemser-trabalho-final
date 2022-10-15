@@ -23,6 +23,13 @@ public class Endereco {
 
     public Endereco(){}
 
+    public int getId_endereco() {
+        return id_endereco;
+    }
+
+    public void setId_endereco(int id_endereco) {
+        this.id_endereco = id_endereco;
+    }
 
     public String getRua() {
         return rua;
@@ -82,7 +89,8 @@ public class Endereco {
 
     @Override
     public String toString() {
-        return "rua=" + rua +
+        return  "id_endereco=" + id_endereco +
+                ", rua=" + rua +
                 ", numero=" + numero +
                 ", bairro=" + bairro +
                 ", cidade=" + cidade +

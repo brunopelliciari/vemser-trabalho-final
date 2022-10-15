@@ -15,6 +15,14 @@ public class Contato {
 
     }
 
+    public int getId_contato() {
+        return id_contato;
+    }
+
+    public void setId_contato(int id_contato) {
+        this.id_contato = id_contato;
+    }
+
     public String getTelefone() {
         return telefone;
     }
@@ -33,7 +41,8 @@ public class Contato {
 
     @Override
     public String toString() {
-        return "telefone= " + telefone  +
+        return  "id_contato=" + id_contato +
+                ", telefone= " + telefone  +
                 ", email= " + email ;
     }
 }
