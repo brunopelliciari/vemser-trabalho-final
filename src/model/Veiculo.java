@@ -2,30 +2,37 @@ package model;
 
 public class Veiculo {
 
-    private int id_veiculo;
+    private Integer idVeiculo;
     private String marca;
     private String modelo;
     private String cor;
-    private int ano;
-    private double quilometragem;
-    private double valorLocacao;
-    private Disponibilidade disponibilidade;
+    private Integer ano;
+    private Double quilometragem;
+    private Double valorLocacao;
+    private DisponibilidadeVeiculo disponibilidadeVeiculo;
     private String placa;
 
-    public Veiculo(String marca, String modelo, String cor, int ano, double quilometragem, double valorLocacao
-            , Disponibilidade disponibilidade, String placa) {
+    public Veiculo(String marca, String modelo, String cor, Integer ano, Double quilometragem, Double valorLocacao
+            , DisponibilidadeVeiculo disponibilidadeVeiculo, String placa) {
         this.marca = marca;
         this.modelo = modelo;
         this.cor = cor;
         this.ano = ano;
         this.quilometragem = quilometragem;
         this.valorLocacao = valorLocacao;
-        this.disponibilidade = disponibilidade;
+        this.disponibilidadeVeiculo = disponibilidadeVeiculo;
         this.placa = placa;
     }
 
     public Veiculo(){
+    }
 
+    public Integer getIdVeiculo() {
+        return idVeiculo;
+    }
+
+    public void setIdVeiculo(Integer idVeiculo) {
+        this.idVeiculo = idVeiculo;
     }
 
     public String getMarca() {
@@ -52,49 +59,39 @@ public class Veiculo {
         this.cor = cor;
     }
 
-    public int getAno() {
+    public Integer getAno() {
         return ano;
     }
 
-    public void setAno(int ano) {
+    public void setAno(Integer ano) {
         this.ano = ano;
     }
 
-    public double getQuilometragem() {
+    public Double getQuilometragem() {
         return quilometragem;
     }
 
-    public void setQuilometragem(double quilometragem) {
+    public void setQuilometragem(Double quilometragem) {
         this.quilometragem = quilometragem;
     }
 
-    public double getValorLocacao() {
+    public Double getValorLocacao() {
         return valorLocacao;
     }
 
-    public void setValorLocacao(double valorLocacao) {
+    public void setValorLocacao(Double valorLocacao) {
         this.valorLocacao = valorLocacao;
     }
 
-    public int getDisponibilidade() {
-        return disponibilidade.getS();
+    public Integer getDisponibilidadeVeiculo() {
+        return disponibilidadeVeiculo.getDisponibilidade();
     }
 
-    public void alterarDisponibilidade(){
-        if(disponibilidade.getS()==1){
-            this.disponibilidade = Disponibilidade.DISPONIVEL;
-        }
-        else if(disponibilidade.getS()==2){
-            this.disponibilidade = Disponibilidade.ALUGADO;
-        }
-    }
-
-    public void setDisponibilidade(int i){
-        if(i==1){
-            this.disponibilidade = Disponibilidade.ALUGADO;
-        }
-        else if(i==2){
-            this.disponibilidade = Disponibilidade.DISPONIVEL;
+    public void setDisponibilidadeVeiculo(Integer disponibilidade){
+        if(disponibilidade == 1){
+            this.disponibilidadeVeiculo = DisponibilidadeVeiculo.ALUGADO;
+        }else if(disponibilidade == 2){
+            this.disponibilidadeVeiculo = DisponibilidadeVeiculo.DISPONIVEL;
         }
     }
 
@@ -106,21 +103,26 @@ public class Veiculo {
         this.placa = placa;
     }
 
+    public void alterarDisponibilidadeVeiculo(){
+        if(this.disponibilidadeVeiculo.getDisponibilidade() == 1){
+            this.disponibilidadeVeiculo = DisponibilidadeVeiculo.DISPONIVEL;
+        }else if(this.disponibilidadeVeiculo.getDisponibilidade() == 2){
+            this.disponibilidadeVeiculo = DisponibilidadeVeiculo.ALUGADO;
+        }
+    }
+
     @Override
     public String toString() {
-        return "[marca=" + marca +
-                ", modelo=" + modelo +
-                ", cor=" + cor +
+        return "Veiculo{" +
+                "id_veiculo=" + idVeiculo +
+                ", marca='" + marca + '\'' +
+                ", modelo='" + modelo + '\'' +
+                ", cor='" + cor + '\'' +
                 ", ano=" + ano +
                 ", quilometragem=" + quilometragem +
                 ", valorLocacao=" + valorLocacao +
-                ", disponibilidade=" + disponibilidade +
-                ", placa=" + placa + "]";
-    }
-
-    public String impressaoConversora() {
-        return "" + getMarca() + ", " + getModelo() + ", " + getCor() + ", " + getAno()
-                + ", " + getQuilometragem() + ", " + getValorLocacao() + ", " + disponibilidade + ", " + getPlaca();
-
+                ", disponibilidadeVeiculo=" + disponibilidadeVeiculo +
+                ", placa='" + placa + '\'' +
+                '}';
     }
 }

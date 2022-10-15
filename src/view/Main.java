@@ -13,76 +13,9 @@
 //    public static void main(String[] args){
 //        Scanner scanner = new Scanner(System.in);
 //
-//        ClienteManipulacao clienteManipulacao = new ClienteManipulacao();
 //        FuncionarioManipulacao funcionarioManipulacao = new FuncionarioManipulacao();
 //        VeiculoManipulacao veiculoManipulacao = new VeiculoManipulacao();
-//        LocacaoManipulacao locacaoManipulacao = new LocacaoManipulacao();
 //
-//        try {
-//            BufferedReader br = new BufferedReader(new FileReader("registro-de-dados/veiculos.txt"));
-//            String line = br.readLine();
-//
-//            while (line != null) {
-//                String[] valores = line.split(",");
-//                if(valores.length>=8) {
-//                    veiculoManipulacao.realizarCadastro(MetodosAuxiliares.retornarVeiculoAPartirDeListaDeStrings(valores));
-//                    line = br.readLine();
-//                }
-//                else{
-//                    break;
-//                }
-//            }
-//
-//            br = new BufferedReader(new FileReader("registro-de-dados/funcionarios.txt"));
-//            line = br.readLine();
-//            while (line != null) {
-//                String[] valores = line.split(",");
-//                if(valores.length>=3) {
-//                    funcionarioManipulacao.realizarCadastro(MetodosAuxiliares.retornarFuncionarioAPartirDeListaDeStrings(valores));
-//                    line = br.readLine();
-//                }
-//                else{
-//                    break;
-//                }
-//            }
-//
-//            br = new BufferedReader(new FileReader("registro-de-dados/clientes.txt"));
-//            line = br.readLine();
-//            while (line != null) {
-//                String[] valores = line.split(",");
-//                if(valores.length>=10){
-//                    clienteManipulacao.realizarCadastro(MetodosAuxiliares.retornarClienteAPartirDeListaDeStrings(valores));
-//                    line = br.readLine();
-//                }
-//                else{
-//                    break;
-//                }
-//            }
-//
-//            br = new BufferedReader(new FileReader("registro-de-dados/locacoes.txt"));
-//            line = br.readLine();
-//            while (line != null) {
-//                String[] valores = line.split(",");
-//                if(valores.length>=8) {
-//                    locacaoManipulacao.realizarCadastro(MetodosAuxiliares.retornarLocacaoAPartirDeListaDeStrings
-//                            (valores, clienteManipulacao, veiculoManipulacao, funcionarioManipulacao));
-//                    line = br.readLine();
-//                }
-//                else{
-//                    break;
-//                }
-//            }
-//
-//        }
-//        catch (FileNotFoundException e ){
-//            System.out.println("Arquivo não encontrado no caminho designado " + e.getMessage());
-//        }
-//        catch (IOException e ){
-//            System.out.println(e.getMessage());
-//        }
-//        catch (DatasInvalidasException e) {
-//            e.printStackTrace();
-//        }
 //
 //        int primeiroMenu = 0;
 //        int segundoMenu;

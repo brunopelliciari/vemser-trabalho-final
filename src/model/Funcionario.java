@@ -2,29 +2,60 @@ package model;
 
 public class Funcionario extends Pessoa {
 
-    private int id_funcionario;
-    private int matricula;
+    private Integer idFuncionario;
+    private Integer matricula;
 
-    public Funcionario(String nome, String cpf, int matricula){
+    public Funcionario(String nome, String cpf, Integer matricula){
         super(nome, cpf);
         this.matricula = matricula;
     }
-    public Funcionario(){
 
+    public Funcionario(){
     }
 
-    public int getMatricula() {
+    public Integer getIdFuncionario() {
+        return idFuncionario;
+    }
+
+    public void setIdFuncionario(Integer idFuncionario) {
+        this.idFuncionario = idFuncionario;
+    }
+
+    @Override
+    public void setNome(String nome) {
+        super.setNome(nome);
+    }
+
+    @Override
+    public String getNome() {
+        return super.getNome();
+    }
+
+    @Override
+    public void setCpf(String cpf) {
+        super.setCpf(cpf);
+    }
+
+    @Override
+    public String getCpf() {
+        return super.getCpf();
+    }
+
+    public Integer getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(int matricula) {
+    public void setMatricula(Integer matricula) {
         this.matricula = matricula;
     }
 
     @Override
     public String toString() {
-        return "nome=" + getNome() +
-                ", cpf=" + getCpf() +
-                ", matricula=" + matricula;
+        return "Funcionario{" +
+                "idFuncionario=" + this.idFuncionario +
+                ", nome=" + super.getNome() +
+                ", cpf=" + super.getCpf() +
+                ", matricula=" + this.matricula +
+                '}';
     }
 }
