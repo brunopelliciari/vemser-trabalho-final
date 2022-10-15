@@ -7,7 +7,7 @@ public class Veiculo {
     private String modelo;
     private String cor;
     private int ano;
-    private double quilometragem;
+    private double quilometragemAdicao;
     private double valorLocacao;
     private Disponibilidade disponibilidade;
     private String placa;
@@ -18,7 +18,7 @@ public class Veiculo {
         this.modelo = modelo;
         this.cor = cor;
         this.ano = ano;
-        this.quilometragem = quilometragem;
+        this.quilometragemAdicao = quilometragem;
         this.valorLocacao = valorLocacao;
         this.disponibilidade = disponibilidade;
         this.placa = placa;
@@ -26,6 +26,18 @@ public class Veiculo {
 
     public Veiculo(){
 
+    }
+
+    public int getId_veiculo() {
+        return id_veiculo;
+    }
+
+    public void setId_veiculo(int id_veiculo) {
+        this.id_veiculo = id_veiculo;
+    }
+
+    public void setDisponibilidade(Disponibilidade disponibilidade) {
+        this.disponibilidade = disponibilidade;
     }
 
     public String getMarca() {
@@ -60,12 +72,12 @@ public class Veiculo {
         this.ano = ano;
     }
 
-    public double getQuilometragem() {
-        return quilometragem;
+    public double getQuilometragemAdicao() {
+        return quilometragemAdicao;
     }
 
-    public void setQuilometragem(double quilometragem) {
-        this.quilometragem = quilometragem;
+    public void setQuilometragemAdicao(double quilometragemAdicao) {
+        this.quilometragemAdicao = quilometragemAdicao;
     }
 
     public double getValorLocacao() {
@@ -112,7 +124,7 @@ public class Veiculo {
                 ", modelo=" + modelo +
                 ", cor=" + cor +
                 ", ano=" + ano +
-                ", quilometragem=" + quilometragem +
+                ", quilometragem=" + quilometragemAdicao +
                 ", valorLocacao=" + valorLocacao +
                 ", disponibilidade=" + disponibilidade +
                 ", placa=" + placa + "]";
@@ -120,7 +132,7 @@ public class Veiculo {
 
     public String impressaoConversora() {
         return "" + getMarca() + ", " + getModelo() + ", " + getCor() + ", " + getAno()
-                + ", " + getQuilometragem() + ", " + getValorLocacao() + ", " + disponibilidade + ", " + getPlaca();
+                + ", " + getQuilometragemAdicao() + ", " + getValorLocacao() + ", " + disponibilidade + ", " + getPlaca();
 
     }
 }

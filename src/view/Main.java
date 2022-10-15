@@ -3,18 +3,20 @@ package view;
 import exceptions.BancoDeDadosException;
 import exceptions.DatasInvalidasException;
 import model.*;
+import repository.LocacaoRepository;
 import service.ClienteService;
 import service.ContatoService;
 import service.EnderecoService;
 
-import java.io.*;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) throws SQLException {
+        new LocacaoRepository().listar();
         Scanner scanner = new Scanner(System.in);
 
         ClienteService clienteService = new ClienteService();
@@ -54,7 +56,7 @@ public class Main {
                                     veiculo.setAno(scanner.nextInt());
                                     scanner.nextLine();
                                     System.out.println("Digite a quilometragem do veiculo");
-                                    veiculo.setQuilometragem(scanner.nextDouble());
+                                    veiculo.setQuilometragemAdicao(scanner.nextDouble());
                                     scanner.nextLine();
                                     System.out.println("Digite o valor de locação diário do veiculo");
                                     veiculo.setValorLocacao(scanner.nextDouble());
@@ -86,7 +88,7 @@ public class Main {
                                     novoVeiculo.setAno(scanner.nextInt());
                                     scanner.nextLine();
                                     System.out.println("Digite a nova quilometragem do veiculo");
-                                    novoVeiculo.setQuilometragem(scanner.nextDouble());
+                                    novoVeiculo.setQuilometragemAdicao(scanner.nextDouble());
                                     scanner.nextLine();
                                     System.out.println("Digite o novo valor de locação diária do veiculo");
                                     novoVeiculo.setValorLocacao(scanner.nextDouble());

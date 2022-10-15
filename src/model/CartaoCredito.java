@@ -19,6 +19,18 @@ public class CartaoCredito {
         this.limite = limite;
     }
 
+    public int getId_cartao_credito() {
+        return id_cartao_credito;
+    }
+
+    public void setId_cartao_credito(int id_cartao_credito) {
+        this.id_cartao_credito = id_cartao_credito;
+    }
+
+    public void setBandeira(BandeiraCartao bandeira) {
+        this.bandeira = bandeira;
+    }
+
     public String getNumero() {
         return numero;
     }
