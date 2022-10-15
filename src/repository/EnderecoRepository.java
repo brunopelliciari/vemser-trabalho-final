@@ -10,7 +10,7 @@ import java.util.List;
 public class EnderecoRepository implements Repositorio<Integer, Endereco> {
     @Override
     public Integer getProximoId(Connection connection) throws SQLException {
-        String sql = "SELECT SEQ_ENDERECO.nextval id_endereco from ENDERECO_CLIENTE";
+        String sql = "SELECT SEQ_ENDERECO.nextval mysequence from DUAL";
 
         Statement stmt = connection.createStatement();
         ResultSet res = stmt.executeQuery(sql);
@@ -183,7 +183,6 @@ public class EnderecoRepository implements Repositorio<Integer, Endereco> {
             String sql = "SELECT EC.ID_ENDERECO FROM ENDERECO_CLIENTE EC\n" +
                     "WHERE ID_ENDERECO = (SELECT MAX(ec.ID_ENDERECO) FROM ENDERECO_CLIENTE ec)";
 
-            // Executa-se a consulta
             ResultSet res = stmt.executeQuery(sql);
 
             while (res.next()) {

@@ -8,13 +8,12 @@ import model.Endereco;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 
 public class ClienteRepository implements Repositorio<Integer, Cliente> {
     @Override
     public Integer getProximoId(Connection connection) throws SQLException {
-        String sql = "SELECT SEQ_CLIENTE.nextval id_cliente from CLIENTE";
+        String sql = "SELECT SEQ_CLIENTE.nextval mysequence from DUAL";
 
         Statement stmt = connection.createStatement();
         ResultSet res = stmt.executeQuery(sql);
@@ -93,7 +92,6 @@ public class ClienteRepository implements Repositorio<Integer, Cliente> {
 
             stmt.setInt(1, id);
 
-            // Executa-se a consulta
             int resultado = stmt.executeUpdate();
             System.out.println("removerClientePorID.res=" + resultado);
 
@@ -131,8 +129,6 @@ public class ClienteRepository implements Repositorio<Integer, Cliente> {
     @Override
     public boolean editar(Integer id, Cliente cliente) throws BancoDeDadosException {
         Connection con = null;
-//        ContatoService cs = new ContatoService();
-//        EnderecoService es = new EnderecoService();
         try {
             con = ConexaoBancoDeDados.getConnection();
 
@@ -154,8 +150,6 @@ public class ClienteRepository implements Repositorio<Integer, Cliente> {
 
             int res = stmt.executeUpdate();
             System.out.println("editarCliente.res=" + res);
-//            es.removerEnderecosOciosos();
-//            cs.removerContatosOciosos();
 
             return res > 0;
         } catch (SQLException e) {
@@ -174,49 +168,16 @@ public class ClienteRepository implements Repositorio<Integer, Cliente> {
     @Override
     public List<Cliente> listar() throws BancoDeDadosException {
         List<Cliente> clientes = new ArrayList<>();
-        List<Contato> contatos = new ArrayList<>();
-        List<Endereco> enderecos = new ArrayList<>();
         Connection con = null;
         try {
             con = ConexaoBancoDeDados.getConnection();
             Statement stmt = con.createStatement();
 
-            String sqlContato = "SELECT *\n" +
-                    "FROM CONTATO C\n" +
-                    "WHERE EXISTS (SELECT CL.ID_CONTATO FROM CLIENTE CL\n" +
-                    "WHERE CL.ID_CONTATO = C.ID_CONTATO)";
-
-            ResultSet resContato = stmt.executeQuery(sqlContato);
-
-            while (resContato.next()) {
-                Contato contato = new Contato();
-                contato.setId_contato(resContato.getInt("id_contato"));
-                contato.setTelefone(resContato.getString("telefone"));
-                contato.setEmail(resContato.getString("email"));
-                contatos.add(contato);
-            }
-
-            String sqlEndereco = "SELECT *\n" +
-                    "FROM ENDERECO_CLIENTE E\n" +
-                    "WHERE EXISTS (SELECT CL.ID_ENDERECO  FROM CLIENTE CL\n" +
-                    "WHERE CL.ID_ENDERECO = E.ID_ENDERECO)";
-
-            ResultSet resEndereco = stmt.executeQuery(sqlEndereco);
-
-            while (resEndereco.next()) {
-                Endereco endereco = new Endereco();
-                endereco.setId_endereco(resEndereco.getInt("id_endereco"));
-                endereco.setRua(resEndereco.getString("rua"));
-                endereco.setNumero(resEndereco.getString("numero"));
-                endereco.setBairro(resEndereco.getString("bairro"));
-                endereco.setCidade(resEndereco.getString("cidade"));
-                endereco.setEstado(resEndereco.getString("estado"));
-                endereco.setCep(resEndereco.getString("cep"));
-                endereco.setComplemento(resEndereco.getString("complemento"));
-                enderecos.add(endereco);
-            }
-
-            String sql = "SELECT * FROM CLIENTE";
+            String sql = "SELECT * FROM CLIENTE CL\n" +
+                    "FULL OUTER JOIN CONTATO C\n" +
+                    "ON CL.ID_CONTATO = C.ID_CONTATO \n" +
+                    "FULL OUTER JOIN ENDERECO_CLIENTE E \n" +
+                    "ON CL.ID_ENDERECO = E.ID_ENDERECO";
 
             ResultSet res = stmt.executeQuery(sql);
 
@@ -225,8 +186,8 @@ public class ClienteRepository implements Repositorio<Integer, Cliente> {
                 cliente.setId_cliente(res.getInt("id_cliente"));
                 cliente.setNome(res.getString("nome"));
                 cliente.setCpf(res.getString("cpf"));
-                cliente.setContato(retonarIndiceContatoPorIdTabela(contatos, res.getInt("id_contato")));
-                cliente.setEndereco(retonarIndiceEnderecoPorIdTabela(enderecos, res.getInt("id_endereco")));
+                cliente.setContato(getContatoFromResultSet(res));
+                cliente.setEndereco(getEnderecoResultSet(res));
                 clientes.add(cliente);
             }
         } catch (SQLException e) {
@@ -243,26 +204,25 @@ public class ClienteRepository implements Repositorio<Integer, Cliente> {
         return clientes;
     }
 
-    public Contato retonarIndiceContatoPorIdTabela(List<Contato> contatos, int id) throws SQLException {
-        Optional<Contato> contato = contatos.stream()
-                .filter(c -> c.getId_contato() == id)
-                .findFirst();
-        if (contato.isPresent()) {
-            return contato.get();
-        } else {
-            throw new SQLException();
-        }
+    private Contato getContatoFromResultSet(ResultSet res) throws SQLException {
+        Contato contato = new Contato();
+        contato.setId_contato(res.getInt("id_contato"));
+        contato.setTelefone(res.getString("telefone"));
+        contato.setEmail(res.getString("email"));
+        return contato;
     }
 
-    public Endereco retonarIndiceEnderecoPorIdTabela(List<Endereco> enderecos, int id) throws SQLException {
-        Optional<Endereco> endereco = enderecos.stream()
-                .filter(e -> e.getId_endereco() == id)
-                .findFirst();
-        if (endereco.isPresent()) {
-            return endereco.get();
-        } else {
-            throw new SQLException();
-        }
+    private Endereco getEnderecoResultSet(ResultSet res) throws SQLException {
+        Endereco endereco = new Endereco();
+        endereco.setId_endereco(res.getInt("id_endereco"));
+        endereco.setRua(res.getString("rua"));
+        endereco.setNumero(res.getString("numero"));
+        endereco.setBairro(res.getString("bairro"));
+        endereco.setCidade(res.getString("cidade"));
+        endereco.setEstado(res.getString("estado"));
+        endereco.setCep(res.getString("cep"));
+        endereco.setComplemento(res.getString("complemento"));
+        return endereco;
     }
 
     public int retornarIndiceContatoPorIdCliente(int id) {
