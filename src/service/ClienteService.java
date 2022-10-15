@@ -13,9 +13,13 @@ public class ClienteService {
     }
 
     public void adicionarCliente(Cliente cliente) {
+        EnderecoService enderecoService = new EnderecoService();
+        ContatoService contatoService = new ContatoService();
         try {
             Cliente clienteAdicionado = clienteRepository.adicionar(cliente);
             System.out.println("Cliente adicinado com sucesso! " + clienteAdicionado);
+            enderecoService.removerEnderecosOciosos();
+            contatoService.removerContatosOciosos();
         } catch (BancoDeDadosException e) {
             e.printStackTrace();
         }
@@ -31,6 +35,8 @@ public class ClienteService {
     }
 
     public void editar(Integer id, Cliente cliente) {
+        EnderecoService enderecoService = new EnderecoService();
+        ContatoService contatoService = new ContatoService();
         try {
             boolean conseguiuEditar = clienteRepository.editar(id, cliente);
             System.out.println("editado? " + conseguiuEditar + "| com id=" + id);

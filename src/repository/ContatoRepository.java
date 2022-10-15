@@ -70,7 +70,6 @@ public class ContatoRepository implements Repositorio<Integer, Contato> {
 
             stmt.setInt(1, id);
 
-            // Executa-se a consulta
             int res = stmt.executeUpdate();
             System.out.println("removerContatoPorId.res=" + res);
 

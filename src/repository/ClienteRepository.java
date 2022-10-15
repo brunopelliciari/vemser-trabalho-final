@@ -98,14 +98,14 @@ public class ClienteRepository implements Repositorio<Integer, Cliente> {
 
             // Executa-se a consulta
             int resultado = stmt.executeUpdate();
-            System.out.println("removerClientePorID.res=" + res);
+            System.out.println("removerClientePorID.res=" + resultado);
 
             sql = "DELETE FROM CONTATO WHERE ID_CONTATO = ?";
 
             stmt = con.prepareStatement(sql);
             stmt.setInt(1, idContato);
-            int resultado2 = stmt.executeUpdate();
-            System.out.println("removerContato.res=" + res);
+            resultado = stmt.executeUpdate();
+            System.out.println("removerContato.res=" + resultado);
 
 
             sql = "DELETE FROM ENDERECO_CLIENTE WHERE ID_ENDERECO = ?";
@@ -114,8 +114,8 @@ public class ClienteRepository implements Repositorio<Integer, Cliente> {
 
             stmt.setInt(1, idEndereco);
 
-            int resultado3 = stmt.executeUpdate();
-            System.out.println("removerEnderecoPorId.res=" + res);
+            resultado = stmt.executeUpdate();
+            System.out.println("removerEnderecoPorId.res=" + resultado);
 
             return resultado > 0;
         } catch (SQLException e) {
@@ -134,8 +134,8 @@ public class ClienteRepository implements Repositorio<Integer, Cliente> {
     @Override
     public boolean editar(Integer id, Cliente cliente) throws BancoDeDadosException {
         Connection con = null;
-        ContatoService cs = new ContatoService();
-        EnderecoService es = new EnderecoService();
+//        ContatoService cs = new ContatoService();
+//        EnderecoService es = new EnderecoService();
         try {
             con = ConexaoBancoDeDados.getConnection();
 
@@ -157,8 +157,8 @@ public class ClienteRepository implements Repositorio<Integer, Cliente> {
 
             int res = stmt.executeUpdate();
             System.out.println("editarCliente.res=" + res);
-            es.removerEnderecosOciosos();
-            cs.removerContatosOciosos();
+//            es.removerEnderecosOciosos();
+//            cs.removerContatosOciosos();
 
             return res > 0;
         } catch (SQLException e) {

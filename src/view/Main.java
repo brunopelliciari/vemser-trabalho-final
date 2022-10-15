@@ -20,9 +20,6 @@ public class Main {
         ClienteService clienteService = new ClienteService();
         EnderecoService enderecoService = new EnderecoService();
         ContatoService contatoService = new ContatoService();
-//        FuncionarioManipulacao funcionarioManipulacao = new FuncionarioManipulacao();
-//        VeiculoManipulacao veiculoManipulacao = new VeiculoManipulacao();
-//        LocacaoManipulacao locacaoManipulacao = new LocacaoManipulacao();
 
         int primeiroMenu = 0;
         int segundoMenu;
@@ -166,8 +163,6 @@ public class Main {
                                     break;
                                 case 2:
                                     clienteService.listar();
-                                    System.out.println(contatoService.retornarId());
-                                    System.out.println(enderecoService.retornarId());
                                     break;
                                 case 3:
                                     System.out.println("Qual cliente você deseja editar?\n");

@@ -49,7 +49,7 @@ public class EnderecoRepository implements Repositorio<Integer, Endereco> {
             stmt.setString(8, endereco.getComplemento());
 
             int res = stmt.executeUpdate();
-            System.out.println("adicionarPessoa.res=" + res);
+            System.out.println("adicionarEndereco.res=" + res);
             return endereco;
         } catch (SQLException e) {
             throw new BancoDeDadosException(e.getCause());

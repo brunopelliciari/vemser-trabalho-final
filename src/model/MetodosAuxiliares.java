@@ -34,11 +34,11 @@ public class MetodosAuxiliares {
 
     public static void menuClientes(){
         System.out.println("Digite 1 para registrar um cliente");
-        System.out.println("Digite 2 para listar cliente disponíveis");
+        System.out.println("Digite 2 para listar clientes disponíveis");
         System.out.println("Digite 3 para editar um cliente disponível");
         System.out.println("Digite 4 para excluir um cliente");
         System.out.println("Digite 5 para excluir enderecos ociosos");
-        System.out.println("Digite 6 para excluir contato ociosos");
+        System.out.println("Digite 6 para excluir contatos ociosos");
         System.out.println("Digite 9 para voltar ao menu anterior");
     }
 
