@@ -30,6 +30,8 @@ public class ExibeMenu {
         System.out.println("Digite 2 para listar clientes disponíveis");
         System.out.println("Digite 3 para editar um cliente disponível");
         System.out.println("Digite 4 para excluir um cliente");
+        System.out.println("Digite 5 para excluir contatos ociosos");
+        System.out.println("Digite 6 para excluir endereços ociosos");
         System.out.println("Digite 9 para voltar ao menu anterior");
     }
 

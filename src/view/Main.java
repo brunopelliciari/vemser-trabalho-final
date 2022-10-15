@@ -1,17 +1,23 @@
 package view;
 
-import exceptions.DatasInvalidasException;
-import model.*;
+import exceptions.BancoDeDadosException;
+import model.Cliente;
+import model.Contato;
+import model.Endereco;
+import service.ClienteService;
+import service.ContatoService;
+import service.EnderecoService;
 
-import java.io.*;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
+
+        ContatoService contatoService = new ContatoService();
+        EnderecoService enderecoService = new EnderecoService();
+        ClienteService clienteService = new ClienteService();
 
         int primeiroMenu = 0;
         int segundoMenu;
@@ -69,6 +75,7 @@ public class Main {
                             }
                         }
                     }
+
                     case 2 -> {
                         terceiroMenu = 0;
                         while (terceiroMenu != 9) {
@@ -77,46 +84,108 @@ public class Main {
                             scanner.nextLine();
                             switch (terceiroMenu) {
                                 case 1:
+                                    Cliente cliente = new Cliente();
                                     System.out.println("Digite o nome do cliente");
+                                    cliente.setNome(scanner.nextLine());
                                     System.out.println("Digite o cpf do cliente");
+                                    cliente.setCpf(scanner.nextLine());
+                                    String[] aux = new String[2];
                                     System.out.println("Digite o telefone de contato do cliente");
+                                    aux[0] = scanner.nextLine();
                                     System.out.println("Digite o email de contato do cliente");
+                                    aux[1] = scanner.nextLine();
+                                    cliente.setContato(new Contato(aux[0], aux[1]));
+                                    aux = new String[7];
                                     System.out.println("Digite a rua do cliente");
+                                    aux[0] = scanner.nextLine();
                                     System.out.println("Digite o número do endereço do cliente");
+                                    aux[1] = scanner.nextLine();
                                     System.out.println("Digite o bairro do cliente");
+                                    aux[2] = scanner.nextLine();
                                     System.out.println("Digite a cidade do cliente");
+                                    aux[3] = scanner.nextLine();
                                     System.out.println("Digite o estado de residência do cliente");
+                                    aux[4] = scanner.nextLine();
                                     System.out.println("Digite o CEP do cliente");
+                                    aux[5] = scanner.nextLine();
                                     System.out.println("Digite o complemento do cliente");
+                                    aux[6] = scanner.nextLine();
+                                    cliente.setEndereco(new Endereco(aux[0], aux[1], aux[2], aux[3], aux[4], aux[5],
+                                            aux[6]));
+                                    enderecoService.adicionarEndereco(cliente.getEndereco());
+                                    cliente.getEndereco().setId_endereco(enderecoService.retornarId());
+                                    contatoService.adicionarContato(cliente.getContato());
+                                    cliente.getContato().setId_contato(contatoService.retornarId());
+                                    clienteService.adicionarCliente(cliente);
                                     break;
                                 case 2:
+                                    clienteService.listar();
                                     break;
                                 case 3:
-                                    System.out.println("Qual cliente você deseja editar?\n");
+                                    System.out.println("Qual cliente você deseja editar? Digite 999 para voltar ao menu anterior\n");
+                                    clienteService.listar();
                                     int index = scanner.nextInt();
                                     if(index==999){
                                         break;
                                     }
                                     scanner.nextLine();
+
+                                    Cliente novoCliente = new Cliente();
                                     System.out.println("Digite o novo nome do cliente");
+                                    novoCliente.setNome(scanner.nextLine());
                                     System.out.println("Digite o novo cpf do cliente");
+                                    novoCliente.setCpf(scanner.nextLine());
+                                    System.out.println("Deseja editar o contato deste cliente?");
+                                    aux = new String[2];
                                     System.out.println("Digite o telefone de contato do cliente");
+                                    aux[0] = scanner.nextLine();
                                     System.out.println("Digite o email de contato do cliente");
+                                    aux[1] = scanner.nextLine();
+                                    novoCliente.setContato(new Contato(aux[0], aux[1]));
+                                    novoCliente.getContato().setId_contato(clienteService.retornarIdContato(index));
+                                    contatoService.editar(clienteService.retornarIdContato(index), novoCliente.getContato());
+                                    aux = new String[7];
                                     System.out.println("Digite a rua do cliente");
+                                    aux[0] = scanner.nextLine();
                                     System.out.println("Digite o numero da endereço do cliente");
+                                    aux[1] = scanner.nextLine();
                                     System.out.println("Digite o bairro do cliente");
+                                    aux[2] = scanner.nextLine();
                                     System.out.println("Digite a cidade do cliente");
+                                    aux[3] = scanner.nextLine();
                                     System.out.println("Digite o estado de residência do cliente");
+                                    aux[4] = scanner.nextLine();
                                     System.out.println("Digite o CEP do cliente");
+                                    aux[5] = scanner.nextLine();
                                     System.out.println("Digite o complemento do cliente");
+                                    aux[6] = scanner.nextLine();
+                                    novoCliente.setEndereco(new Endereco(aux[0], aux[1], aux[2], aux[3], aux[4], aux[5],
+                                            aux[6]));
+                                    novoCliente.getEndereco().setId_endereco(clienteService.retornarIdEndereco(index));
+                                    enderecoService.editar(clienteService.retornarIdEndereco(index), novoCliente.getEndereco());
+                                    clienteService.editar(index, novoCliente);
                                     break;
                                 case 4:
                                     System.out.println("Qual cliente você deseja excluir?Digite 999 para voltar\n");
+                                    clienteService.listar();
                                     int id = scanner.nextInt();
                                     if(id==999){
                                         break;
                                     }
                                     scanner.nextLine();
+                                    clienteService.remover(id);
+                                    break;
+                                case 5:
+                                    System.out.println("Qual endereço você deseja excluir?Digite 999 para voltar\n");
+                                    enderecoService.listarSemVinculo();
+                                    enderecoService.removerEnderecosOciosos();
+                                    enderecoService.listarSemVinculo();
+                                    break;
+                                case 6:
+                                    System.out.println("Qual contato você deseja excluir?Digite 999 para voltar\n");
+                                    contatoService.listarSemVinculo();
+                                    contatoService.removerContatosOciosos();
+                                    contatoService.listarSemVinculo();
                                     break;
                                 case 9:
                                     break;
@@ -230,6 +299,8 @@ public class Main {
             catch(InputMismatchException e){
                 System.err.println("Tipo de dado digitado está incorreto " + e.getMessage());
                 scanner.nextLine();
+            } catch (BancoDeDadosException e) {
+                e.printStackTrace();
             }
         }
         scanner.close();
