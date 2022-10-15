@@ -1,18 +1,15 @@
 package repository;
 
-
 import exceptions.BancoDeDadosException;
 import model.Cliente;
 import model.Contato;
 import model.Endereco;
 
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import service.ContatoService;
-import service.EnderecoService;
+
 
 public class ClienteRepository implements Repositorio<Integer, Cliente> {
     @Override

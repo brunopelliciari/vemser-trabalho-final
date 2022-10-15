@@ -7,7 +7,6 @@ import service.ClienteService;
 import service.ContatoService;
 import service.EnderecoService;
 
-import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
@@ -165,7 +164,7 @@ public class Main {
                                     clienteService.listar();
                                     break;
                                 case 3:
-                                    System.out.println("Qual cliente você deseja editar?\n");
+                                    System.out.println("Qual cliente você deseja editar? Digite 999 para voltar ao menu anterior\n");
                                     clienteService.listar();
                                     int index = scanner.nextInt();
                                     if(index==999){

@@ -2,8 +2,6 @@ package repository;
 
 import exceptions.BancoDeDadosException;
 import model.Contato;
-import model.Endereco;
-
 
 import java.sql.*;
 import java.util.ArrayList;

@@ -4,7 +4,6 @@ import exceptions.BancoDeDadosException;
 import model.Cliente;
 import repository.ClienteRepository;
 
-
 public class ClienteService {
     private ClienteRepository clienteRepository;
 
@@ -35,8 +34,6 @@ public class ClienteService {
     }
 
     public void editar(Integer id, Cliente cliente) {
-        EnderecoService enderecoService = new EnderecoService();
-        ContatoService contatoService = new ContatoService();
         try {
             boolean conseguiuEditar = clienteRepository.editar(id, cliente);
             System.out.println("editado? " + conseguiuEditar + "| com id=" + id);
