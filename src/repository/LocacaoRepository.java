@@ -195,7 +195,8 @@ public class LocacaoRepository implements Repositorio<Integer, Locacao> {
                     "left join CONTATO C3 on C3.ID_CONTATO = C2.ID_CONTATO\n" +
                     "left join FUNCIONARIO F on F.ID_FUNCIONARIO = L.ID_FUNCIONARIO\n" +
                     "left join ENDERECO_CLIENTE EC on EC.ID_ENDERECO = C2.ID_ENDERECO\n" +
-                    "left join CARTAO_CREDITO CC on EC.NUMERO = CC.NUMERO";
+                    "left join CARTAO_CREDITO CC on L.ID_CARTAO = CC.ID_CARTAO";
+                    //"left join CARTAO_CREDITO CC on EC.NUMERO = CC.NUMERO";
 
             ResultSet res = stmt.executeQuery(sql);
 
@@ -253,6 +254,8 @@ public class LocacaoRepository implements Repositorio<Integer, Locacao> {
     private Cliente getClientFromResultSet(ResultSet res) throws SQLException {
         Cliente cliente = new Cliente();
         cliente.setId_cliente(res.getInt("id_cliente"));
+        cliente.setNome(res.getString("nome"));
+        cliente.setCpf(res.getString("cpf"));
         cliente.setContato(getContatoFromResultSet(res));
         cliente.setEndereco(getEnderecoResultSet(res));
         return cliente;
@@ -289,8 +292,7 @@ public class LocacaoRepository implements Repositorio<Integer, Locacao> {
         veiculo.setQuilometragem(res.getDouble("quilometragem"));
         veiculo.setValorLocacao(res.getDouble("valor_locacao_total"));
         veiculo.setDisponibilidadeVeiculo(DisponibilidadeVeiculo.valueOf(res.getString("disponibilidade")));
-        //veiculo.setPlaca(res.getString("placa"));
+        veiculo.setPlaca(res.getString("placa"));
         return veiculo;
     }
-
 }
