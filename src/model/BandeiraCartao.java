@@ -1,6 +1,7 @@
 package model;
 
 public enum BandeiraCartao {
+
     VISA(1),
     MASTERCARD(2);
 

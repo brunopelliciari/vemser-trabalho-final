@@ -15,8 +15,8 @@ public class CartaoCredito {
         this.validade = validade;
         this.limite = limite;
     }
-    public CartaoCredito(int id_cartao_credito) {
-        this.id_cartao_credito = id_cartao_credito;
+    public CartaoCredito(int idCartaoCredito) {
+        this.idCartaoCredito = idCartaoCredito;
     }
 
     public int getIdCartaoCredito() {
