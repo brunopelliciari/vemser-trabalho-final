@@ -195,7 +195,7 @@ public class LocacaoRepository implements Repositorio<Integer, Locacao> {
                     "left join CONTATO C3 on C3.ID_CONTATO = C2.ID_CONTATO\n" +
                     "left join FUNCIONARIO F on F.ID_FUNCIONARIO = L.ID_FUNCIONARIO\n" +
                     "left join ENDERECO_CLIENTE EC on EC.ID_ENDERECO = C2.ID_ENDERECO\n" +
-                    "left join CARTAO_CREDITO CC on EC.NUMERO = CC.NUMERO";
+                    "left join CARTAO_CREDITO CC on L.ID_CARTAO = CC.ID_CARTAO";
 
             ResultSet res = stmt.executeQuery(sql);
 
