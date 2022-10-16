@@ -11,6 +11,10 @@ public class Cliente extends Pessoa {
         this.contato = contato;
         this.endereco = endereco;
     }
+    public Cliente(int id_cliente){
+        this.id_cliente = id_cliente;
+    }
+
 
     public Cliente(){
 

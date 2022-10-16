@@ -160,4 +160,41 @@ public class FuncionarioRepository implements Repositorio<Integer, Funcionario> 
         }
         return funcionarios;
     }
+
+    public Funcionario getPorId(Integer chave) throws BancoDeDadosException {
+        Funcionario funcionario = new Funcionario();
+        Connection con = null;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+            String sql = "SELECT * FROM FUNCIONARIO\n" +
+                    "WHERE id_funcionario = ?";
+
+            PreparedStatement stmt = con.prepareStatement(sql.toString());
+
+            stmt.setInt(1,chave);
+
+            ResultSet res = stmt.executeQuery();
+
+            while (res.next()){
+                funcionario.setIdFuncionario(res.getInt("id_funcionario"));
+                funcionario.setNome(res.getString("nome"));
+                funcionario.setCpf(res.getString("cpf"));
+                funcionario.setMatricula(res.getInt("matricula"));
+            }
+            //System.out.println("buscarFuncionario.res="+ res);
+            return funcionario;
+        }catch (SQLException e){
+            throw new BancoDeDadosException(e.getCause());
+        }finally {
+            try {
+                if(con != null){
+                    con.close();
+                }
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+    }
+
 }

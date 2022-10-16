@@ -204,6 +204,49 @@ public class ClienteRepository implements Repositorio<Integer, Cliente> {
         return clientes;
     }
 
+    public Cliente getPorId(Integer chave) throws BancoDeDadosException {
+        Cliente cliente = new Cliente();
+        Connection con = null;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+            String sql = "SELECT * FROM CLIENTE CL\n" +
+                    "FULL OUTER JOIN CONTATO C\n" +
+                    "ON CL.ID_CONTATO = C.ID_CONTATO \n" +
+                    "FULL OUTER JOIN ENDERECO_CLIENTE E \n" +
+                    "ON CL.ID_ENDERECO = E.ID_ENDERECO WHERE CL.ID_CLIENTE = ?";
+
+            PreparedStatement stmt = con.prepareStatement(sql.toString());
+
+
+            stmt.setInt(1, chave);
+
+            ResultSet res = stmt.executeQuery();
+
+            while (res.next()) {
+
+                cliente.setId_cliente(res.getInt("id_cliente"));
+                cliente.setNome(res.getString("nome"));
+                cliente.setCpf(res.getString("cpf"));
+                cliente.setEndereco(getEnderecoResultSet(res));
+                cliente.setContato(getContatoFromResultSet(res));
+            }
+            //System.out.println("buscarCliente.res=" + res);
+
+            return cliente;
+        } catch (SQLException e) {
+            throw new BancoDeDadosException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     private Contato getContatoFromResultSet(ResultSet res) throws SQLException {
         Contato contato = new Contato();
         contato.setId_contato(res.getInt("id_contato"));

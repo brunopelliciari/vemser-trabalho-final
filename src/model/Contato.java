@@ -11,6 +11,10 @@ public class Contato {
         this.email = email;
     }
 
+    public Contato(int id_contato) {
+        this.id_contato = id_contato;
+    }
+
     public Contato(){
 
     }

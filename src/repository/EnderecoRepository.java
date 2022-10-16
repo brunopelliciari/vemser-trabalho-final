@@ -1,6 +1,7 @@
 package repository;
 
 import exceptions.BancoDeDadosException;
+import model.Cliente;
 import model.Endereco;
 
 import java.sql.*;
@@ -173,6 +174,7 @@ public class EnderecoRepository implements Repositorio<Integer, Endereco> {
         return enderecos;
     }
 
+
     public int retornarUltimoIdRegistrado() throws BancoDeDadosException {
         Endereco endereco = new Endereco();
         Connection con = null;
@@ -241,5 +243,44 @@ public class EnderecoRepository implements Repositorio<Integer, Endereco> {
         }
         return enderecos;
     }
+  public Endereco getPorId(Integer chave) throws BancoDeDadosException {
+        Endereco endereco = new Endereco();
+        Connection con = null;
+
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+            String sql = "SELECT * FROM ENDERECO_CLIENTE\n" +
+                    "WHERE id_endereco = ?";
+            PreparedStatement stmt = con.prepareStatement(sql.toString());
+
+            stmt.setInt(1,chave);
+            ResultSet res = stmt.executeQuery();
+
+            while (res.next()){
+                endereco.setId_endereco(res.getInt("id_endereco"));
+                endereco.setRua(res.getString("rua"));
+                endereco.setNumero(res.getString("numero"));
+                endereco.setBairro(res.getString("bairro"));
+                endereco.setCidade(res.getString("cidade"));
+                endereco.setEstado(res.getString("estado"));
+                endereco.setCep(res.getString("cep"));
+                endereco.setComplemento(res.getString("complemento"));
+            }
+            System.out.println("buscarEndereco.res="+ res);
+            return endereco;
+        }catch (SQLException e){
+            throw new BancoDeDadosException(e.getCause());
+        }finally {
+            try {
+                if(con != null){
+                    con.close();
+                }
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+    }
+
 }
 

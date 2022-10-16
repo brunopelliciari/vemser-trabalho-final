@@ -23,6 +23,9 @@ public class Veiculo {
         this.disponibilidadeVeiculo = disponibilidadeVeiculo;
         this.placa = placa;
     }
+    public Veiculo(Integer idVeiculo) {
+        this.idVeiculo = idVeiculo;
+    }
 
     public Veiculo(){
     }
@@ -87,12 +90,8 @@ public class Veiculo {
         return disponibilidadeVeiculo.getDisponibilidade();
     }
 
-    public void setDisponibilidadeVeiculo(Integer disponibilidade){
-        if(disponibilidade == 1){
-            this.disponibilidadeVeiculo = DisponibilidadeVeiculo.ALUGADO;
-        }else if(disponibilidade == 2){
-            this.disponibilidadeVeiculo = DisponibilidadeVeiculo.DISPONIVEL;
-        }
+    public void setDisponibilidadeVeiculo(DisponibilidadeVeiculo disponibilidade){
+            this.disponibilidadeVeiculo = disponibilidade;
     }
 
     public String getPlaca() {
