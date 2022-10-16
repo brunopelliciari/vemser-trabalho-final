@@ -7,22 +7,23 @@ import java.time.format.DateTimeFormatter;
 
 public class Locacao {
 
-    private Integer id_locacao;
+    private Integer idlocacao;
 
     public static final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private LocalDate dataLocacao;
     private LocalDate dataDevolucao;
-
     private double valorLocacao;
     private Cliente cliente;
     private Veiculo veiculo;
     private CartaoCredito cartaoCredito;
     private Funcionario funcionario;
 
+
+
     public Locacao() {
     }
 
-    public Locacao(LocalDate dataLocacao, LocalDate dataDevolucao, Cliente cliente, Veiculo veiculo, CartaoCredito cartaoCredito, Funcionario funcionario) throws DatasInvalidasException {
+    public Locacao(LocalDate dataLocacao, LocalDate dataDevolucao,double valorLocacao, Cliente cliente, Veiculo veiculo, CartaoCredito cartaoCredito, Funcionario funcionario) throws DatasInvalidasException {
         if (dataDevolucao.isBefore(dataLocacao)) {
             throw new DatasInvalidasException("Erro! ");
         }
@@ -33,12 +34,12 @@ public class Locacao {
         this.cartaoCredito = cartaoCredito;
         this.funcionario = funcionario;
     }
-    public Integer getId_locacao() {
-        return id_locacao;
+    public Integer getIdlocacao() {
+        return idlocacao;
     }
 
-    public void setId_locacao(Integer id_locacao) {
-        this.id_locacao = id_locacao;
+    public void setIdlocacao(Integer idlocacao) {
+        this.idlocacao = idlocacao;
     }
 
     public LocalDate getDataLocacao() {
@@ -58,7 +59,7 @@ public class Locacao {
     }
 
 
-    public double getValorLocacao() {
+    public Double getValorLocacao() {
         return valorLocacao;
     }
 
@@ -107,7 +108,7 @@ public class Locacao {
     @Override
     public String toString() {
         return "Locacao{" +
-                "id_locacao=" + id_locacao +
+                "id_locacao=" + idlocacao +
                 ", dataLocacao=" + dataLocacao +
                 ", dataDevolucao=" + dataDevolucao +
                 ", valorLocacao=" + valorLocacao +

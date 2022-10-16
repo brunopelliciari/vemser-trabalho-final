@@ -1,23 +1,28 @@
 package view;
 
+import exceptions.BancoDeDadosException;
 import exceptions.DatasInvalidasException;
 import model.*;
+import repository.*;
+import service.LocacaoService;
 import service.FuncionarioService;
 import service.VeiculoService;
 
 import java.io.*;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) throws BancoDeDadosException, DatasInvalidasException {
         Scanner scanner = new Scanner(System.in);
 
         VeiculoService veiculoService = new VeiculoService();
         FuncionarioService funcionarioService = new FuncionarioService();
 
+        LocacaoService locacaoService = new LocacaoService();
         int primeiroMenu = 0;
         int segundoMenu;
         int terceiroMenu;
@@ -138,7 +143,7 @@ public class Main {
                                 case 3:
                                     System.out.println("Qual cliente você deseja editar?\n");
                                     int index = scanner.nextInt();
-                                    if(index==999){
+                                    if (index == 999) {
                                         break;
                                     }
                                     scanner.nextLine();
@@ -157,7 +162,7 @@ public class Main {
                                 case 4:
                                     System.out.println("Qual cliente você deseja excluir?Digite 999 para voltar\n");
                                     int id = scanner.nextInt();
-                                    if(id==999){
+                                    if (id == 999) {
                                         break;
                                     }
                                     scanner.nextLine();
@@ -178,48 +183,88 @@ public class Main {
                             scanner.nextLine();
                             switch (quartoMenu) {
                                 case 1:
-                                    System.out.print("\nDigite a data da locação do veículo(dd/MM/yyyy): ");
-                                    //LocalDate dataLocacao = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                                    System.out.print("\nDigite a data da devolucao do veículo(dd/MM/yyyy): ");
-                                    //LocalDate dataDevolucao = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                                    System.out.print("Digite a data da locação do veículo(dd/MM/yyyy): \n");
+                                    LocalDate dataLocacao = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+                                    System.out.print("Digite a data da devolucao do veículo(dd/MM/yyyy): \n");
+                                    LocalDate dataDevolucao = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+                                    System.out.print("Digite a quilometragem adicionada \n");
+                                    double quilometragemAdicao = scanner.nextDouble();
+
                                     System.out.print("Digite o id de um cliente cadastrado: \n");
+                                    Cliente cliente = new ClienteRepository().getPorId(scanner.nextInt());
+
                                     System.out.print("Digite o id de um veículo cadastrado: \n");
-                                    System.out.print("Informe os dados do cartão de crédito que deseja utilizar para o pagamento: \n");
-                                    System.out.println("Informe o numero do cartão: ");
-                                    System.out.println("Informe a bandeira do cartão: 1- Visa 2- Mastercard ");
-                                    System.out.println("Informe a validade do cartão(MM/yyyy): ");
-                                    System.out.println("Informe o limite do cartão: ");
+                                    Veiculo veiculo = new VeiculoRepository().getPorId(scanner.nextInt());
+                                    veiculo.setQuilometragem(veiculo.getQuilometragem() + quilometragemAdicao);
+                                    Duration d2 = Duration.between(dataLocacao.atStartOfDay(), dataDevolucao.atStartOfDay());
+                                    double valorLocacao = d2.toDays() * veiculo.getValorLocacao();
+
+                                    //System.out.print("Informe os dados do cartão de crédito que deseja utilizar para o pagamento: \n");
+                                    //System.out.println("Informe a bandeira do cartão: 1- Visa 2- Mastercard ");
+                                    //System.out.println("Informe a validade do cartão(MM/yyyy): ");
+                                    //System.out.println("Informe o limite do cartão: ");
+                                    System.out.println("Informe o id do cartão: ");
+                                    CartaoCredito cartaoCredito = new CartaoCredito(scanner.nextInt());
+
                                     System.out.print("Digite o id de um funcionário cadastrado: \n");
+                                    Funcionario funcionario = new FuncionarioRepository().getPorId(scanner.nextInt());
+
+
+                                    Locacao locacao = new Locacao(dataLocacao, dataDevolucao,valorLocacao,cliente, veiculo, cartaoCredito, funcionario);
+                                    locacaoService.adicionarLocacao(locacao);
                                     break;
                                 case 2:
+                                    locacaoService.listar();
                                     break;
                                 case 3:
                                     System.out.println("Qual registro de locação você deseja editar?Digite 999 para sair.\n");
                                     int index = scanner.nextInt();
-                                    if(index==999){
+                                    if (index == 999) {
                                         break;
                                     }
                                     scanner.nextLine();
-                                    System.out.print("\nDigite a data da locação do veículo(dd/MM/yyyy): ");
-                                    //LocalDate dl = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                                    System.out.print("\nDigite a data da devolucao do veículo(dd/MM/yyyy): ");
-                                    //LocalDate dd = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                                    System.out.print("Digite a data da locação do veículo(dd/MM/yyyy): \n");
+                                    LocalDate dl = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+                                    System.out.print("Digite a data da devolucao do veículo(dd/MM/yyyy): \n");
+                                    LocalDate dd = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+                                    System.out.print("Digite a quilometragem adicionada \n");
+                                    double quilometragemAdicaoEdicao = scanner.nextDouble();
+
                                     System.out.print("Digite o id de um cliente cadastrado: \n");
+                                    Cliente idCliente = new ClienteRepository().getPorId(scanner.nextInt());
+
                                     System.out.print("Digite o id de um veículo cadastrado: \n");
+                                    Veiculo idVeiculo = new VeiculoRepository().getPorId(scanner.nextInt());
+                                    idVeiculo.setQuilometragem(idVeiculo.getQuilometragem() + quilometragemAdicaoEdicao);
+                                    Duration d3 = Duration.between(dl.atStartOfDay(), dd.atStartOfDay());
+                                    double valorLocacaoEdicao = d3.toDays() * idVeiculo.getValorLocacao();
+
+
                                     System.out.print("Digite o id de um funcionário cadastrado: \n");
-                                    System.out.print("Informe os dados do cartão de crédito que deseja utilizar para o pagamento: \n");
-                                    System.out.println("Informe o numero do cartão: ");
-                                    System.out.println("Informe a bandeira do cartão: 1- Visa 2- Mastercard ");
-                                    System.out.println("Informe a validade do cartão(MM/yyyy): ");
-                                    System.out.println("Informe o limite do cartão: ");
+                                    Funcionario idFuncionario = new FuncionarioRepository().getPorId(scanner.nextInt());
+
+                                    //System.out.print("Informe os dados do cartão de crédito que deseja utilizar para o pagamento: \n");
+                                    System.out.println("Informe o id do cartão: ");
+                                    CartaoCredito idCartaoCredito = new CartaoCredito(scanner.nextInt());
+
+                                    Locacao locacao1 = new Locacao( dl, dd,valorLocacaoEdicao,idCliente,idVeiculo,idCartaoCredito,idFuncionario);
+                                    locacaoService.editar(index,locacao1);
+                                    //System.out.println("Informe o numero do cartão: ");
+                                    //System.out.println("Informe a bandeira do cartão: 1- Visa 2- Mastercard ");
+                                    //System.out.println("Informe a validade do cartão(MM/yyyy): ");
+                                    //System.out.println("Informe o limite do cartão: ");
                                     break;
                                 case 4:
-                                    System.out.println("Qual registro de locação você deseja excluir? Digite 999 para voltar.\n");
+                                    System.out.println("Qual registro de locação você deseja excluir? Digite 999 para voltar ");
                                     int id = scanner.nextInt();
-                                    if(id==999){
+                                    if (id == 999) {
                                         break;
                                     }
-                                    scanner.nextLine();
+                                    locacaoService.remover(id);
                                     break;
                                 case 9:
                                     break;
@@ -258,6 +303,10 @@ public class Main {
                                     System.out.println("Qual funcionário você deseja editar?");
                                     funcionarioService.listarFuncionarios();
                                     int idFuncionarioParaEditar = scanner.nextInt();
+                                    int index = scanner.nextInt();
+                                    if (index == 999) {
+                                        break;
+                                    }
                                     scanner.nextLine();
 
                                     System.out.println("Digite o novo nome do funcionário");
@@ -277,6 +326,11 @@ public class Main {
 
                                     funcionarioService.removerFuncionario(idFuncionarioParaRemover);
 
+                                    int id = scanner.nextInt();
+                                    if (id == 999) {
+                                        break;
+                                    }
+                                    scanner.nextLine();
                                     break;
                                 case 9:
                                     break;
@@ -287,8 +341,7 @@ public class Main {
                         }
                     }
                 }
-            }
-            catch(InputMismatchException e){
+            } catch (InputMismatchException e) {
                 System.err.println("Tipo de dado digitado está incorreto " + e.getMessage());
                 scanner.nextLine();
             }

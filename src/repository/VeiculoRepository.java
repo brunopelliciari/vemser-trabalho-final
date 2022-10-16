@@ -182,4 +182,48 @@ public class VeiculoRepository implements Repositorio<Integer, Veiculo> {
         }
         return veiculos;
     }
+
+    private Veiculo getVeiculoFRomResultSEt(ResultSet res) {
+        return null;
+    }
+
+    public Veiculo getPorId(Integer chave) throws BancoDeDadosException {
+        Veiculo veiculo = new Veiculo();
+        Connection con = null;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+            String sql = "SELECT * FROM VEICULO\n" +
+                    "WHERE ID_VEICULO = ?";
+
+            PreparedStatement stmt = con.prepareStatement(sql.toString());
+
+            stmt.setInt(1,chave);
+
+            ResultSet res = stmt.executeQuery();
+
+            while (res.next()){
+                veiculo.setIdVeiculo(res.getInt("id_veiculo"));
+                veiculo.setMarca(res.getString("marca"));
+                veiculo.setModelo(res.getString("modelo"));
+                veiculo.setCor(res.getString("cor"));
+                veiculo.setAno(res.getInt("ano"));
+                veiculo.setQuilometragem(res.getDouble("quilometragem"));
+                veiculo.setValorLocacao(res.getDouble("valor_locacao_diario"));
+                veiculo.setDisponibilidadeVeiculo(DisponibilidadeVeiculo.valueOf(res.getString("disponibilidade")));
+            }
+            //System.out.println("buscarVeiculo.res=" + res);
+            return veiculo;
+        }catch (SQLException e){
+            throw new BancoDeDadosException(e.getCause());
+        }finally {
+            try {
+                if(con != null){
+                    con.close();
+                }
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+    }
 }

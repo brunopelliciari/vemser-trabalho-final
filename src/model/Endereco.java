@@ -21,6 +21,10 @@ public class Endereco {
         this.complemento = complemento;
     }
 
+    public Endereco(int id_endereco) {
+        this.id_endereco = id_endereco;
+    }
+
     public Endereco(){}
 
     public int getId_endereco() {

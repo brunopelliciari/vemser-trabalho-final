@@ -22,6 +22,9 @@ public class Veiculo {
         this.setDisponibilidadeVeiculo(DisponibilidadeVeiculo.DISPONIVEL);
         this.placa = placa;
     }
+    public Veiculo(Integer idVeiculo) {
+        this.idVeiculo = idVeiculo;
+    }
 
     public Veiculo(){
     }
@@ -87,7 +90,7 @@ public class Veiculo {
     }
 
     public void setDisponibilidadeVeiculo(DisponibilidadeVeiculo disponibilidade){
-        disponibilidadeVeiculo = disponibilidade;
+            this.disponibilidadeVeiculo = disponibilidade;
     }
 
     public String getPlaca() {

@@ -153,6 +153,8 @@ public class ContatoRepository implements Repositorio<Integer, Contato> {
         return contatos;
     }
 
+
+
     public int retornarUltimoIdRegistrado() throws BancoDeDadosException {
         Contato contato = new Contato();
         Connection con = null;
