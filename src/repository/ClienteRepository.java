@@ -19,7 +19,7 @@ public class ClienteRepository implements Repositorio<Integer, Cliente> {
         ResultSet res = stmt.executeQuery(sql);
 
         if (res.next()) {
-            return res.getInt("id_cliente");
+            return res.getInt("mysequence");
         }
 
         return null;

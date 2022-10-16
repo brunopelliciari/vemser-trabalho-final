@@ -18,8 +18,6 @@ public class Locacao {
     private CartaoCredito cartaoCredito;
     private Funcionario funcionario;
 
-
-
     public Locacao() {
     }
 
@@ -29,6 +27,7 @@ public class Locacao {
         }
         this.dataLocacao = dataLocacao;
         this.dataDevolucao = dataDevolucao;
+        this.valorLocacao = valorLocacao;
         this.cliente = cliente;
         this.veiculo = veiculo;
         this.cartaoCredito = cartaoCredito;
@@ -100,11 +99,6 @@ public class Locacao {
         this.funcionario = funcionario;
     }
 
-    public double calcularValorLocacao() {
-        Duration d2 = Duration.between(this.getDataLocacao().atStartOfDay(), this.getDataDevolucao().atStartOfDay());
-        return d2.toDays() * this.veiculo.getValorLocacao();
-    }
-
     @Override
     public String toString() {
         return "Locacao{" +
@@ -117,12 +111,5 @@ public class Locacao {
                 ", cartaoCredito=" + cartaoCredito +
                 ", funcionario=" + funcionario +
                 '}';
-    }
-
-    public String impressaoConversora() {
-        return "" + getDataLocacao() + ", " + getDataDevolucao() + ", " + getCliente().getNome() + ", " + getCliente().getCpf()
-                + ", " + getVeiculo().getModelo() + ", " + getVeiculo().getPlaca() + ", " + getCartaoCredito() + ", " + getFuncionario().getNome()
-                + ", " + getFuncionario().getCpf();
-
     }
 }

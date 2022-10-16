@@ -256,9 +256,11 @@ public class Main {
                                     double quilometragemAdicao = scanner.nextDouble();
 
                                     System.out.print("Digite o id de um cliente cadastrado: \n");
+                                    clienteService.listar();
                                     Cliente cliente = new ClienteRepository().getPorId(scanner.nextInt());
 
                                     System.out.print("Digite o id de um veículo cadastrado: \n");
+                                    veiculoService.listarVeiculos();
                                     Veiculo veiculo = new VeiculoRepository().getPorId(scanner.nextInt());
                                     veiculo.setQuilometragem(veiculo.getQuilometragem() + quilometragemAdicao);
                                     Duration d2 = Duration.between(dataLocacao.atStartOfDay(), dataDevolucao.atStartOfDay());
