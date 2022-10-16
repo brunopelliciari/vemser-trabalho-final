@@ -4,13 +4,13 @@ public enum BandeiraCartao {
     VISA(1),
     MASTERCARD(2);
 
-    private int s;
+    private int tipoBandeira;
 
-    BandeiraCartao(int s){
-        this.s = s;
+    BandeiraCartao(int tipoBandeira){
+        this.tipoBandeira = tipoBandeira;
     }
 
-    public int getS() {
-        return s;
+    public int getTipoBandeira() {
+        return tipoBandeira;
     }
 }

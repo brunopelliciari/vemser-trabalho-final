@@ -43,7 +43,7 @@ public class LocacaoRepository implements Repositorio<Integer, Locacao> {
             stmt.setInt(6, locacao.getCliente().getId_cliente());
             stmt.setInt(7, locacao.getVeiculo().getIdVeiculo());
             stmt.setInt(8, locacao.getFuncionario().getIdFuncionario());
-            stmt.setInt(9, locacao.getCartaoCredito().getId_cartao_credito());
+            stmt.setInt(9, locacao.getCartaoCredito().getIdCartaoCredito());
 
             int res = stmt.executeUpdate();
             System.out.println("adicionarLocacao.res=" + res);
@@ -113,7 +113,7 @@ public class LocacaoRepository implements Repositorio<Integer, Locacao> {
             stmt.setInt(5, locacao.getCliente().getId_cliente());
             stmt.setInt(6, locacao.getVeiculo().getIdVeiculo());
             stmt.setInt(7, locacao.getFuncionario().getIdFuncionario());
-            stmt.setInt(8, locacao.getCartaoCredito().getId_cartao_credito());
+            stmt.setInt(8, locacao.getCartaoCredito().getIdCartaoCredito());
             stmt.setInt(9, id);
 
             int res = stmt.executeUpdate();
@@ -184,9 +184,9 @@ public class LocacaoRepository implements Repositorio<Integer, Locacao> {
 
     private CartaoCredito getFromResultSet(ResultSet res) throws SQLException {
         CartaoCredito cartaoCredito = new CartaoCredito();
-        cartaoCredito.setId_cartao_credito(res.getInt("id_cartao_credito"));
+        cartaoCredito.setIdCartaoCredito(res.getInt("id_cartao_credito"));
         cartaoCredito.setNumero(res.getString("numero"));
-        cartaoCredito.setBandeira(res.getInt("bandeira"));
+        cartaoCredito.setBandeira(BandeiraCartao.valueOf(res.getString("bandeira")));
         cartaoCredito.setValidade(res.getString("validade"));
         cartaoCredito.setLimite(res.getDouble("limite"));
         return cartaoCredito;
@@ -230,7 +230,7 @@ public class LocacaoRepository implements Repositorio<Integer, Locacao> {
         veiculo.setAno(res.getInt("ano"));
         veiculo.setQuilometragem(res.getDouble("quilometragem"));
         veiculo.setValorLocacao(res.getDouble("valor_locacao_total"));
-        veiculo.setDisponibilidadeVeiculo(res.getInt("disponibilidade"));
+        veiculo.setDisponibilidadeVeiculo(DisponibilidadeVeiculo.valueOf(res.getString("disponibilidade")));
         //veiculo.setPlaca(res.getString("placa"));
         return veiculo;
     }

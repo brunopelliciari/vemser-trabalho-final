@@ -1,6 +1,7 @@
 package repository;
 
 import exceptions.BancoDeDadosException;
+import model.DisponibilidadeVeiculo;
 import model.Funcionario;
 import model.Veiculo;
 
@@ -33,8 +34,8 @@ public class VeiculoRepository implements Repositorio<Integer, Veiculo> {
             veiculo.setIdVeiculo(proximoId);
 
             String sql = "INSERT INTO VEICULO\n" +
-                    "(id_veiculo, marca, modelo, cor, ano, quilometragem, valor_locacao_diario, disponibilidade)\n" +
-                    "VALUES(?, ?, ?, ?, ?, ?, ?, ?)\n";
+                    "(id_veiculo, marca, modelo, cor, ano, quilometragem, valor_locacao_diario, disponibilidade, placa)\n" +
+                    "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)\n";
 
             PreparedStatement stmt = con.prepareStatement(sql);
 
@@ -45,7 +46,8 @@ public class VeiculoRepository implements Repositorio<Integer, Veiculo> {
             stmt.setInt(5, veiculo.getAno());
             stmt.setDouble(6, veiculo.getQuilometragem());
             stmt.setDouble(7, veiculo.getValorLocacao());
-            stmt.setInt(8, veiculo.getDisponibilidadeVeiculo());
+            stmt.setString(8, veiculo.getDisponibilidadeVeiculo().toString());
+            stmt.setString(9, veiculo.getPlaca());
 
             int res = stmt.executeUpdate();
             System.out.println("adicionarVeiculo.res=" + res);
@@ -100,15 +102,16 @@ public class VeiculoRepository implements Repositorio<Integer, Veiculo> {
             con = ConexaoBancoDeDados.getConnection();
 
             StringBuilder sql = new StringBuilder();
-            sql.append("UPDATE VEICULO SET ");
-            sql.append(" marca = ?,");
-            sql.append(" modelo = ?,");
-            sql.append(" cor = ? ");
-            sql.append(" ano = ? ");
-            sql.append(" quilometragem = ? ");
-            sql.append(" valor_locacao_diario = ? ");
-            sql.append(" disponibilidade = ? ");
-            sql.append(" WHERE id_veiculo = ? ");
+            sql.append("UPDATE VEICULO SET");
+            sql.append(" marca = ?");
+            sql.append(", modelo = ?");
+            sql.append(", cor = ?");
+            sql.append(", ano = ?");
+            sql.append(", quilometragem = ?");
+            sql.append(", valor_locacao_diario = ?");
+            sql.append(", disponibilidade = ?");
+            sql.append(", placa = ?");
+            sql.append(" WHERE id_veiculo = ?");
 
             PreparedStatement stmt = con.prepareStatement(sql.toString());
 
@@ -118,8 +121,9 @@ public class VeiculoRepository implements Repositorio<Integer, Veiculo> {
             stmt.setInt(4, veiculo.getAno());
             stmt.setDouble(5, veiculo.getQuilometragem());
             stmt.setDouble(6, veiculo.getValorLocacao());
-            stmt.setInt(7, veiculo.getDisponibilidadeVeiculo());
-            stmt.setInt(8, id);
+            stmt.setString(7, veiculo.getDisponibilidadeVeiculo().toString());
+            stmt.setString(8, veiculo.getPlaca());
+            stmt.setInt(9, id);
 
             // Executa-se a consulta
             int res = stmt.executeUpdate();
@@ -161,7 +165,8 @@ public class VeiculoRepository implements Repositorio<Integer, Veiculo> {
                 veiculo.setAno(res.getInt("ano"));
                 veiculo.setQuilometragem(res.getDouble("quilometragem"));
                 veiculo.setValorLocacao(res.getDouble("valor_locacao_diario"));
-                veiculo.setDisponibilidadeVeiculo(res.getInt("disponibilidade"));
+                veiculo.setDisponibilidadeVeiculo(DisponibilidadeVeiculo.valueOf(res.getString("disponibilidade")));
+                veiculo.setPlaca(res.getString("placa"));
                 veiculos.add(veiculo);
             }
         } catch (SQLException e) {

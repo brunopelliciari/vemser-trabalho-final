@@ -1,9 +1,6 @@
 package model;
-
-
 public class CartaoCredito {
-
-    private int id_cartao_credito;
+    private int idCartaoCredito;
     private String numero;
     private BandeiraCartao bandeira;
     private String validade;
@@ -19,16 +16,12 @@ public class CartaoCredito {
         this.limite = limite;
     }
 
-    public int getId_cartao_credito() {
-        return id_cartao_credito;
+    public int getIdCartaoCredito() {
+        return idCartaoCredito;
     }
 
-    public void setId_cartao_credito(int id_cartao_credito) {
-        this.id_cartao_credito = id_cartao_credito;
-    }
-
-    public void setBandeira(BandeiraCartao bandeira) {
-        this.bandeira = bandeira;
+    public void setIdCartaoCredito(int idCartaoCredito) {
+        this.idCartaoCredito = idCartaoCredito;
     }
 
     public String getNumero() {
@@ -39,18 +32,14 @@ public class CartaoCredito {
         this.numero = numero;
     }
 
-    public int getBandeira() {
-        return bandeira.getS();
+    public BandeiraCartao getBandeira() {
+        return bandeira;
     }
 
-    public void setBandeira(int i){
-        if(i==1){
-            this.bandeira = BandeiraCartao.VISA;
-        }
-        else if(i==2){
-            this.bandeira = BandeiraCartao.MASTERCARD;
-        }
+    public void setBandeira(BandeiraCartao tipoBandeira){
+        bandeira = tipoBandeira;
     }
+
     public String getValidade() {
         return validade;
     }
@@ -69,9 +58,12 @@ public class CartaoCredito {
 
     @Override
     public String toString() {
-        return "numero=" + numero +
+        return "CartaoCredito{" +
+                "idCartaoCredito=" + idCartaoCredito +
+                ", numero='" + numero + '\'' +
                 ", bandeira=" + bandeira +
-                ", validade="+ validade  +
-                ", limite=" + limite;
+                ", validade='" + validade + '\'' +
+                ", limite=" + limite +
+                '}';
     }
 }

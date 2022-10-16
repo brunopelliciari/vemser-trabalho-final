@@ -12,15 +12,14 @@ public class Veiculo {
     private DisponibilidadeVeiculo disponibilidadeVeiculo;
     private String placa;
 
-    public Veiculo(String marca, String modelo, String cor, Integer ano, Double quilometragem, Double valorLocacao
-            , DisponibilidadeVeiculo disponibilidadeVeiculo, String placa) {
+    public Veiculo(String marca, String modelo, String cor, Integer ano, Double quilometragem, Double valorLocacao, String placa) {
         this.marca = marca;
         this.modelo = modelo;
         this.cor = cor;
         this.ano = ano;
         this.quilometragem = quilometragem;
         this.valorLocacao = valorLocacao;
-        this.disponibilidadeVeiculo = disponibilidadeVeiculo;
+        this.setDisponibilidadeVeiculo(DisponibilidadeVeiculo.DISPONIVEL);
         this.placa = placa;
     }
 
@@ -83,16 +82,12 @@ public class Veiculo {
         this.valorLocacao = valorLocacao;
     }
 
-    public Integer getDisponibilidadeVeiculo() {
-        return disponibilidadeVeiculo.getDisponibilidade();
+    public DisponibilidadeVeiculo getDisponibilidadeVeiculo() {
+        return disponibilidadeVeiculo;
     }
 
-    public void setDisponibilidadeVeiculo(Integer disponibilidade){
-        if(disponibilidade == 1){
-            this.disponibilidadeVeiculo = DisponibilidadeVeiculo.ALUGADO;
-        }else if(disponibilidade == 2){
-            this.disponibilidadeVeiculo = DisponibilidadeVeiculo.DISPONIVEL;
-        }
+    public void setDisponibilidadeVeiculo(DisponibilidadeVeiculo disponibilidade){
+        disponibilidadeVeiculo = disponibilidade;
     }
 
     public String getPlaca() {

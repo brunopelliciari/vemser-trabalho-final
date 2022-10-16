@@ -2,6 +2,8 @@ package view;
 
 import exceptions.DatasInvalidasException;
 import model.*;
+import service.FuncionarioService;
+import service.VeiculoService;
 
 import java.io.*;
 import java.time.LocalDate;
@@ -12,6 +14,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
+
+        VeiculoService veiculoService = new VeiculoService();
+        FuncionarioService funcionarioService = new FuncionarioService();
 
         int primeiroMenu = 0;
         int segundoMenu;
@@ -33,33 +38,72 @@ public class Main {
                             switch (segundoMenu) {
                                 case 1:
                                     System.out.println("Digite a marca do veiculo");
+                                    String marcaVeiculo = scanner.nextLine();
                                     System.out.println("Digite o modelo do veiculo");
+                                    String maodeloVeiculo = scanner.nextLine();
                                     System.out.println("Digite a cor do veiculo");
+                                    String corVeiculo = scanner.nextLine();
                                     System.out.println("Digite o ano do veiculo");
+                                    int anoVeiculo = scanner.nextInt();
                                     System.out.println("Digite a quilometragem do veiculo");
+                                    double quilometragemVeiculo = scanner.nextDouble();
                                     System.out.println("Digite o valor de locação diário do veiculo");
-                                    System.out.println("Digite a disponibilidade do veiculo(1- Alugado 2- Disponível");
+                                    double valorLocacaoVeiculo = scanner.nextDouble();
+                                    scanner.nextLine();
                                     System.out.println("Digite a placa do veículo");
+                                    String placaVeiculo = scanner.nextLine();
+
+                                    Veiculo veiculo = new Veiculo(marcaVeiculo, maodeloVeiculo, corVeiculo, anoVeiculo
+                                    , quilometragemVeiculo, valorLocacaoVeiculo, placaVeiculo);
+
+                                    veiculoService.adicionarVeiculo(veiculo);
+
                                     break;
                                 case 2:
+                                    veiculoService.listarVeiculos();
                                     break;
                                 case 3:
+                                    Veiculo novoVeiculo = new Veiculo();
                                     System.out.println("Qual veiculo você deseja editar? \n");
+                                    veiculoService.listarVeiculos();
+                                    int idVeiculoParaEditar = scanner.nextInt();
+                                    scanner.nextLine();
 
                                     System.out.println("Digite a nova marca do veiculo");
+                                    novoVeiculo.setMarca(scanner.nextLine());
                                     System.out.println("Digite o novo modelo do veiculo");
+                                    novoVeiculo.setModelo(scanner.nextLine());
                                     System.out.println("Digite a nova cor do veiculo");
+                                    novoVeiculo.setCor(scanner.nextLine());
                                     System.out.println("Digite o novo ano do veiculo");
+                                    novoVeiculo.setAno(scanner.nextInt());
                                     System.out.println("Digite a nova quilometragem do veiculo");
+                                    novoVeiculo.setQuilometragem(scanner.nextDouble());
                                     System.out.println("Digite o novo valor de locação diária do veiculo");
-                                    System.out.println("Digite a disponibilidade do veiculo(1- Alugado 2- Disponível");
+                                    novoVeiculo.setValorLocacao(scanner.nextDouble());
+                                    System.out.println("Digite a disponibilidade do veiculo(1- Alugado 2- Disponível)");
+                                    int disponibilidadeVeiculo = scanner.nextInt();
+                                    novoVeiculo.setDisponibilidadeVeiculo(DisponibilidadeVeiculo.values()[disponibilidadeVeiculo]);
+                                    scanner.nextLine();
                                     System.out.println("Digite a nova placa do veículo");
+                                    novoVeiculo.setPlaca(scanner.nextLine());
+
+                                    veiculoService.editarVeiculo(idVeiculoParaEditar, novoVeiculo);
+
                                     break;
                                 case 4:
                                     System.out.println("Qual veiculo você deseja excluir?\n");
+                                    veiculoService.listarVeiculos();
+                                    int idVeiculoParaRemover = scanner.nextInt();
+
+                                    veiculoService.removerVeiculo(idVeiculoParaRemover);
+
                                     break;
                                 case 5:
                                     System.out.println("Qual o id do veículo que deseja alterar a disponibilidade?\n");
+                                    veiculoService.listarVeiculos();
+                                    int idVeiculoAlterarDisponibilidade = scanner.nextInt();
+
                                     break;
                                 case 9:
                                     break;
@@ -194,28 +238,45 @@ public class Main {
                             switch (quintoMenu) {
                                 case 1:
                                     System.out.println("Digite o nome do funcionário");
+                                    String nomeFuncionario = scanner.nextLine();
                                     System.out.println("Digite o cpf do funcionario");
+                                    String cpfFuncionario = scanner.nextLine();
                                     System.out.println("Digite o número de matrícula do funcionario");
+                                    int matriculaFuncionario = scanner.nextInt();
+
+                                    Funcionario funcionario = new Funcionario(nomeFuncionario, cpfFuncionario, matriculaFuncionario);
+
+                                    funcionarioService.adicionarFuncionario(funcionario);
+
                                     break;
                                 case 2:
+                                    funcionarioService.listarFuncionarios();
+
                                     break;
                                 case 3:
-                                    int index = scanner.nextInt();
-                                    if(index==999){
-                                        break;
-                                    }
+                                    Funcionario novoFuncionario = new Funcionario();
+                                    System.out.println("Qual funcionário você deseja editar?");
+                                    funcionarioService.listarFuncionarios();
+                                    int idFuncionarioParaEditar = scanner.nextInt();
                                     scanner.nextLine();
-                                    System.out.println("Digite o nova nome do funcionário");
+
+                                    System.out.println("Digite o novo nome do funcionário");
+                                    novoFuncionario.setNome(scanner.nextLine());
                                     System.out.println("Digite o novo cpf do funcionário");
+                                    novoFuncionario.setCpf(scanner.nextLine());
                                     System.out.println("Digite o novo número de matrícula do funcionário");
+                                    novoFuncionario.setMatricula(scanner.nextInt());
+
+                                    funcionarioService.editarFuncionario(idFuncionarioParaEditar, novoFuncionario);
+
                                     break;
                                 case 4:
                                     System.out.println("Qual funcionário você deseja excluir?");
-                                    int id = scanner.nextInt();
-                                    if(id==999){
-                                        break;
-                                    }
-                                    scanner.nextLine();
+                                    funcionarioService.listarFuncionarios();
+                                    int idFuncionarioParaRemover = scanner.nextInt();
+
+                                    funcionarioService.removerFuncionario(idFuncionarioParaRemover);
+
                                     break;
                                 case 9:
                                     break;
