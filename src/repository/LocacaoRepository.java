@@ -300,7 +300,7 @@ public class LocacaoRepository implements Repositorio<Integer, Locacao> {
         veiculo.setAno(res.getInt("ano"));
         veiculo.setQuilometragem(res.getDouble("quilometragem"));
         veiculo.setValorLocacao(res.getDouble("valor_locacao_diario"));
-        veiculo.setDisponibilidadeVeiculo(DisponibilidadeVeiculo.valueOf(res.getString("disponibilidade")));
+        veiculo.setDisponibilidadeVeiculo(DisponibilidadeVeiculo.getByValue(res.getInt("disponibilidade")));
         veiculo.setPlaca(res.getString("placa"));
         return veiculo;
     }
