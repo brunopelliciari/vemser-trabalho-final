@@ -252,7 +252,7 @@ public class LocacaoRepository implements Repositorio<Integer, Locacao> {
     private CartaoCredito getFromResultSetCartaoCredito(ResultSet res) throws SQLException {
         CartaoCredito cartaoCredito = new CartaoCredito();
         cartaoCredito.setIdCartaoCredito(res.getInt("id_cartao"));
-        cartaoCredito.setNumero(res.getString("numero"));
+        cartaoCredito.setNumero(res.getString("numero_cartao"));
         cartaoCredito.setBandeira(BandeiraCartao.valueOf(res.getString("bandeira_cartao")));
         cartaoCredito.setValidade(res.getString("validade"));
         cartaoCredito.setLimite(res.getDouble("limite"));

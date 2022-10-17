@@ -33,7 +33,7 @@ public class CartaoCreditoRepository implements Repositorio<Integer, CartaoCredi
             cartaoCredito.setIdCartaoCredito(proximoId);
 
             String sql = "INSERT INTO CARTAO_CREDITO\n" +
-                    "(id_cartao, numero, bandeira_cartao, validade, limite)\n" +
+                    "(id_cartao, numero_cartao, bandeira_cartao, validade, limite)\n" +
                     "VALUES(?, ?, ?, ?, ?)\n";
 
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -99,7 +99,7 @@ public class CartaoCreditoRepository implements Repositorio<Integer, CartaoCredi
 
             StringBuilder sql = new StringBuilder();
             sql.append("UPDATE CARTAO_CREDITO SET");
-            sql.append(" numero = ?");
+            sql.append(" numero_cartao = ?");
             sql.append(", bandeira_cartao = ?");
             sql.append(", validade = ?");
             sql.append(", limite = ?");
@@ -147,7 +147,7 @@ public class CartaoCreditoRepository implements Repositorio<Integer, CartaoCredi
             while (res.next()) {
                 CartaoCredito cartaoCredito = new CartaoCredito();
                 cartaoCredito.setIdCartaoCredito(res.getInt("id_cartao"));
-                cartaoCredito.setNumero(res.getString("numero"));
+                cartaoCredito.setNumero(res.getString("numero_cartao"));
                 cartaoCredito.setBandeira(BandeiraCartao.valueOf(res.getString("bandeira_cartao")));
                 cartaoCredito.setValidade(res.getString("validade"));
                 cartaoCredito.setLimite(res.getDouble("limite"));
