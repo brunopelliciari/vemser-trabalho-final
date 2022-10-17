@@ -245,6 +245,7 @@ public class Main {
                             scanner.nextLine();
                             switch (quartoMenu) {
                                 case 1:
+                                    try {
                                     System.out.print("Digite a data da locação do veículo(dd/MM/yyyy): \n");
                                     LocalDate dataLocacao = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 

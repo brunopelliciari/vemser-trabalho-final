@@ -65,7 +65,7 @@ cor VARCHAR2 (40) NOT NULL,
 ano NUMBER (4, 0) NOT NULL,
 quilometragem NUMBER (8, 2) NOT NULL,
 valor_locacao_diario NUMBER (6,2) NOT NULL,
-disponibilidade VARCHAR2(11) NOT NULL,
+disponibilidade INT NOT NULL,
 placa VARCHAR2(7) NOT NULL
 );
 
