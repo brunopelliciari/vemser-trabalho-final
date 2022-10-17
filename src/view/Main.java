@@ -6,7 +6,6 @@ import model.*;
 import repository.*;
 import service.*;
 
-import java.io.*;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -19,11 +18,11 @@ public class Main {
         CartaoCreditoService cartaoCreditoService = new CartaoCreditoService();
         VeiculoService veiculoService = new VeiculoService();
         FuncionarioService funcionarioService = new FuncionarioService();
-        EnderecoService enderecoService = new EnderecoService();
         ContatoService contatoService = new ContatoService();
+        EnderecoService enderecoService = new EnderecoService();
         ClienteService clienteService = new ClienteService();
-
         LocacaoService locacaoService = new LocacaoService();
+
         int primeiroMenu = 0;
         int segundoMenu;
         int terceiroMenu;
