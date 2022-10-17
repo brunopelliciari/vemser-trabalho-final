@@ -264,13 +264,13 @@ public class Main {
                                     veiculo.setQuilometragem(quilometragemAdicao);
                                     Duration d2 = Duration.between(dataLocacao.atStartOfDay(), dataDevolucao.atStartOfDay());
                                     double valorLocacao = d2.toDays() * veiculo.getValorLocacao();
-
+                                    scanner.nextLine();
                                     System.out.print("Informe os dados do cartão de crédito que deseja utilizar para o pagamento: \n");
                                     System.out.println("Informe o numero do cartão: ");
-                                    String numero = scanner.next();
+                                    String numero = scanner.nextLine();
 
                                     System.out.println("Informe a validade do cartão(MM/yyyy): ");
-                                    String validade = scanner.next();
+                                    String validade = scanner.nextLine();
 
                                     System.out.println("Informe o limite do cartão: ");
                                     double limite = scanner.nextDouble();
@@ -329,13 +329,13 @@ public class Main {
                                     System.out.print("Digite o id de um funcionário cadastrado: \n");
                                     funcionarioService.listarFuncionarios();
                                     Funcionario idFuncionario = new FuncionarioRepository().getPorId(scanner.nextInt());
-
+                                    scanner.nextLine();
                                     System.out.print("Informe os dados do cartão de crédito que deseja utilizar para o pagamento: \n");
                                     System.out.println("Informe o numero do cartão: ");
-                                    String numero1 = scanner.next();
+                                    String numero1 = scanner.nextLine();
 
                                     System.out.println("Informe a validade do cartão(MM/yyyy): ");
-                                    String validade1 = scanner.next();
+                                    String validade1 = scanner.nextLine();
 
                                     System.out.println("Informe o limite do cartão: ");
                                     double limite1 = scanner.nextDouble();
