@@ -17,7 +17,7 @@ public class EnderecoRepository implements Repositorio<Integer, Endereco> {
         ResultSet res = stmt.executeQuery(sql);
 
         if (res.next()) {
-            return res.getInt("id_endereco");
+            return res.getInt("mysequence");
         }
 
         return null;

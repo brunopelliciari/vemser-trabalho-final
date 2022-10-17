@@ -33,6 +33,7 @@ public class ExibeMenu {
         System.out.println("Digite 5 para excluir endereços ociosos");
         System.out.println("Digite 6 para excluir contatos ociosos");
         System.out.println("Digite 9 para voltar ao menu anterior");
+
     }
 
     public static void menuLocacao(){

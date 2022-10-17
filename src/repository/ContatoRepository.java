@@ -16,7 +16,7 @@ public class ContatoRepository implements Repositorio<Integer, Contato> {
         ResultSet res = stmt.executeQuery(sql);
 
         if (res.next()) {
-            return res.getInt("id_contato");
+            return res.getInt("mysequence");
         }
 
         return null;
