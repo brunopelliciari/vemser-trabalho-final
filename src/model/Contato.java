@@ -45,8 +45,10 @@ public class Contato {
 
     @Override
     public String toString() {
-        return  " Id_contato=" + id_contato + "\n" +
-                " Telefone= " + telefone  + "\n" +
-                " Email= " + email ;
+        return "Contato{" +
+                "id_contato=" + id_contato +
+                ", telefone='" + telefone + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

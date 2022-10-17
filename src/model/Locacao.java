@@ -101,15 +101,24 @@ public class Locacao {
 
     @Override
     public String toString() {
-        return "Locacao{" +
+        return "----------------DADOS DA LOCAÇÃO----------------\n" +
+                "Locacao{" +
                 "id_locacao=" + idlocacao +
                 ", dataLocacao=" + dataLocacao +
                 ", dataDevolucao=" + dataDevolucao +
                 ", valorLocacao=" + valorLocacao +
-                ", cliente=" + cliente +
-                ", veiculo=" + veiculo +
-                ", cartaoCredito=" + cartaoCredito +
-                ", funcionario=" + funcionario +
-                '}';
+                "\n" + cliente +
+                "\n" +
+                "--------Dados do Veiculo--------\n"+
+                veiculo +
+                "\n" +
+                "--------Dados do Cartão--------\n"+
+                cartaoCredito +
+                "\n" +
+                "--------Dados do Funcionario--------\n"+
+                funcionario +
+                '}' +
+                "\n----------------------------------------------------" +
+                "\n\n";
     }
 }
