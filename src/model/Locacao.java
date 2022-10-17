@@ -98,6 +98,14 @@ public class Locacao {
         this.funcionario = funcionario;
     }
 
+    public static void validarDatasLocacao(LocalDate dataLocacao, LocalDate dataDevolucao) throws DatasInvalidasException{
+        if(dataLocacao.isBefore(LocalDate.now())) {
+            throw new DatasInvalidasException("A data da locação não pode ser inferior a data atual. Tente novamente!");
+        }else if(dataDevolucao.isBefore(dataLocacao)) {
+            throw new DatasInvalidasException("A data da devolução não pode ser inferior a data de locação. Tente novamente!");
+        }
+    }
+
     @Override
     public String toString() {
         return "----------------DADOS DA LOCAÇÃO----------------\n" +

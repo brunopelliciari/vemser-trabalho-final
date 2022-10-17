@@ -16,7 +16,7 @@ public class LocacaoService {
     public void adicionarLocacao(Locacao locacao) {
         try {
             Locacao locacaoAdicionado = locacaoRepository.adicionar(locacao);
-            System.out.println("locação adicinado com sucesso! " + locacaoAdicionado);
+            System.out.println("locação adicinado com sucesso! \n" + locacaoAdicionado);
         } catch (BancoDeDadosException e) {
             e.printStackTrace();
         }
