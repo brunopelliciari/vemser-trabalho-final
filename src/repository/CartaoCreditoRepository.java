@@ -3,7 +3,6 @@ package repository;
 import exceptions.BancoDeDadosException;
 import model.BandeiraCartao;
 import model.CartaoCredito;
-import model.Endereco;
 
 import java.sql.*;
 import java.util.ArrayList;

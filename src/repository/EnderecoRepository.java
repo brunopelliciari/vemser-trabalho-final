@@ -1,7 +1,6 @@
 package repository;
 
 import exceptions.BancoDeDadosException;
-import model.Cliente;
 import model.Endereco;
 
 import java.sql.*;

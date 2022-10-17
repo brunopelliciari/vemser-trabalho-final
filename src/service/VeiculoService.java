@@ -56,4 +56,13 @@ public class VeiculoService {
             e.printStackTrace();
         }
     }
+
+    public void listarVeiculosDisponiveis() {
+        try {
+            List<Veiculo> listar = veiculoRepository.listarVeiculosDisponiveis();
+            listar.forEach(System.out::println);
+        } catch (BancoDeDadosException e) {
+            e.printStackTrace();
+        }
+    }
 }

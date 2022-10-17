@@ -4,8 +4,6 @@ import exceptions.BancoDeDadosException;
 import model.Locacao;
 import repository.LocacaoRepository;
 
-import java.sql.SQLException;
-import java.time.Duration;
 import java.util.List;
 
 public class LocacaoService {

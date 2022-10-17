@@ -255,9 +255,11 @@ public class Main {
                                     double quilometragemAdicao = scanner.nextDouble();
 
                                     System.out.print("Digite o id de um cliente cadastrado: \n");
+                                    clienteService.listar();
                                     Cliente cliente = new ClienteRepository().getPorId(scanner.nextInt());
 
                                     System.out.print("Digite o id de um veículo cadastrado: \n");
+                                    veiculoService.listarVeiculosDisponiveis();
                                     Veiculo veiculo = new VeiculoRepository().getPorId(scanner.nextInt());
                                     veiculo.setQuilometragem(quilometragemAdicao);
                                     Duration d2 = Duration.between(dataLocacao.atStartOfDay(), dataDevolucao.atStartOfDay());
@@ -287,9 +289,10 @@ public class Main {
                                     CartaoCredito cartaoAdicionado = cartaoCreditoRepository.adicionar(cartaoCredito);
 
                                     System.out.print("Digite o id de um funcionário cadastrado: \n");
+                                    funcionarioService.listarFuncionarios();
                                     Funcionario funcionario = new FuncionarioRepository().getPorId(scanner.nextInt());
 
-
+                                    veiculo.alterarDisponibilidadeVeiculo();
                                     Locacao locacao = new Locacao(dataLocacao, dataDevolucao, valorLocacao, cliente, veiculo, cartaoAdicionado, funcionario);
                                     locacaoService.adicionarLocacao(locacao);
                                     break;
@@ -313,16 +316,18 @@ public class Main {
                                     double quilometragemAdicaoEdicao = scanner.nextDouble();
 
                                     System.out.print("Digite o id de um cliente cadastrado: \n");
+                                    clienteService.listar();
                                     Cliente idCliente = new ClienteRepository().getPorId(scanner.nextInt());
 
                                     System.out.print("Digite o id de um veículo cadastrado: \n");
+                                    veiculoService.listarVeiculosDisponiveis();
                                     Veiculo idVeiculo = new VeiculoRepository().getPorId(scanner.nextInt());
                                     idVeiculo.setQuilometragem(idVeiculo.getQuilometragem() + quilometragemAdicaoEdicao);
                                     Duration d3 = Duration.between(dl.atStartOfDay(), dd.atStartOfDay());
                                     double valorLocacaoEdicao = d3.toDays() * idVeiculo.getValorLocacao();
 
-
                                     System.out.print("Digite o id de um funcionário cadastrado: \n");
+                                    funcionarioService.listarFuncionarios();
                                     Funcionario idFuncionario = new FuncionarioRepository().getPorId(scanner.nextInt());
 
                                     System.out.print("Informe os dados do cartão de crédito que deseja utilizar para o pagamento: \n");
@@ -346,13 +351,16 @@ public class Main {
                                         cartaoCredito1 = new CartaoCredito(numero1, BandeiraCartao.VISA, validade1, limite1);
                                     }
                                     System.out.println("Informe o id do cartão: ");
+                                    cartaoCreditoService.listarCartoes();
                                     CartaoCreditoRepository cartaoCreditoRepository1 = new CartaoCreditoRepository();
                                     CartaoCredito cartaoAdicionado1 = cartaoCreditoRepository1.adicionar(cartaoCredito1);
+                                    idVeiculo.alterarDisponibilidadeVeiculo();
                                     Locacao locacao1 = new Locacao(dl, dd, valorLocacaoEdicao, idCliente, idVeiculo, cartaoAdicionado1, idFuncionario);
                                     locacaoService.editar(index, locacao1);
                                     break;
                                 case 4:
                                     System.out.println("Qual registro de locação você deseja excluir? Digite 999 para voltar ");
+                                    locacaoService.listar();
                                     int id = scanner.nextInt();
                                     if (id == 999) {
                                         break;

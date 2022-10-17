@@ -3,8 +3,8 @@ package tests;
 import model.Cliente;
 import model.Contato;
 import model.Endereco;
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import service.ClienteService;
 
 public class ClienteTest {

@@ -1,7 +1,6 @@
 package model;
 
 import exceptions.DatasInvalidasException;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
