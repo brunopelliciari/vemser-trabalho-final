@@ -22,7 +22,6 @@ public class Veiculo {
         this.setDisponibilidadeVeiculo(DisponibilidadeVeiculo.DISPONIVEL);
         this.placa = placa;
     }
-
     public Veiculo(Integer idVeiculo) {
         this.idVeiculo = idVeiculo;
     }

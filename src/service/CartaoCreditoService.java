@@ -12,7 +12,7 @@ public class CartaoCreditoService {
         cartaoCreditoRepository = new CartaoCreditoRepository();
     }
 
-    // criação de um objeto
+
     public void adicionarCartao(CartaoCredito cartaoCredito) {
         try {
             CartaoCredito cartaoAdicionado = cartaoCreditoRepository.adicionar(cartaoCredito);
@@ -26,7 +26,6 @@ public class CartaoCreditoService {
         }
     }
 
-    // remoção
     public void removerCartao(Integer id) {
         try {
             boolean conseguiuRemover = cartaoCreditoRepository.remover(id);
@@ -36,7 +35,6 @@ public class CartaoCreditoService {
         }
     }
 
-    // atualização de um objeto
     public void editarCartao(Integer id, CartaoCredito cartaoCredito) {
         try {
             boolean conseguiuEditar = cartaoCreditoRepository.editar(id, cartaoCredito);
@@ -46,7 +44,6 @@ public class CartaoCreditoService {
         }
     }
 
-    // leitura
     public void listarCartoes() {
         try {
             List<CartaoCredito> listar = cartaoCreditoRepository.listar();
