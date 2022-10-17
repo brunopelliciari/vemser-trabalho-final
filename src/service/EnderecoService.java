@@ -13,6 +13,9 @@ public class EnderecoService {
 
     public void adicionarEndereco(Endereco endereco) {
         try {
+            if(!validarEndereco(endereco)){
+                throw new RuntimeException("Endereço Inválido");
+            }
             Endereco enderecoAdicionado = enderecoRepository.adicionar(endereco);
             System.out.println("Endereço adicinado com sucesso! " + enderecoAdicionado);
         } catch (BancoDeDadosException e) {
@@ -73,5 +76,11 @@ public class EnderecoService {
         } catch (BancoDeDadosException e) {
             e.printStackTrace();
         }
+    }
+    public boolean validarEndereco (Endereco endereco){
+        if(endereco.getCep().length() == 9){
+            return endereco.getCep().charAt(5) != '-';
+        }
+        return false;
     }
 }
