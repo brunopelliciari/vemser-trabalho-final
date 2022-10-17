@@ -72,7 +72,6 @@ public class LocacaoRepository implements Repositorio<Integer, Locacao> {
         try {
             con = ConexaoBancoDeDados.getConnection();
 
-            //int res = stmt2.executeUpdate();
             String sql2 = "SELECT L.ID_CARTAO FROM LOCACAO L WHERE L.ID_LOCACAO = ?";
             PreparedStatement stmt2 = con.prepareStatement(sql2);
             stmt2.setInt(1, id);
@@ -80,7 +79,7 @@ public class LocacaoRepository implements Repositorio<Integer, Locacao> {
             while (res.next()) {
                 idCartao = res.getInt("id_cartao");
             }
-            System.out.println("removerCartaoPorId.res=" + res);
+            //System.out.println("removerCartaoPorId.res=" + res);
 
 
             String sql = "DELETE FROM LOCACAO WHERE id_locacao = ?";
@@ -90,7 +89,7 @@ public class LocacaoRepository implements Repositorio<Integer, Locacao> {
             stmt.setInt(1, id);
 
             int resultado = stmt.executeUpdate();
-            System.out.println("removerLocacaoPorId.res=" + resultado);
+            //System.out.println("removerLocacaoPorId.res=" + resultado);
             return resultado > 0;
         } catch (SQLException e) {
             throw new BancoDeDadosException(e.getCause());

@@ -45,7 +45,7 @@ public class CartaoCreditoRepository implements Repositorio<Integer, CartaoCredi
             stmt.setDouble(5, cartaoCredito.getLimite());
 
             int res = stmt.executeUpdate();
-            System.out.println("adicionarCartaoCredito.res=" + res);
+            //System.out.println("adicionarCartaoCredito.res=" + res);
             return cartaoCredito;
         } catch (SQLException e) {
             throw new BancoDeDadosException(e.getCause());
@@ -72,9 +72,9 @@ public class CartaoCreditoRepository implements Repositorio<Integer, CartaoCredi
 
             stmt.setInt(1, id);
 
-            // Executa-se a consulta
+
             int res = stmt.executeUpdate();
-            System.out.println("removerCartaoPorId.res=" + res);
+            //System.out.println("removerCartaoPorId.res=" + res);
 
 
             return res > 0;

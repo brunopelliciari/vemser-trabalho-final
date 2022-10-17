@@ -15,6 +15,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws BancoDeDadosException, DatasInvalidasException {
         Scanner scanner = new Scanner(System.in);
+        CartaoCreditoRepository cartaoCreditoRepository = new CartaoCreditoRepository();
         CartaoCreditoService cartaoCreditoService = new CartaoCreditoService();
         VeiculoService veiculoService = new VeiculoService();
         FuncionarioService funcionarioService = new FuncionarioService();
@@ -22,6 +23,7 @@ public class Main {
         EnderecoService enderecoService = new EnderecoService();
         ClienteService clienteService = new ClienteService();
         LocacaoService locacaoService = new LocacaoService();
+
 
         int primeiroMenu = 0;
         int segundoMenu;
@@ -309,22 +311,20 @@ public class Main {
                                     } else {
                                         cartaoCredito = new CartaoCredito(numero, BandeiraCartao.VISA, validade, limite);
                                     }
-                                    CartaoCreditoRepository cartaoCreditoRepository = new CartaoCreditoRepository();
-                                    CartaoCredito cartaoAdicionado = cartaoCreditoRepository.adicionar(cartaoCredito);
-
+                                    cartaoCreditoService.adicionarCartao(cartaoCredito);
                                     System.out.print("Digite o id de um funcionário cadastrado: \n");
                                     funcionarioService.listarFuncionarios();
                                     Funcionario funcionario = new FuncionarioRepository().getPorId(scanner.nextInt());
 
                                     veiculo.alterarDisponibilidadeVeiculo();
-                                    Locacao locacao = new Locacao(dataLocacao, dataDevolucao, valorLocacao, cliente, veiculo, cartaoAdicionado, funcionario);
+                                    Locacao locacao = new Locacao(dataLocacao, dataDevolucao, valorLocacao, cliente, veiculo, cartaoCredito, funcionario);
                                     locacaoService.adicionarLocacao(locacao);
                                     break;
                                 case 2:
                                     locacaoService.listar();
                                     break;
                                 case 3:
-                                    System.out.println("Qual registro de locação você deseja editar?Digite 999 para sair.\n");
+                                    System.out.println("Qual registro de locação você deseja editar?Digite 999 para sair.");
                                     int index = scanner.nextInt();
                                     if (index == 999) {
                                         break;
@@ -335,10 +335,10 @@ public class Main {
                                     dataDevolucao = null;
                                     do {
                                         try {
-                                            System.out.print("Digite a data da locação do veículo(dd/MM/yyyy): \n");
+                                            System.out.println("Digite a data da locação do veículo(dd/MM/yyyy): ");
                                             dataLocacao = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
-                                            System.out.print("Digite a data da devolucao do veículo(dd/MM/yyyy): \n");
+                                            System.out.println("Digite a data da devolucao do veículo(dd/MM/yyyy): ");
                                             dataDevolucao = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
                                             Locacao.validarDatasLocacao(dataLocacao, dataDevolucao);
@@ -401,10 +401,10 @@ public class Main {
                                     }
                                     System.out.println("Informe o id do cartão: ");
                                     cartaoCreditoService.listarCartoes();
-                                    CartaoCreditoRepository cartaoCreditoRepository1 = new CartaoCreditoRepository();
-                                    CartaoCredito cartaoAdicionado1 = cartaoCreditoRepository1.adicionar(cartaoCredito1);
+                                    cartaoCreditoService.adicionarCartao(cartaoCredito1);
+
                                     idVeiculo.alterarDisponibilidadeVeiculo();
-                                    Locacao locacao1 = new Locacao(dataLocacao, dataDevolucao, valorLocacaoEdicao, idCliente, idVeiculo, cartaoAdicionado1, idFuncionario);
+                                    Locacao locacao1 = new Locacao(dataLocacao, dataDevolucao, valorLocacaoEdicao, idCliente, idVeiculo, cartaoCredito1, idFuncionario);
                                     locacaoService.editar(index, locacao1);
                                     break;
                                 case 4:
