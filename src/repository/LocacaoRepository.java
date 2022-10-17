@@ -243,8 +243,8 @@ public class LocacaoRepository implements Repositorio<Integer, Locacao> {
     private Funcionario getFuncionarioResultSet(ResultSet res) throws SQLException {
         Funcionario funcionario = new Funcionario();
         funcionario.setIdFuncionario(res.getInt("id_funcionario"));
-        funcionario.setNome(res.getString("nome"));
-        funcionario.setCpf(res.getString("cpf"));
+        funcionario.setNome(res.getString("nome_funcionario"));
+        funcionario.setCpf(res.getString("cpf_funcionario"));
         funcionario.setMatricula(res.getInt("matricula"));
         return funcionario;
     }

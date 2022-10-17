@@ -32,7 +32,7 @@ public class FuncionarioRepository implements Repositorio<Integer, Funcionario> 
             funcionario.setIdFuncionario(proximoId);
 
             String sql = "INSERT INTO FUNCIONARIO\n" +
-                    "(id_funcionario, nome, cpf, matricula)\n" +
+                    "(id_funcionario, nome_funcionario, cpf_funcionario, matricula)\n" +
                     "VALUES(?, ?, ?, ?)\n";
 
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -96,8 +96,8 @@ public class FuncionarioRepository implements Repositorio<Integer, Funcionario> 
 
             StringBuilder sql = new StringBuilder();
             sql.append("UPDATE FUNCIONARIO SET ");
-            sql.append(" nome = ?,");
-            sql.append(" cpf = ?,");
+            sql.append(" nome_funcionario = ?,");
+            sql.append(" cpf_funcionario = ?,");
             sql.append(" matricula = ? ");
             sql.append(" WHERE id_funcionario = ? ");
 
@@ -142,8 +142,8 @@ public class FuncionarioRepository implements Repositorio<Integer, Funcionario> 
             while (res.next()) {
                 Funcionario funcionario = new Funcionario();
                 funcionario.setIdFuncionario(res.getInt("id_funcionario"));
-                funcionario.setNome(res.getString("nome"));
-                funcionario.setCpf(res.getString("cpf"));
+                funcionario.setNome(res.getString("nome_funcionario"));
+                funcionario.setCpf(res.getString("cpf_funcionario"));
                 funcionario.setMatricula(res.getInt("matricula"));
                 funcionarios.add(funcionario);
             }
@@ -178,8 +178,8 @@ public class FuncionarioRepository implements Repositorio<Integer, Funcionario> 
 
             while (res.next()){
                 funcionario.setIdFuncionario(res.getInt("id_funcionario"));
-                funcionario.setNome(res.getString("nome"));
-                funcionario.setCpf(res.getString("cpf"));
+                funcionario.setNome(res.getString("nome_funcionario"));
+                funcionario.setCpf(res.getString("cpf_funcionario"));
                 funcionario.setMatricula(res.getInt("matricula"));
             }
             //System.out.println("buscarFuncionario.res="+ res);
