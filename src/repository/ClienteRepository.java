@@ -231,8 +231,6 @@ public class ClienteRepository implements Repositorio<Integer, Cliente> {
                 cliente.setEndereco(getEnderecoResultSet(res));
                 cliente.setContato(getContatoFromResultSet(res));
             }
-            //System.out.println("buscarCliente.res=" + res);
-
             return cliente;
         } catch (SQLException e) {
             throw new BancoDeDadosException(e.getCause());

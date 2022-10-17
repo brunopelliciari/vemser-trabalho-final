@@ -15,6 +15,9 @@ public class ClienteService {
         EnderecoService enderecoService = new EnderecoService();
         ContatoService contatoService = new ContatoService();
         try {
+            if(!validarCliente(cliente)){
+                throw new RuntimeException("Cliente inválido");
+            }
             Cliente clienteAdicionado = clienteRepository.adicionar(cliente);
             System.out.println("Cliente adicinado com sucesso! " + clienteAdicionado);
             enderecoService.removerEnderecosOciosos();
@@ -56,5 +59,9 @@ public class ClienteService {
 
     public int retornarIdEndereco(int id){
         return clienteRepository.retornarIndiceEnderecoPorIdCliente(id);
+    }
+
+    public boolean validarCliente (Cliente cliente){
+        return cliente.getCpf().length() == 11;
     }
 }
