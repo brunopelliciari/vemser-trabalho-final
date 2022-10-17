@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws BancoDeDadosException, DatasInvalidasException {
         Scanner scanner = new Scanner(System.in);
-
+        CartaoCreditoService cartaoCreditoService = new CartaoCreditoService();
         VeiculoService veiculoService = new VeiculoService();
         FuncionarioService funcionarioService = new FuncionarioService();
         EnderecoService enderecoService = new EnderecoService();
@@ -60,7 +60,7 @@ public class Main {
                                     String placaVeiculo = scanner.nextLine();
 
                                     Veiculo veiculo = new Veiculo(marcaVeiculo, maodeloVeiculo, corVeiculo, anoVeiculo
-                                    , quilometragemVeiculo, valorLocacaoVeiculo, placaVeiculo);
+                                            , quilometragemVeiculo, valorLocacaoVeiculo, placaVeiculo);
 
                                     veiculoService.adicionarVeiculo(veiculo);
 
@@ -168,7 +168,7 @@ public class Main {
                                     System.out.println("Qual cliente você deseja editar? Digite 999 para voltar ao menu anterior\n");
                                     clienteService.listar();
                                     int index = scanner.nextInt();
-                                    if(index==999){
+                                    if (index == 999) {
                                         break;
                                     }
                                     scanner.nextLine();
@@ -212,7 +212,7 @@ public class Main {
                                     System.out.println("Qual cliente você deseja excluir?Digite 999 para voltar\n");
                                     clienteService.listar();
                                     int id = scanner.nextInt();
-                                    if(id==999){
+                                    if (id == 999) {
                                         break;
                                     }
                                     scanner.nextLine();
@@ -256,28 +256,42 @@ public class Main {
                                     double quilometragemAdicao = scanner.nextDouble();
 
                                     System.out.print("Digite o id de um cliente cadastrado: \n");
-                                    clienteService.listar();
                                     Cliente cliente = new ClienteRepository().getPorId(scanner.nextInt());
 
                                     System.out.print("Digite o id de um veículo cadastrado: \n");
-                                    veiculoService.listarVeiculos();
                                     Veiculo veiculo = new VeiculoRepository().getPorId(scanner.nextInt());
-                                    veiculo.setQuilometragem(veiculo.getQuilometragem() + quilometragemAdicao);
+                                    veiculo.setQuilometragem(quilometragemAdicao);
                                     Duration d2 = Duration.between(dataLocacao.atStartOfDay(), dataDevolucao.atStartOfDay());
                                     double valorLocacao = d2.toDays() * veiculo.getValorLocacao();
 
-                                    //System.out.print("Informe os dados do cartão de crédito que deseja utilizar para o pagamento: \n");
-                                    //System.out.println("Informe a bandeira do cartão: 1- Visa 2- Mastercard ");
-                                    //System.out.println("Informe a validade do cartão(MM/yyyy): ");
-                                    //System.out.println("Informe o limite do cartão: ");
-                                    System.out.println("Informe o id do cartão: ");
-                                    CartaoCredito cartaoCredito = new CartaoCredito(scanner.nextInt());
+                                    System.out.print("Informe os dados do cartão de crédito que deseja utilizar para o pagamento: \n");
+                                    System.out.println("Informe o numero do cartão: ");
+                                    String numero = scanner.next();
+
+                                    System.out.println("Informe a validade do cartão(MM/yyyy): ");
+                                    String validade = scanner.next();
+
+                                    System.out.println("Informe o limite do cartão: ");
+                                    double limite = scanner.nextDouble();
+
+                                    System.out.println("Bandeira Cartão 1- MasterCard 2-Visa");
+                                    int bandeiraCartao = scanner.nextInt();
+
+                                    CartaoCredito cartaoCredito = null;
+                                    if (bandeiraCartao == 1) {
+                                        cartaoCredito = new CartaoCredito(numero, BandeiraCartao.MASTERCARD, validade, limite);
+
+                                    } else {
+                                        cartaoCredito = new CartaoCredito(numero, BandeiraCartao.VISA, validade, limite);
+                                    }
+                                    CartaoCreditoRepository cartaoCreditoRepository = new CartaoCreditoRepository();
+                                    CartaoCredito cartaoAdicionado = cartaoCreditoRepository.adicionar(cartaoCredito);
 
                                     System.out.print("Digite o id de um funcionário cadastrado: \n");
                                     Funcionario funcionario = new FuncionarioRepository().getPorId(scanner.nextInt());
 
 
-                                    Locacao locacao = new Locacao(dataLocacao, dataDevolucao,valorLocacao,cliente, veiculo, cartaoCredito, funcionario);
+                                    Locacao locacao = new Locacao(dataLocacao, dataDevolucao, valorLocacao, cliente, veiculo, cartaoAdicionado, funcionario);
                                     locacaoService.adicionarLocacao(locacao);
                                     break;
                                 case 2:
@@ -312,16 +326,31 @@ public class Main {
                                     System.out.print("Digite o id de um funcionário cadastrado: \n");
                                     Funcionario idFuncionario = new FuncionarioRepository().getPorId(scanner.nextInt());
 
-                                    //System.out.print("Informe os dados do cartão de crédito que deseja utilizar para o pagamento: \n");
-                                    System.out.println("Informe o id do cartão: ");
-                                    CartaoCredito idCartaoCredito = new CartaoCredito(scanner.nextInt());
+                                    System.out.print("Informe os dados do cartão de crédito que deseja utilizar para o pagamento: \n");
+                                    System.out.println("Informe o numero do cartão: ");
+                                    String numero1 = scanner.next();
 
-                                    Locacao locacao1 = new Locacao( dl, dd,valorLocacaoEdicao,idCliente,idVeiculo,idCartaoCredito,idFuncionario);
-                                    locacaoService.editar(index,locacao1);
-                                    //System.out.println("Informe o numero do cartão: ");
-                                    //System.out.println("Informe a bandeira do cartão: 1- Visa 2- Mastercard ");
-                                    //System.out.println("Informe a validade do cartão(MM/yyyy): ");
-                                    //System.out.println("Informe o limite do cartão: ");
+                                    System.out.println("Informe a validade do cartão(MM/yyyy): ");
+                                    String validade1 = scanner.next();
+
+                                    System.out.println("Informe o limite do cartão: ");
+                                    double limite1 = scanner.nextDouble();
+
+                                    System.out.println("Bandeira Cartão 1- MasterCard 2-Visa");
+                                    int bandeiraCartao1 = scanner.nextInt();
+
+                                    CartaoCredito cartaoCredito1 = null;
+                                    if (bandeiraCartao1 == 1) {
+                                        cartaoCredito1 = new CartaoCredito(numero1, BandeiraCartao.MASTERCARD, validade1, limite1);
+
+                                    } else {
+                                        cartaoCredito1 = new CartaoCredito(numero1, BandeiraCartao.VISA, validade1, limite1);
+                                    }
+                                    System.out.println("Informe o id do cartão: ");
+                                    CartaoCreditoRepository cartaoCreditoRepository1 = new CartaoCreditoRepository();
+                                    CartaoCredito cartaoAdicionado1 = cartaoCreditoRepository1.adicionar(cartaoCredito1);
+                                    Locacao locacao1 = new Locacao(dl, dd, valorLocacaoEdicao, idCliente, idVeiculo, cartaoAdicionado1, idFuncionario);
+                                    locacaoService.editar(index, locacao1);
                                     break;
                                 case 4:
                                     System.out.println("Qual registro de locação você deseja excluir? Digite 999 para voltar ");

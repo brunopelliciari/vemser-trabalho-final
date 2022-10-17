@@ -37,7 +37,6 @@ public class LocacaoRepository implements Repositorio<Integer, Locacao> {
             PreparedStatement stmt = con.prepareStatement(sql);
 
 
-
             stmt.setInt(1, locacao.getIdlocacao());
             stmt.setDate(2, Date.valueOf(locacao.getDataLocacao()));
             stmt.setDate(3, Date.valueOf(locacao.getDataDevolucao()));
@@ -69,9 +68,20 @@ public class LocacaoRepository implements Repositorio<Integer, Locacao> {
     @Override
     public boolean remover(Integer id) throws BancoDeDadosException {
         Connection con = null;
-
+        int idCartao = 0;
         try {
             con = ConexaoBancoDeDados.getConnection();
+
+            //int res = stmt2.executeUpdate();
+            String sql2 = "SELECT L.ID_CARTAO FROM LOCACAO L WHERE L.ID_LOCACAO = ?";
+            PreparedStatement stmt2 = con.prepareStatement(sql2);
+            stmt2.setInt(1, id);
+            ResultSet res = stmt2.executeQuery();
+            while (res.next()) {
+                idCartao = res.getInt("id_cartao");
+            }
+            System.out.println("removerCartaoPorId.res=" + res);
+
 
             String sql = "DELETE FROM LOCACAO WHERE id_locacao = ?";
 
@@ -79,9 +89,9 @@ public class LocacaoRepository implements Repositorio<Integer, Locacao> {
 
             stmt.setInt(1, id);
 
-            int res = stmt.executeUpdate();
-            System.out.println("removerLocacaoPorId.res=" + res);
-            return res > 0;
+            int resultado = stmt.executeUpdate();
+            System.out.println("removerLocacaoPorId.res=" + resultado);
+            return resultado > 0;
         } catch (SQLException e) {
             throw new BancoDeDadosException(e.getCause());
         } finally {
@@ -196,7 +206,6 @@ public class LocacaoRepository implements Repositorio<Integer, Locacao> {
                     "left join FUNCIONARIO F on F.ID_FUNCIONARIO = L.ID_FUNCIONARIO\n" +
                     "left join ENDERECO_CLIENTE EC on EC.ID_ENDERECO = C2.ID_ENDERECO\n" +
                     "left join CARTAO_CREDITO CC on L.ID_CARTAO = CC.ID_CARTAO";
-                    //"left join CARTAO_CREDITO CC on EC.NUMERO = CC.NUMERO";
 
             ResultSet res = stmt.executeQuery(sql);
 

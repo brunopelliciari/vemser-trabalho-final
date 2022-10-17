@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Arrays;
+
 public enum DisponibilidadeVeiculo {
     ALUGADO(1),
     DISPONIVEL(2);
@@ -12,6 +14,10 @@ public enum DisponibilidadeVeiculo {
 
     public int getDisponibilidade() {
         return disponibilidade;
+    }
+
+    public static DisponibilidadeVeiculo getByValue(Integer numero){
+        return Arrays.stream(DisponibilidadeVeiculo.values()).filter(disponibilidadeVeiculo -> disponibilidadeVeiculo.getDisponibilidade()== numero).findFirst().get();
     }
 }
 

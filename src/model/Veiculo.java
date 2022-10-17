@@ -7,8 +7,8 @@ public class Veiculo {
     private String modelo;
     private String cor;
     private Integer ano;
-    private Double quilometragem;
-    private Double valorLocacao;
+    private Double quilometragem = 0.0;
+    private Double valorLocacao = 0.0;
     private DisponibilidadeVeiculo disponibilidadeVeiculo;
     private String placa;
 
@@ -22,11 +22,12 @@ public class Veiculo {
         this.setDisponibilidadeVeiculo(DisponibilidadeVeiculo.DISPONIVEL);
         this.placa = placa;
     }
+
     public Veiculo(Integer idVeiculo) {
         this.idVeiculo = idVeiculo;
     }
 
-    public Veiculo(){
+    public Veiculo() {
     }
 
     public Integer getIdVeiculo() {
@@ -73,8 +74,8 @@ public class Veiculo {
         return quilometragem;
     }
 
-    public void setQuilometragem(Double quilometragem) {
-        this.quilometragem = quilometragem;
+    public void setQuilometragem(double quilometragem) {
+        this.quilometragem += quilometragem;
     }
 
     public Double getValorLocacao() {
@@ -89,8 +90,8 @@ public class Veiculo {
         return disponibilidadeVeiculo;
     }
 
-    public void setDisponibilidadeVeiculo(DisponibilidadeVeiculo disponibilidade){
-            this.disponibilidadeVeiculo = disponibilidade;
+    public void setDisponibilidadeVeiculo(DisponibilidadeVeiculo disponibilidade) {
+        this.disponibilidadeVeiculo = disponibilidade;
     }
 
     public String getPlaca() {
@@ -101,10 +102,10 @@ public class Veiculo {
         this.placa = placa;
     }
 
-    public void alterarDisponibilidadeVeiculo(){
-        if(this.disponibilidadeVeiculo.getDisponibilidade() == 1){
+    public void alterarDisponibilidadeVeiculo() {
+        if (this.disponibilidadeVeiculo.getDisponibilidade() == 1) {
             this.disponibilidadeVeiculo = DisponibilidadeVeiculo.DISPONIVEL;
-        }else if(this.disponibilidadeVeiculo.getDisponibilidade() == 2){
+        } else if (this.disponibilidadeVeiculo.getDisponibilidade() == 2) {
             this.disponibilidadeVeiculo = DisponibilidadeVeiculo.ALUGADO;
         }
     }

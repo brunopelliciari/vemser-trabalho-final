@@ -3,6 +3,7 @@ package repository;
 import exceptions.BancoDeDadosException;
 import model.BandeiraCartao;
 import model.CartaoCredito;
+import model.Endereco;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -75,6 +76,7 @@ public class CartaoCreditoRepository implements Repositorio<Integer, CartaoCredi
             // Executa-se a consulta
             int res = stmt.executeUpdate();
             System.out.println("removerCartaoPorId.res=" + res);
+
 
             return res > 0;
         } catch (SQLException e) {
@@ -164,5 +166,38 @@ public class CartaoCreditoRepository implements Repositorio<Integer, CartaoCredi
             }
         }
         return cartoes;
+    }
+    public CartaoCredito getPorId(Integer chave) throws BancoDeDadosException {
+        CartaoCredito  cartaoCredito = new CartaoCredito();
+        Connection con = null;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+            String sql = "SELECT * FROM CARTAO_CREDITO\n" +
+                    "WHERE id_cartao = ?";
+            PreparedStatement stmt = con.prepareStatement(sql.toString());
+
+            stmt.setInt(1,chave);
+            ResultSet res = stmt.executeQuery();
+
+            while (res.next()){
+                cartaoCredito.setIdCartaoCredito(res.getInt("id_cartao"));
+                cartaoCredito.setBandeira(BandeiraCartao.valueOf(res.getString("bandeira")));
+                cartaoCredito.setValidade(res.getString("validade"));
+                cartaoCredito.setLimite(res.getDouble("limite"));
+            }
+            System.out.println("buscarCartao.res="+ res);
+            return cartaoCredito;
+        }catch (SQLException e){
+            throw new BancoDeDadosException(e.getCause());
+        }finally {
+            try {
+                if(con != null){
+                    con.close();
+                }
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
     }
 }
