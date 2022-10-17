@@ -48,6 +48,8 @@ public class Cliente extends Pessoa {
     public String toString() {
         return "Cliente{" +
                 "id_cliente=" + id_cliente +
+                ", nome=" + super.getNome() +
+                ", cpf=" + super.getCpf() +
                 ", contato=" + contato +
                 ", endereco=" + endereco +
                 '}';

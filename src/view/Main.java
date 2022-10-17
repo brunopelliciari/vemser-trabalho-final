@@ -214,7 +214,6 @@ public class Main {
                                     if (id == 999) {
                                         break;
                                     }
-                                    scanner.nextLine();
                                     clienteService.remover(id);
                                     break;
                                 case 5:
@@ -459,7 +458,6 @@ public class Main {
                                         break;
                                     }
                                     scanner.nextLine();
-
                                     System.out.println("Digite o novo nome do funcionário");
                                     novoFuncionario.setNome(scanner.nextLine());
                                     System.out.println("Digite o novo cpf do funcionário");
@@ -476,12 +474,6 @@ public class Main {
                                     int idFuncionarioParaRemover = scanner.nextInt();
 
                                     funcionarioService.removerFuncionario(idFuncionarioParaRemover);
-
-                                    int id = scanner.nextInt();
-                                    if (id == 999) {
-                                        break;
-                                    }
-                                    scanner.nextLine();
                                     break;
                                 case 9:
                                     break;
@@ -494,7 +486,6 @@ public class Main {
                 }
             } catch (InputMismatchException e) {
                 System.err.println("Tipo de dado digitado está incorreto " + e.getMessage());
-                scanner.nextLine();
             }
         }
         scanner.close();

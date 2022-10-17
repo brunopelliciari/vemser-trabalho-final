@@ -114,7 +114,9 @@ public class Locacao {
                 ", dataLocacao=" + dataLocacao +
                 ", dataDevolucao=" + dataDevolucao +
                 ", valorLocacao=" + valorLocacao +
-                "\n" + cliente +
+                "\n" +
+                "--------Dados do Cliente--------\n"+
+                cliente +
                 "\n" +
                 "--------Dados do Veiculo--------\n"+
                 veiculo +
